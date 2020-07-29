@@ -1,0 +1,9 @@
+0 MCP23017 x2     
+0 Push Button x15
+0 Foot switch x8
+0 Rotray Encoder x5
+0 128x64 LCD x1
+0 1/4 jack x4
+0 5v relay x3
+0 red led bright x8
+0 hc05 x1
