@@ -31,6 +31,11 @@ void main_window::update()
     }
 }
 
+all_windows main_window::get_window_id()
+{
+    return MAIN_WINDOW;
+}
+
 void main_window::on_btn_pressed()
 {
 

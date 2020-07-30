@@ -50,16 +50,25 @@ void setup()
 
 void loop()
 {
+    unsigned long current_time = millis();
     // draw the display at 10 fps
-    if(millis() - last_frame_time > 100)
+    if(current_time - last_frame_time > 100)
     {
         display.draw();
+        last_frame_time = current_time;
     }
-    if (millis() - test_time > 5000)
+    if (current_time - test_time > 5000)
     {
         if (signal_chain[0] == nullptr)
+        {
             signal_chain[0] = &effects_rack.reverb_mod01;
+            digitalWrite(LED_BUILTIN, HIGH);
+        }
         else
+        {
             signal_chain[0] = nullptr;
+            digitalWrite(LED_BUILTIN, LOW);
+        }
+        test_time = current_time;
     }
 }

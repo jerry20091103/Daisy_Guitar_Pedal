@@ -1,4 +1,6 @@
 #include "display.h"
+#include "msg_window.h"
+#include "main_window.h"
 
 U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 8, /* data=*/ 9, /* CS=*/ 7, /* reset=*/ 6);
 LedControl lc1=LedControl(9,8,5,1); 
@@ -15,7 +17,9 @@ void _display::init()
     u8g2.clearBuffer();
     // Initialize windos list and the first window
     windows_arr[MAIN_WINDOW] = &main_window_ins;
-    current_window = windows_arr[MAIN_WINDOW];
+    windows_arr[MSG_WINDOW] = &msg_window_ins;
+    current_window = windows_arr[MSG_WINDOW];
+    last_window = windows_arr[MAIN_WINDOW];
 }
 
 void _display::draw()
@@ -25,4 +29,10 @@ void _display::draw()
     u8g2.clearBuffer();
     current_window->draw();
     u8g2.sendBuffer();
+}
+
+void _display::change_window(all_windows window)
+{
+    last_window = display.current_window;
+    current_window = display.windows_arr[window];
 }
