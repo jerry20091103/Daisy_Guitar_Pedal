@@ -52,7 +52,7 @@ void loop()
 {
     unsigned long current_time = millis();
     // draw the display at 10 fps
-    if(current_time - last_frame_time > 100)
+    if (current_time - last_frame_time > 100)
     {
         display.draw();
         last_frame_time = current_time;

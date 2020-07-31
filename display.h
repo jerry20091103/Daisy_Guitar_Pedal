@@ -2,11 +2,12 @@
 #define DISPLAY_H
 
 #include <U8g2lib.h>
-#include <LedControl.h>
+#include <Adafruit_MCP23017.h>
 #include "windows.h"
 
 extern U8G2_ST7920_128X64_F_SW_SPI u8g2;
-extern LedControl lc1;
+extern U8G2_MAX7219_8X8_F_4W_SW_SPI u8g2_8x8;
+extern Adafruit_MCP23017 mcp;
 
 // A display class that combines the 128x64 lcd and 8x8 led matrix
 class _display

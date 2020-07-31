@@ -3,18 +3,23 @@
 #include "main_window.h"
 
 U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 8, /* data=*/ 9, /* CS=*/ 7, /* reset=*/ 6);
-LedControl lc1=LedControl(9,8,5,1); 
+U8G2_MAX7219_8X8_F_4W_SW_SPI u8g2_8x8(U8G2_R0, /* clock=*/ 3, /* data=*/ 5, /* cs=*/ 4, /* dc=*/ U8X8_PIN_NONE, /* reset=*/ U8X8_PIN_NONE);
+Adafruit_MCP23017 mcp;
 
 _display display;
 
 void _display::init()
 {
     // Initialize 8x8 led matrix
-    lc1.shutdown(0,false); //wake up the MAX72XX from power-saving mode
-    lc1.setIntensity(0,8); //set a medium brightness for the Leds (maybe read from EEPROM later)
+    u8g2_8x8.begin();
+    u8g2_8x8.clearBuffer();
     // Initialize 128x64 lcd
     u8g2.begin();
     u8g2.clearBuffer();
+    // Initialize footswitch LEDs
+    mcp.begin();
+    for (uint8_t i = 0; i < 4; i++)
+        mcp.pinMode(i, OUTPUT);
     // Initialize windos list and the first window
     windows_arr[MAIN_WINDOW] = &main_window_ins;
     windows_arr[MSG_WINDOW] = &msg_window_ins;
@@ -25,9 +30,10 @@ void _display::init()
 void _display::draw()
 {
     current_window->update();
-    //lc1.clearDisplay(0);
+    u8g2_8x8.clearBuffer();
     u8g2.clearBuffer();
     current_window->draw();
+    u8g2_8x8.sendBuffer();
     u8g2.sendBuffer();
 }
 
