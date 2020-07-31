@@ -15,8 +15,8 @@ public:
     virtual void draw() = 0;
     virtual void update() = 0;
     virtual all_windows get_window_id() = 0;
-    virtual void on_btn_pressed() = 0; // TBD
-    virtual void on_btn_holded() = 0;  // TBD
+    virtual void on_btn_pressed(int id) = 0; // TBD
+    virtual void on_btn_holded(int id) = 0;  // TBD
 private:
 
 };

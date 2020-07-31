@@ -36,12 +36,12 @@ all_windows main_window::get_window_id()
     return MAIN_WINDOW;
 }
 
-void main_window::on_btn_pressed()
+void main_window::on_btn_pressed(int id)
 {
 
 }
 
-void main_window::on_btn_holded()
+void main_window::on_btn_holded(int id)
 {
 
 }

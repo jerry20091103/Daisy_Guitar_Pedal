@@ -43,12 +43,12 @@ all_windows msg_window::get_window_id()
     return MSG_WINDOW;
 }
 
-void msg_window::on_btn_pressed()
+void msg_window::on_btn_pressed(int id)
 {
 
 }
 
-void msg_window::on_btn_holded()
+void msg_window::on_btn_holded(int id)
 {
 
 }
