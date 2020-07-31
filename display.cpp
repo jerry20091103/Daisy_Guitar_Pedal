@@ -18,8 +18,9 @@ void _display::init()
     u8g2.clearBuffer();
     // Initialize footswitch LEDs
     mcp.begin();
-    for (uint8_t i = 0; i < 4; i++)
+    for (uint8_t i = 0; i < 7; i++)
         mcp.pinMode(i, OUTPUT);
+    mcp.pinMode(15, OUTPUT); // For relay
     // Initialize windos list and the first window
     windows_arr[MAIN_WINDOW] = &main_window_ins;
     windows_arr[MSG_WINDOW] = &msg_window_ins;
