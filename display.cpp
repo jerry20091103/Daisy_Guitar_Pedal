@@ -2,7 +2,7 @@
 #include "msg_window.h"
 #include "main_window.h"
 
-U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 8, /* data=*/ 9, /* CS=*/ 7, /* reset=*/ 6);
+U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/ 7, /* reset=*/ 6);
 U8G2_MAX7219_8X8_F_4W_SW_SPI u8g2_8x8(U8G2_R0, /* clock=*/ 3, /* data=*/ 5, /* cs=*/ 4, /* dc=*/ U8X8_PIN_NONE, /* reset=*/ U8X8_PIN_NONE);
 Adafruit_MCP23017 mcp;
 
@@ -14,6 +14,7 @@ void _display::init()
     u8g2_8x8.begin();
     u8g2_8x8.clearBuffer();
     // Initialize 128x64 lcd
+    u8g2.setBusClock(2400000); // Set a higher clock for better performance
     u8g2.begin();
     u8g2.clearBuffer();
     // Initialize footswitch LEDs
