@@ -241,6 +241,7 @@ void btn12_int()
 // Encoder interrupt
 void encoder_interrupt()
 {
+    RotaryEncoder::Direction dir;
     encoder.tick();
-    encoder.getDirection();
+    dir = encoder.getDirection();
 }

@@ -5,6 +5,8 @@
 #include <RotaryEncoder.h>
 
 #define BTN_HOLD_TIME 800
+#define ENCODER_CW RotaryEncoder::Direction::CLOCKWISE
+#define ENCODER_CCW RotaryEncoder::Direction::COUNTERCLOCKWISE
 
 extern EasyButton btn[13];
 enum buttons
