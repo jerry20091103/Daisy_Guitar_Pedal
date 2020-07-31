@@ -20,8 +20,8 @@ public:
     virtual void draw() override;
     virtual void update() override;
     virtual all_windows get_window_id() override;
-    virtual void on_btn_pressed(int id) override;
-    virtual void on_btn_holded(int id) override;
+    virtual void on_btn_pressed(buttons id) override;
+    virtual void on_btn_holded(buttons id) override;
 private:
     int time = 0;
 };

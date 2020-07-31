@@ -79,109 +79,109 @@ void _controls::btn_update()
 // press
 void btn0_press()
 {
-    display.current_window->on_btn_pressed(0);
+    display.current_window->on_btn_pressed(BTN_ENCODER);
 }
 void btn1_press()
 {
-    display.current_window->on_btn_pressed(1);
+    display.current_window->on_btn_pressed(BTN_FS0);
 }
 void btn2_press()
 {
-    display.current_window->on_btn_pressed(2);
+    display.current_window->on_btn_pressed(BTN_FS1);
 }
 void btn3_press()
 {
-    display.current_window->on_btn_pressed(3);
+    display.current_window->on_btn_pressed(BTN_FS2);
 }
 void btn4_press()
 {
-    display.current_window->on_btn_pressed(4);
+    display.current_window->on_btn_pressed(BTN_FS3);
 }
 void btn5_press()
 {
-    display.current_window->on_btn_pressed(5);
+    display.current_window->on_btn_pressed(BTN_FS4);
 }
 void btn6_press()
 {
-    display.current_window->on_btn_pressed(6);
+    display.current_window->on_btn_pressed(BTN_FS5);
 }
 void btn7_press()
 {
-    display.current_window->on_btn_pressed(7);
+    display.current_window->on_btn_pressed(BTN_FS6);
 }
 void btn8_press()
 {
-    display.current_window->on_btn_pressed(8);
+    display.current_window->on_btn_pressed(BTN_LEFT);
 }
 void btn9_press()
 {
-    display.current_window->on_btn_pressed(9);
+    display.current_window->on_btn_pressed(BTN_RIGHT);
 }
 void btn10_press()
 {
-    display.current_window->on_btn_pressed(10);
+    display.current_window->on_btn_pressed(BTN_UP);
 }
 void btn11_press()
 {
-    display.current_window->on_btn_pressed(11);
+    display.current_window->on_btn_pressed(BTN_DOWN);
 }
 void btn12_press()
 {
-    display.current_window->on_btn_pressed(12);
+    display.current_window->on_btn_pressed(BTN_OK);
 }
 
 // hold
 void btn0_hold()
 {
-    display.current_window->on_btn_holded(0);
+    display.current_window->on_btn_holded(BTN_ENCODER);
 }
 void btn1_hold()
 {
-    display.current_window->on_btn_holded(1);
+    display.current_window->on_btn_holded(BTN_FS0);
 }
 void btn2_hold()
 {
-    display.current_window->on_btn_holded(2);
+    display.current_window->on_btn_holded(BTN_FS1);
 }
 void btn3_hold()
 {
-    display.current_window->on_btn_holded(3);
+    display.current_window->on_btn_holded(BTN_FS2);
 }
 void btn4_hold()
 {
-    display.current_window->on_btn_holded(4);
+    display.current_window->on_btn_holded(BTN_FS3);
 }
 void btn5_hold()
 {
-    display.current_window->on_btn_holded(5);
+    display.current_window->on_btn_holded(BTN_FS4);
 }
 void btn6_hold()
 {
-    display.current_window->on_btn_holded(6);
+    display.current_window->on_btn_holded(BTN_FS5);
 }
 void btn7_hold()
 {
-    display.current_window->on_btn_holded(7);
+    display.current_window->on_btn_holded(BTN_FS6);
 }
 void btn8_hold()
 {
-    display.current_window->on_btn_holded(8);
+    display.current_window->on_btn_holded(BTN_LEFT);
 }
 void btn9_hold()
 {
-    display.current_window->on_btn_holded(9);
+    display.current_window->on_btn_holded(BTN_RIGHT);
 }
 void btn10_hold()
 {
-    display.current_window->on_btn_holded(10);
+    display.current_window->on_btn_holded(BTN_UP);
 }
 void btn11_hold()
 {
-    display.current_window->on_btn_holded(11);
+    display.current_window->on_btn_holded(BTN_DOWN);
 }
 void btn12_hold()
 {
-    display.current_window->on_btn_holded(12);
+    display.current_window->on_btn_holded(BTN_OK);
 }
 
 // interrupt

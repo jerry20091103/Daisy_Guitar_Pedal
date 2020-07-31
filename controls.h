@@ -11,19 +11,19 @@
 extern EasyButton btn[13];
 enum buttons
 {
-    BTN_ENCODER, // pin 17
-    BTN_FS0,     // pin 18
-    BTN_FS1,     // pin 19
-    BTN_FS2,     // pin 20
-    BTN_FS3,     // pin 21
-    BTN_FS4,     // pin 22
-    BTN_FS5,     // pin 23
-    BTN_FS6,     // pin 24
-    BTN_LEFT,    // pin 25
-    BTN_RIGHT,   // pin 26
-    BTN_UP,      // pin 27
-    BTN_DOWN,    // pin 28
-    BTN_OK       // pin 1
+    BTN_ENCODER, // pin 17 #0
+    BTN_FS0,     // pin 18 #1
+    BTN_FS1,     // pin 19 #2
+    BTN_FS2,     // pin 20 #3
+    BTN_FS3,     // pin 21 #4
+    BTN_FS4,     // pin 22 #5
+    BTN_FS5,     // pin 23 #6
+    BTN_FS6,     // pin 24 #7
+    BTN_LEFT,    // pin 25 #8
+    BTN_RIGHT,   // pin 26 #9
+    BTN_UP,      // pin 27 #10
+    BTN_DOWN,    // pin 28 #11
+    BTN_OK       // pin 1  #12
 };
 
 extern RotaryEncoder encoder;
