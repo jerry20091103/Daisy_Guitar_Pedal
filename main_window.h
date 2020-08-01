@@ -12,6 +12,7 @@ public:
     virtual all_windows get_window_id() override;
     virtual void on_btn_pressed(buttons id) override;
     virtual void on_btn_holded(buttons id) override;
+    virtual void on_enc_turned(RotaryEncoder::Direction dir) override;
 
 private:
     int time = 0;

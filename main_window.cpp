@@ -45,3 +45,8 @@ void main_window::on_btn_holded(buttons id)
 {
 
 }
+
+void main_window::on_enc_turned(RotaryEncoder::Direction dir)
+{
+    
+}

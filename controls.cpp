@@ -244,4 +244,8 @@ void encoder_interrupt()
     RotaryEncoder::Direction dir;
     encoder.tick();
     dir = encoder.getDirection();
+    if(dir != ENCODER_NOTURN)
+    {
+        display.current_window->on_enc_turned(dir);
+    }
 }
