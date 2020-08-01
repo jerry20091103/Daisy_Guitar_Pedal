@@ -10,7 +10,7 @@
 #define ENCODER_NOTURN RotaryEncoder::Direction::NOROTATION
 
 extern EasyButton btn[13];
-enum buttons
+enum buttons : byte
 {
     BTN_ENCODER, // pin 17 #0
     BTN_FS0,     // pin 18 #1

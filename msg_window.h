@@ -6,7 +6,7 @@
 #define MSG_POPUP_TIME 50 // Msg box will appear 50 frames
 #define MAX_MSG_LEN 20    // a max of 20 characters
 
-enum _msg_type
+enum _msg_type : byte
 {
     MSG_INFO,
     MSG_WARNING,

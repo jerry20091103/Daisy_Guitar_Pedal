@@ -5,7 +5,7 @@
 
 #define MAX_WINDOWS_NUM 2
 
-enum all_windows
+enum all_windows : byte
 {
     MAIN_WINDOW,
     MSG_WINDOW
