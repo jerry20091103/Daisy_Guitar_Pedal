@@ -9,22 +9,19 @@
 #define ENCODER_CCW RotaryEncoder::Direction::COUNTERCLOCKWISE
 #define ENCODER_NOTURN RotaryEncoder::Direction::NOROTATION
 
-extern EasyButton btn[13];
+extern EasyButton btn[10];
 enum buttons : byte
 {
     BTN_ENCODER, // pin 17 #0
     BTN_FS0,     // pin 18 #1
     BTN_FS1,     // pin 19 #2
-    BTN_FS2,     // pin 20 #3
-    BTN_FS3,     // pin 21 #4
-    BTN_FS4,     // pin 22 #5
-    BTN_FS5,     // pin 23 #6
-    BTN_FS6,     // pin 24 #7
-    BTN_LEFT,    // pin 25 #8
-    BTN_RIGHT,   // pin 26 #9
-    BTN_UP,      // pin 27 #10
-    BTN_DOWN,    // pin 28 #11
-    BTN_OK       // pin 1  #12
+    BTN_FS2,     // pin 21 #3
+    BTN_FS3,     // pin 22 #4
+    BTN_LEFT,    // pin 26 #5
+    BTN_RIGHT,   // pin 27 #6
+    BTN_UP,      // pin 28 #7
+    BTN_DOWN,    // pin 29 #8
+    BTN_OK       // pin 30 #9
 };
 
 extern RotaryEncoder encoder;
@@ -49,9 +46,6 @@ void btn6_press();
 void btn7_press();
 void btn8_press();
 void btn9_press();
-void btn10_press();
-void btn11_press();
-void btn12_press();
 
 void btn0_hold();
 void btn1_hold();
@@ -63,9 +57,6 @@ void btn6_hold();
 void btn7_hold();
 void btn8_hold();
 void btn9_hold();
-void btn10_hold();
-void btn11_hold();
-void btn12_hold();
 
 void btn0_int();
 void btn1_int();
@@ -77,9 +68,6 @@ void btn6_int();
 void btn7_int();
 void btn8_int();
 void btn9_int();
-void btn10_int();
-void btn11_int();
-void btn12_int();
 
 // encoder interrupt
 void encoder_interrupt();

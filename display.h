@@ -5,6 +5,14 @@
 #include <Adafruit_MCP23017.h>
 #include "windows.h"
 
+#define LED_FS0_PIN 4
+#define LED_FS1_PIN 5
+#define LED_FS2_PIN 6
+#define LED_FS3_PIN 7
+#define RELAY_0_PIN 1
+#define RELAY_1_PIN 2
+#define RELAY_2_PIN 3
+
 extern U8G2_ST7920_128X64_F_HW_SPI u8g2;
 extern U8G2_MAX7219_8X8_F_4W_SW_SPI u8g2_8x8;
 extern Adafruit_MCP23017 mcp;

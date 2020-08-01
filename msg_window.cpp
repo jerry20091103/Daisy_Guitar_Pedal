@@ -8,24 +8,28 @@ _msg_type msg_type = MSG_INFO;
 
 void msg_window::draw()
 {
+    u8g2.setDrawColor(1);
+    // Draw outer frame
+    u8g2.drawFrame(0, 0, 128, 64);
+    // Draw message content
+    u8g2.setFont(u8g2_font_6x12_mr);
+    u8g2.drawStr(4, 35, msg);
     // Draw message type
+    u8g2.setDrawColor(0);
     u8g2.setFont(u8g2_font_7x13_mr);
     switch (msg_type)
     {
     case MSG_INFO:
-        u8g2.drawStr(1, 13, "INFO:");
+        u8g2.drawStr(4, 15, "INFO:");
         break;
     case MSG_WARNING:
-        u8g2.drawStr(1, 13, "WARNING:");
+        u8g2.drawStr(4, 15, "WARNING:");
         break;
     case MSG_ERROR:
-        u8g2.drawStr(1, 13, "ERROR:");
+        u8g2.drawStr(4, 15, "ERROR:");
     default:
         break;
     }
-    // Draw message content
-    u8g2.setFont(u8g2_font_6x12_mr);
-    u8g2.drawStr(1, 30, msg);
 }
 
 void msg_window::update()

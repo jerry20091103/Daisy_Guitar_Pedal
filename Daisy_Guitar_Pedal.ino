@@ -1,5 +1,7 @@
+#include "command.h"
 #include "effects_rack.h"
 #include "display.h"
+#include "controls.h"
 
 DaisyHardware hw;
 
@@ -28,6 +30,7 @@ void audio_callback(float **in, float **out, size_t size)
 
 void setup()
 {
+    Serial.begin(9600);
     // Initialize for Daisy pod at 48kHz
     hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
     sample_rate = DAISY.get_samplerate();
@@ -36,11 +39,12 @@ void setup()
     // Initialize display
     display.init();
     last_frame_time = millis();
+    // Initialize controls
+    controls.init();
 
     pinMode(LED_BUILTIN, OUTPUT);
     test_time = millis();
 
-    Serial.begin(9600);
 
     // Begin audio callback
     DAISY.begin(audio_callback);
@@ -51,6 +55,10 @@ void setup()
 void loop()
 {
     unsigned long current_time = millis();
+    // Update buttons
+    controls.btn_update();
+    // Handle commands sent by interrupt
+    command_handler();
     // draw the display at 10 fps
     if (current_time - last_frame_time > 100)
     {
@@ -63,11 +71,13 @@ void loop()
         {
             signal_chain[0] = &effects_rack.reverb_mod01;
             digitalWrite(LED_BUILTIN, HIGH);
+            mcp.digitalWrite(LED_FS1_PIN, HIGH);
         }
         else
         {
             signal_chain[0] = nullptr;
             digitalWrite(LED_BUILTIN, LOW);
+            mcp.digitalWrite(LED_FS1_PIN, LOW);
         }
         test_time = current_time;
     }

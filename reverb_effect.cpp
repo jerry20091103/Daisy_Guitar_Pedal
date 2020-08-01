@@ -24,8 +24,6 @@ void reverb_effect::init()
     param[3].enable = false;
     param[3].value = 0.8f;
     set_param(3, param[3].value);
-
-    time = millis();
 }
 
 void reverb_effect::process(float in, float &out)
@@ -35,13 +33,6 @@ void reverb_effect::process(float in, float &out)
     reverb.Process(in, in, &after_l, &after_r);
     after_l = after_l * 0.5f + after_r * 0.5f; // Mix two channels
     out = in * dry + after_l * wet;            // Dry and wet mix
-    if(millis() - time > 1000)
-    {
-        Serial.println(in);
-        Serial.println(after_l);
-        Serial.println(dry);
-        time = millis();
-    }
 }
 
 void reverb_effect::set_param(uint8_t id, float val)

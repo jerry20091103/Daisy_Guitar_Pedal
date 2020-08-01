@@ -13,6 +13,7 @@ void _display::init()
     // Initialize 8x8 led matrix
     u8g2_8x8.begin();
     u8g2_8x8.clearBuffer();
+    u8g2_8x8.setContrast(20);
     // Initialize 128x64 lcd
     u8g2.setBusClock(2400000); // Set a higher clock for better performance
     u8g2.begin();

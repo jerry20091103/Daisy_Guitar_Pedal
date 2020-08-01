@@ -12,7 +12,6 @@ public:
 private:
     daisysp::ReverbSc reverb;
     float dry, wet;
-    float time;
 };
 
 #endif

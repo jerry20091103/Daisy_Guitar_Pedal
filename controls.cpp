@@ -1,7 +1,7 @@
 #include "controls.h"
 #include "display.h"
 
-EasyButton btn[13]{17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 1};
+EasyButton btn[10]{17, 18, 19, 21, 22, 26, 27, 28, 29, 30};
 RotaryEncoder encoder(15, 16);
 
 _controls controls;
@@ -9,7 +9,7 @@ _controls controls;
 void _controls::init()
 {
     // Initialize buttons
-    for (int i = 0; i < 13; i++)
+    for (int i = 0; i < 10; i++)
         btn[i].begin();
     btn[0].onPressed(btn0_press);
     btn[0].onPressedFor(BTN_HOLD_TIME, btn0_hold);
@@ -51,26 +51,14 @@ void _controls::init()
     btn[9].onPressedFor(BTN_HOLD_TIME, btn9_hold);
     btn[9].enableInterrupt(btn9_int);
 
-    btn[10].onPressed(btn10_press);
-    btn[10].onPressedFor(BTN_HOLD_TIME, btn10_hold);
-    btn[10].enableInterrupt(btn10_int);
-
-    btn[11].onPressed(btn11_press);
-    btn[11].onPressedFor(BTN_HOLD_TIME, btn11_hold);
-    btn[11].enableInterrupt(btn11_int);
-
-    btn[12].onPressed(btn0_press);
-    btn[12].onPressedFor(BTN_HOLD_TIME, btn12_hold);
-    btn[12].enableInterrupt(btn12_int);
-
     // Initialize encoder
-    attachInterrupt(15, encoder_interrupt, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(15), encoder_interrupt, CHANGE);
     attachInterrupt(16, encoder_interrupt, CHANGE);
 }
 
 void _controls::btn_update()
 {
-    for (int i = 0; i < 13; i++)
+    for (int i = 0; i < 10; i++)
     {
         btn[i].update();
     }
@@ -80,54 +68,52 @@ void _controls::btn_update()
 void btn0_press()
 {
     display.current_window->on_btn_pressed(BTN_ENCODER);
+    Serial.println("encoder pressed");
 }
 void btn1_press()
 {
     display.current_window->on_btn_pressed(BTN_FS0);
+    Serial.println("fs0 pressed");
 }
 void btn2_press()
 {
     display.current_window->on_btn_pressed(BTN_FS1);
+    Serial.println("fs1 pressed");
 }
 void btn3_press()
 {
     display.current_window->on_btn_pressed(BTN_FS2);
+    Serial.println("fs2 pressed");
 }
 void btn4_press()
 {
     display.current_window->on_btn_pressed(BTN_FS3);
+    Serial.println("fs3 pressed");
 }
 void btn5_press()
 {
-    display.current_window->on_btn_pressed(BTN_FS4);
+    display.current_window->on_btn_pressed(BTN_LEFT);
+    Serial.println("left pressed");
 }
 void btn6_press()
 {
-    display.current_window->on_btn_pressed(BTN_FS5);
+    display.current_window->on_btn_pressed(BTN_RIGHT);
+    Serial.println("right pressed");
 }
 void btn7_press()
 {
-    display.current_window->on_btn_pressed(BTN_FS6);
+    display.current_window->on_btn_pressed(BTN_UP);
+    Serial.println("up pressed");
 }
 void btn8_press()
 {
-    display.current_window->on_btn_pressed(BTN_LEFT);
+    display.current_window->on_btn_pressed(BTN_DOWN);
+    Serial.println("down pressed");
 }
 void btn9_press()
 {
-    display.current_window->on_btn_pressed(BTN_RIGHT);
-}
-void btn10_press()
-{
-    display.current_window->on_btn_pressed(BTN_UP);
-}
-void btn11_press()
-{
-    display.current_window->on_btn_pressed(BTN_DOWN);
-}
-void btn12_press()
-{
     display.current_window->on_btn_pressed(BTN_OK);
+    Serial.println("ok pressed");
 }
 
 // hold
@@ -153,33 +139,21 @@ void btn4_hold()
 }
 void btn5_hold()
 {
-    display.current_window->on_btn_holded(BTN_FS4);
+    display.current_window->on_btn_holded(BTN_LEFT);
 }
 void btn6_hold()
 {
-    display.current_window->on_btn_holded(BTN_FS5);
+    display.current_window->on_btn_holded(BTN_RIGHT);
 }
 void btn7_hold()
 {
-    display.current_window->on_btn_holded(BTN_FS6);
+    display.current_window->on_btn_holded(BTN_UP);
 }
 void btn8_hold()
 {
-    display.current_window->on_btn_holded(BTN_LEFT);
-}
-void btn9_hold()
-{
-    display.current_window->on_btn_holded(BTN_RIGHT);
-}
-void btn10_hold()
-{
-    display.current_window->on_btn_holded(BTN_UP);
-}
-void btn11_hold()
-{
     display.current_window->on_btn_holded(BTN_DOWN);
 }
-void btn12_hold()
+void btn9_hold()
 {
     display.current_window->on_btn_holded(BTN_OK);
 }
@@ -225,18 +199,6 @@ void btn9_int()
 {
     btn[9].read();
 }
-void btn10_int()
-{
-    btn[10].read();
-}
-void btn11_int()
-{
-    btn[11].read();
-}
-void btn12_int()
-{
-    btn[12].read();
-}
 
 // Encoder interrupt
 void encoder_interrupt()
@@ -247,5 +209,9 @@ void encoder_interrupt()
     if(dir != ENCODER_NOTURN)
     {
         display.current_window->on_enc_turned(dir);
+        if(dir == ENCODER_CW)
+            Serial.println("encoder cw");
+        else if(dir == ENCODER_CCW)
+            Serial.println("encoder ccw");
     }
 }
