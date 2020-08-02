@@ -24,32 +24,39 @@ void reverb_effect::init()
     param[3].enable = false;
     param[3].value = 0.8f;
     set_param(3, param[3].value);
+
+    // Initialize name
+    strcpy(effect_short_name, "Revb");
 }
 
 void reverb_effect::process(float in, float &out)
 {
-    float after_l = 0.0f; 
+    float after_l = 0.0f;
     float after_r = 0.0f;
     reverb.Process(in, in, &after_l, &after_r);
     after_l = after_l * 0.5f + after_r * 0.5f; // Mix two channels
     out = in * dry + after_l * wet;            // Dry and wet mix
 }
 
-void reverb_effect::set_param(uint8_t id, float val)
+void reverb_effect::set_param(uint8_t id, unsigned char val)
 {
     switch (id)
     {
     case 0:
-        reverb.SetFeedback(val);
+        float value = (float)val * 0.0039;
+        reverb.SetFeedback(value);
         break;
     case 1:
-        reverb.SetLpFreq(val);
+        float value = (float)val * 0.0039;
+        reverb.SetLpFreq(value);
         break;
     case 2:
-        dry = val;
+        float value = (float)val * 0.0039;
+        dry = value;
         break;
     case 3:
-        wet = val;
+        float value = (float)val * 0.0039;
+        wet = value;
         break;
     default:
         // Maybe do an error log

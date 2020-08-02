@@ -7,7 +7,10 @@
                 "C:\\Program Files (x86)\\Arduino\\tools\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\**",
+                "C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\**",
                 "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\hardware\\stm32\\1.9.0\\**",
                 "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\tools\\**",
                 "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\hardware\\stm32\\1.9.0\\cores\\arduino",
@@ -20,8 +23,8 @@
                 "C:/Users/Lenovo/AppData/Local/Arduino15/packages/STM32/hardware/stm32/1.9.0/libraries/SPI/src"
             ],
             "forcedInclude": [
-                "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\hardware\\stm32\\1.9.0\\cores\\arduino\\Arduino.h",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h",
+                "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\hardware\\stm32\\1.9.0\\cores\\arduino\\Arduino.h"
             ],
             "defines": [
                 "USBCON",

@@ -18,4 +18,5 @@ effects *signal_chain[10] = {nullptr};
 void _effects_rack::init()
 {
     reverb_mod01.init();
+    strcpy(reverb_mod01.effect_name, "Reverb1");
 }
