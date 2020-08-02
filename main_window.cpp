@@ -30,14 +30,13 @@ void main_window::draw()
         if (i == pos)
         {
             u8g2.setDrawColor(0);
-            u8g2.drawStr(6 + i * 24, 18, "----");
+            u8g2.drawStr(102 - i * 24, 18, "----");
             u8g2.setDrawColor(1);
         }
         else
         {
-            u8g2.drawStr(6 + i * 24, 18, "----");
+            u8g2.drawStr(102 - i * 24, 18, "----");
         }
-        
     }
     // Draw signal arrows
     u8g2.drawHLine(7, 35, 114);
@@ -49,7 +48,7 @@ void main_window::draw()
         u8g2.drawPixel(i + 1, 37);
     }
     // Draw left right arrows
-    if (state)
+    if (!cur_page)
     {
         u8g2.drawTriangle(0, 35, 4, 31, 4, 39);
     }
@@ -60,11 +59,22 @@ void main_window::draw()
 
     // Draw fs numbers
     u8g2.setFont(u8g2_font_profont12_mn);
-    u8g2.drawStr(13, 32, "0");
-    u8g2.drawStr(37, 32, "1");
-    u8g2.drawStr(61, 32, "2");
-    u8g2.drawStr(85, 32, "3");
-    u8g2.drawStr(109, 32, "4");
+    if (!cur_page)
+    {
+        u8g2.drawStr(13, 32, "4");
+        u8g2.drawStr(37, 32, "3");
+        u8g2.drawStr(61, 32, "2");
+        u8g2.drawStr(85, 32, "1");
+        u8g2.drawStr(109, 32, "0");
+    }
+    else
+    {
+        u8g2.drawStr(13, 32, "9");
+        u8g2.drawStr(37, 32, "8");
+        u8g2.drawStr(61, 32, "7");
+        u8g2.drawStr(85, 32, "6");
+        u8g2.drawStr(109, 32, "5");
+    }
 
     // Draw fs
     for (uint8_t i = 8; i < 105; i += 24)
@@ -75,7 +85,7 @@ void main_window::draw()
     // Draw topic
     u8g2.setFont(u8g2_font_6x12_mr);
     u8g2.setDrawColor(0);
-    u8g2.drawStr(1, 8, "Signal Chain");
+    u8g2.drawStr(1, 8, "Preset 00");
     // Draw sub topic
     u8g2.setFont(u8g2_font_5x8_mr);
     u8g2.drawStr(1, 62, "ON OFF/----  |  ENTER/DEL");
