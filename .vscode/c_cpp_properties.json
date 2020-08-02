@@ -20,12 +20,13 @@
                 "C:/Users/Lenovo/AppData/Local/Arduino15/packages/STM32/hardware/stm32/1.9.0/libraries/SPI/src"
             ],
             "forcedInclude": [
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h",
-                "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\hardware\\stm32\\1.9.0\\cores\\arduino\\Arduino.h"
+                "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\STM32\\hardware\\stm32\\1.9.0\\cores\\arduino\\Arduino.h",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "defines": [
                 "USBCON",
-                "ARDUINO=10813"
+                "ARDUINO=10813",
+                "HAL_UART_MODULE_ENABLED"
             ],
             "intelliSenseMode": "clang-x64",
             "compilerPath": "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\bin\\avr-gcc.exe",
