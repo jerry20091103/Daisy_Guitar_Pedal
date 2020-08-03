@@ -8,7 +8,8 @@
 enum all_windows : byte
 {
     MAIN_WINDOW,
-    MSG_WINDOW
+    MSG_WINDOW,
+    EFFECT_PARAM_WINDOW
 };
 
 class windows

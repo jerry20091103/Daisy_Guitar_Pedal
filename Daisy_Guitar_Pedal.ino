@@ -8,6 +8,7 @@ DaisyHardware hw;
 
 unsigned long last_frame_time;
 unsigned long test_time;
+bool test_state = false;
 
 void audio_callback(float **in, float **out, size_t size)
 {
@@ -51,6 +52,7 @@ void setup()
     DAISY.begin(audio_callback);
 
     Serial.println("Setup OK");
+    signal_chain[0] = &effects_rack.reverb_mod01; // debug!
 }
 
 void loop()
@@ -68,18 +70,17 @@ void loop()
     }
     if (current_time - test_time > 5000)
     {
-        if (signal_chain[0] == nullptr)
+        if (test_state)
         {
-            signal_chain[0] = &effects_rack.reverb_mod01;
             digitalWrite(LED_BUILTIN, HIGH);
             mcp.digitalWrite(LED_FS1_PIN, HIGH);
         }
         else
         {
-            signal_chain[0] = nullptr;
             digitalWrite(LED_BUILTIN, LOW);
             mcp.digitalWrite(LED_FS1_PIN, LOW);
         }
         test_time = current_time;
+        test_state = !test_state;
     }
 }

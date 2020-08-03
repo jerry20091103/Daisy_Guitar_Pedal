@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define MAX_EFFECTS_NUM 10 // A max of 10 effects for now
-#define MAX_PARAM_NAME 10 // A name of an parameter can only be 9 characters max
+#define MAX_PARAM_NAME 9 // A name of an parameter can only be 8 characters max
 #define MAX_PARAM_NUM 6 // Only 6 parameters max
 #define MAX_EFFECT_NAME 20
 #define MAX_EFFECT_SHORT_NAME 5
