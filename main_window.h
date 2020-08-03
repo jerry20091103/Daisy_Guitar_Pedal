@@ -18,7 +18,6 @@ public:
 
 private:
     int time = 0;
-    bool state = false;
 };
 
 // create a single instance

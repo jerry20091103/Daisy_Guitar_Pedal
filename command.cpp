@@ -1,11 +1,13 @@
 #include "command.h"
 #include "display.h"
 #include "main_window.h"
+#include "effects_rack.h"
 
 volatile unsigned char cmd_type[MAX_COMMAND_BUF] = {CMD_NA}; // The actuall commands
 volatile unsigned char cmd_count = 0;                        // Conunt of how many commands are in the buffer
 volatile unsigned char cmd_pos;                              // Record the current command being handled
 
+// The command handler
 void command_handler()
 {
     //------------------------INT disabled
@@ -21,9 +23,12 @@ void command_handler()
     cmd_count--;
     interrupts();
     //------------------------INT enabled
-    
+
     switch (cmd_type_cpy)
     {
+    case CMD_NA:
+        break;
+
     case CMD_UI_SIG_CUR_LEFT:
         if (main_window_ins.cur_effect != 9)
         {
@@ -35,6 +40,13 @@ void command_handler()
         if (main_window_ins.cur_effect != 0)
         {
             main_window_ins.cur_effect--;
+        }
+        break;
+
+    case CMD_UI_SIG_CUR_ONOFF:
+        if (signal_chain[main_window_ins.cur_effect] != nullptr)
+        {
+            signal_chain[main_window_ins.cur_effect]->enable = !signal_chain[main_window_ins.cur_effect]->enable;
         }
         break;
 

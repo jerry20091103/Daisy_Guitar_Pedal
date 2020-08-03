@@ -2,6 +2,7 @@
 #include "effects_rack.h"
 #include "display.h"
 #include "controls.h"
+#include "memory.h"
 
 DaisyHardware hw;
 
@@ -36,11 +37,11 @@ void setup()
     sample_rate = DAISY.get_samplerate();
     // Initialize effects
     effects_rack.init();
+    // Initialize controls
+    controls.init();
     // Initialize display
     display.init();
     last_frame_time = millis();
-    // Initialize controls
-    controls.init();
 
     pinMode(LED_BUILTIN, OUTPUT);
     test_time = millis();
@@ -59,8 +60,8 @@ void loop()
     controls.btn_update();
     // Handle commands sent by interrupt
     command_handler();
-    // draw the display at 10 fps
-    if (current_time - last_frame_time > 100)
+    // draw the display at about 6.67 fps
+    if (current_time - last_frame_time > 150)
     {
         display.draw();
         last_frame_time = current_time;

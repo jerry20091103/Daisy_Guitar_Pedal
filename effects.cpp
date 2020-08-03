@@ -7,6 +7,8 @@ effects::effects()
     {
         param[i].enable = false;
     }
+    // effects are bypassed by default
+    enable = false;
 }
 
 // A global variable to store sample rate
