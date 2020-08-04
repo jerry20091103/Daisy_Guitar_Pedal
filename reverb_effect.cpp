@@ -5,23 +5,23 @@ void reverb_effect::init()
     // Initialize reverbsc
     reverb.Init(sample_rate);
     // Initial all the parameters
-    strcpy("Feedback", param[0].name);
+    strcpy(param[0].name, "Feedback");
     param[0].enable = true;
     param[0].value = 180;
     set_param(0, param[0].value);
 
-    strcpy("LP Freq", param[1].name);
+    strcpy(param[1].name, "LP Freq");
     param[1].enable = true;
     param[1].value = 190;
     set_param(1, param[1].value);
 
-    strcpy("Dry", param[2].name);
+    strcpy(param[2].name, "Dry");
     param[2].enable = true;
     param[2].value = 200;
     set_param(2, param[2].value);
 
-    strcpy("Wet", param[3].name);
-    param[3].enable = false;
+    strcpy(param[3].name, "Wet");
+    param[3].enable = true;
     param[3].value = 200;
     set_param(3, param[3].value);
 
@@ -47,24 +47,23 @@ void reverb_effect::process(float in, float &out)
 
 void reverb_effect::set_param(uint8_t id, unsigned char val)
 {
-    float value;
     switch (id)
     {
     case 0:
-        value = (float)val * 0.0039;
-        reverb.SetFeedback(value);
+        param[0].true_val = (float)val * 0.0039;
+        reverb.SetFeedback(param[0].true_val);
         break;
     case 1:
-        value = 800 + (float)val * 75;
-        reverb.SetLpFreq(value);
+        param[1].true_val = 800 + (float)val * 75;
+        reverb.SetLpFreq(param[1].true_val);
         break;
     case 2:
-        value = (float)val * 0.0039;
-        dry = value;
+        param[2].true_val = (float)val * 0.0039;
+        dry = param[2].true_val;
         break;
     case 3:
-        value = (float)val * 0.0039;
-        wet = value;
+        param[3].true_val = (float)val * 0.0039;
+        wet = param[3].true_val;
         break;
     default:
         // Maybe do an error log

@@ -4,7 +4,7 @@
 #include <EasyButton.h>
 #include <RotaryEncoder.h>
 
-#define BTN_HOLD_TIME 800
+#define BTN_HOLD_TIME 500
 #define ENCODER_CW RotaryEncoder::Direction::CLOCKWISE
 #define ENCODER_CCW RotaryEncoder::Direction::COUNTERCLOCKWISE
 #define ENCODER_NOTURN RotaryEncoder::Direction::NOROTATION

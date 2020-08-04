@@ -13,6 +13,7 @@
 struct effects_param
 {
     char name[MAX_PARAM_NAME]; 
+    float true_val; // The parameter's converted value
     unsigned char value; // Stores the value of parameter
     bool enable; // whether the parameter is enabled or not
 };
@@ -30,10 +31,10 @@ public:
     effects();
     char effect_name[MAX_EFFECT_NAME];
     char effect_short_name[MAX_EFFECT_SHORT_NAME];
-    bool enable;
+    bool enable = false;
+    effects_param param[MAX_PARAM_NUM];
 
 protected:
-    effects_param param[MAX_PARAM_NUM];
 };
 // A global variable to store sample rate
 extern float sample_rate;

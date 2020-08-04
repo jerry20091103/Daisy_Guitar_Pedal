@@ -10,12 +10,19 @@ enum command : unsigned char{
     // Empty command
     CMD_NA,
     // Effects command
-    CMD_EFFECTS_,
+    CMD_EFFECTS_PARAM_INC,
+    CMD_EFFECTS_PARAM_DEC,
     // UI command
     CMD_UI_SIG_CUR_LEFT,
     CMD_UI_SIG_CUR_RIGHT,
     CMD_UI_SIG_CUR_SELECT,
     CMD_UI_SIG_CUR_ONOFF,
+    CMD_UI_PARAM_CUR_LEFT,
+    CMD_UI_PARAM_CUR_RIGHT,
+    CMD_UI_PARAM_CUR_UP,
+    CMD_UI_PARAM_CUR_DOWN,
+    CMD_UI_PARAM_CUR_SELECT,
+    CMD_UI_PARAM_STEP,
     // Settings command
     CMD_SET_
 };

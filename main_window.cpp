@@ -30,7 +30,7 @@ void main_window::draw()
     }
 
     // Draw effect short name and footswitch
-    u8g2.setFont(u8g2_font_5x8_mr);
+    u8g2.setFont(u8g2_font_profont10_mr);
     if (!cur_page)
     {
         for (uint8_t i = 0; i < 5; i++)
@@ -52,7 +52,7 @@ void main_window::draw()
                 u8g2.drawStr(102 - pos * 24, 18, name);
             }
             // draw footswitch
-            if (signal_chain[i]->enable)
+            if (signal_chain[i] != nullptr && signal_chain[i]->enable)
             {
                 u8g2.drawRBox(104 - pos * 24, 37, 16, 11, 3);
             }
@@ -158,6 +158,11 @@ void main_window::on_btn_pressed(buttons id)
 
     case BTN_RIGHT:
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_RIGHT;
+        cmd_count++;
+        break;
+
+    case BTN_OK:
+        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_SELECT;
         cmd_count++;
         break;
 

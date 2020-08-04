@@ -68,52 +68,42 @@ void _controls::btn_update()
 void btn0_press()
 {
     display.current_window->on_btn_pressed(BTN_ENCODER);
-    Serial.println("encoder pressed");
 }
 void btn1_press()
 {
     display.current_window->on_btn_pressed(BTN_FS0);
-    Serial.println("fs0 pressed");
 }
 void btn2_press()
 {
     display.current_window->on_btn_pressed(BTN_FS1);
-    Serial.println("fs1 pressed");
 }
 void btn3_press()
 {
     display.current_window->on_btn_pressed(BTN_FS2);
-    Serial.println("fs2 pressed");
 }
 void btn4_press()
 {
     display.current_window->on_btn_pressed(BTN_FS3);
-    Serial.println("fs3 pressed");
 }
 void btn5_press()
 {
     display.current_window->on_btn_pressed(BTN_LEFT);
-    Serial.println("left pressed");
 }
 void btn6_press()
 {
     display.current_window->on_btn_pressed(BTN_RIGHT);
-    Serial.println("right pressed");
 }
 void btn7_press()
 {
     display.current_window->on_btn_pressed(BTN_UP);
-    Serial.println("up pressed");
 }
 void btn8_press()
 {
     display.current_window->on_btn_pressed(BTN_DOWN);
-    Serial.println("down pressed");
 }
 void btn9_press()
 {
     display.current_window->on_btn_pressed(BTN_OK);
-    Serial.println("ok pressed");
 }
 
 // hold
@@ -209,9 +199,5 @@ void encoder_interrupt()
     if(dir != ENCODER_NOTURN)
     {
         display.current_window->on_enc_turned(dir);
-        if(dir == ENCODER_CW)
-            Serial.println("encoder cw");
-        else if(dir == ENCODER_CCW)
-            Serial.println("encoder ccw");
     }
 }
