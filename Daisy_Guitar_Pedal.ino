@@ -53,7 +53,6 @@ void setup()
     DAISY.begin(audio_callback);
 
     Serial.println("Setup OK");
-    signal_chain[0] = &effects_rack.reverb_mod01; // debug!
     show_msg(MSG_WARNING, 25, "v0.1 alpha", "May be unstable!");
 }
 

@@ -33,6 +33,7 @@ public:
     char effect_short_name[MAX_EFFECT_SHORT_NAME];
     bool enable = false;
     effects_param param[MAX_PARAM_NUM];
+    unsigned char id;
 
 protected:
 };

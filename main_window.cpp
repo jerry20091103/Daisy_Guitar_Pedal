@@ -178,6 +178,16 @@ void main_window::on_btn_pressed(buttons id)
 
 void main_window::on_btn_holded(buttons id)
 {
+    switch (id)
+    {
+    case BTN_OK:
+        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_DEL;
+        cmd_count++;
+        break;
+    
+    default:
+        break;
+    }
 }
 
 void main_window::on_enc_turned(RotaryEncoder::Direction dir)

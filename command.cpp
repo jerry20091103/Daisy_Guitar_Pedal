@@ -2,6 +2,7 @@
 #include "display.h"
 #include "main_window.h"
 #include "effect_param_window.h"
+#include "effect_select_window.h"
 #include "effects_rack.h"
 
 volatile unsigned char cmd_type[MAX_COMMAND_BUF] = {CMD_NA}; // The actuall commands
@@ -79,12 +80,22 @@ void command_handler()
     case CMD_UI_SIG_CUR_SELECT:
         if (signal_chain[main_window_ins.cur_effect] != nullptr)
             display.change_window(EFFECT_PARAM_WINDOW);
+        else
+            display.change_window(EFFECT_SELECT_WINDOW);        
         break;
 
     case CMD_UI_SIG_CUR_ONOFF:
         if (signal_chain[main_window_ins.cur_effect] != nullptr)
         {
             signal_chain[main_window_ins.cur_effect]->enable = !signal_chain[main_window_ins.cur_effect]->enable;
+        }
+        break;
+
+    case CMD_UI_SIG_CUR_DEL:
+        if (signal_chain[main_window_ins.cur_effect] != nullptr)
+        {
+            effects_rack.effect_used[signal_chain[main_window_ins.cur_effect]->id] = false;
+            signal_chain[main_window_ins.cur_effect] = nullptr;
         }
         break;
 
@@ -133,6 +144,47 @@ void command_handler()
         {
             effect_param_window_ins.cur_step = 1;
         }
+        break;
+
+    case CMD_UI_EFFECT_CUR_UP:
+        if (effect_select_window_ins.cur_effect_id > 0)
+        {
+            effect_select_window_ins.cur_effect_id--;
+        }
+        break;
+
+    case CMD_UI_EFFECT_CUR_DOWN:
+        if (effect_select_window_ins.cur_effect_id < EFFECTS_AMOUNT - 1)
+        {
+            effect_select_window_ins.cur_effect_id++;
+        }
+        break;
+
+    case CMD_UI_EFFECT_PAGE_UP:
+        if (effect_select_window_ins.cur_effect_id - 4 >= 0)
+        {
+            effect_select_window_ins.cur_effect_id -= 4;
+        }
+        break;
+
+    case CMD_UI_EFFECT_PAGE_DOWN:
+        if (effect_select_window_ins.cur_effect_id + 4 < EFFECTS_AMOUNT)
+        {
+            effect_select_window_ins.cur_effect_id += 4;
+        }
+        break;
+
+    case CMD_UI_EFFECT_CUR_SELECT:
+        if (!effects_rack.effect_used[effect_select_window_ins.cur_effect_id])
+        {
+            signal_chain[main_window_ins.cur_effect] = effects_rack.effects_arr[effect_select_window_ins.cur_effect_id];
+            effects_rack.effect_used[effect_select_window_ins.cur_effect_id] = true;
+            display.change_window(MAIN_WINDOW);
+        }
+        break;
+
+    case CMD_UI_EFFECT_CUR_CANCEL:
+        display.change_window(MAIN_WINDOW);
         break;
 
     default:
