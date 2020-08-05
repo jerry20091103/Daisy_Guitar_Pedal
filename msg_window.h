@@ -3,7 +3,6 @@
 
 #include "windows.h"
 
-#define MSG_POPUP_TIME 50 // Msg box will appear 50 frames
 #define MAX_MSG_LEN 20    // a max of 20 characters
 
 enum _msg_type : byte
@@ -27,12 +26,18 @@ private:
     int time = 0;
 };
 
+// Function to show a message
+void show_msg(_msg_type type, int time, char *data1, char *data2);
+
 // create a single instance
 extern msg_window msg_window_ins;
 
 // The message to show
-extern char msg[MAX_MSG_LEN + 1];
+extern char msg1[MAX_MSG_LEN + 1];
+extern char msg1[MAX_MSG_LEN + 1];
 // The type of message to show
 extern _msg_type msg_type;
+// The message pop up time (frames)
+extern int msg_popup_time;
 
 #endif

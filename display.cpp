@@ -28,7 +28,7 @@ void _display::init()
     windows_arr[MAIN_WINDOW] = &main_window_ins;
     windows_arr[MSG_WINDOW] = &msg_window_ins;
     windows_arr[EFFECT_PARAM_WINDOW] = &effect_param_window_ins;
-    current_window = windows_arr[MSG_WINDOW];
+    current_window = windows_arr[MAIN_WINDOW];
     last_window = windows_arr[MAIN_WINDOW];
 }
 
