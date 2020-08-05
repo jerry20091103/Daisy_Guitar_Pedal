@@ -83,7 +83,7 @@ void main_window::draw()
                 u8g2.drawStr(102 - pos * 24, 18, name);
             }
             // draw footswitch
-            if (signal_chain[i]->enable)
+            if (signal_chain[i] != nullptr && signal_chain[i]->enable)
             {
                 u8g2.drawRBox(104 - pos * 24, 37, 16, 11, 3);
             }
