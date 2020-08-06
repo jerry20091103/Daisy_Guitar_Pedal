@@ -4,6 +4,7 @@
 #include "controls.h"
 #include "memory.h"
 #include "msg_window.h"
+#include "bluetooth.h"
 
 DaisyHardware hw;
 
@@ -44,6 +45,8 @@ void setup()
     // Initialize display
     display.init();
     last_frame_time = millis();
+    // Initialize bluetooth
+    bluetooth_init();
     // Initialize memory
     memory.init();
     if (memory.memory_valid != 1)
@@ -68,7 +71,9 @@ void loop()
     unsigned long current_time = millis();
     // Update buttons
     controls.btn_update();
-    // Handle commands sent by interrupt
+    // get bluetooth commands
+    bluetooth_get_command();
+    // Handle commands sent by interrupt and bluetooth
     command_handler();
     // draw the display at about 6.67 fps
     if (current_time - last_frame_time > 150)
