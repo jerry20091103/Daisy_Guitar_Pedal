@@ -115,6 +115,11 @@ void effect_param_window::draw()
     // Draw bottom text
     u8g2.setFont(u8g2_font_5x8_mr);
     u8g2.drawStr(1, 62, "ON OFF/STEP  |  BACK/----");
+
+    // Draw 8x8 matrix
+    u8g2_8x8.setFont(u8g2_font_profont10_mn);
+    u8g2_8x8.setCursor(2, 6);
+    u8g2_8x8.print(effects_rack.cur_preset);
 }
 
 void effect_param_window::update()

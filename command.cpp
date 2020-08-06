@@ -280,7 +280,7 @@ void command_handler()
         {
         case OPT_SAVE_FLASH:
             memory.save_to_flash();
-            show_msg(MSG_INFO, 7, "Save Successful","");
+            show_msg(MSG_INFO, 13, "Save Successful","");
             break;
 
         default:
