@@ -172,6 +172,7 @@ void options_window::read_options()
         {
         case OPT_LED_BRIGHTNESS:
             led_lvl = memory.options_mem[OPT_LED_BRIGHTNESS];
+            u8g2_8x8.setContrast(led_lvl);
             break;
         
         default:

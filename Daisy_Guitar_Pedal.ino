@@ -37,6 +37,13 @@ void setup()
     // Initialize for Daisy pod at 48kHz
     hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
     sample_rate = DAISY.get_samplerate();
+    // Initialize effects
+    effects_rack.init();
+    // Initialize controls
+    controls.init();
+    // Initialize display
+    display.init();
+    last_frame_time = millis();
     // Initialize memory
     memory.init();
     if (memory.memory_valid != 1)
@@ -45,13 +52,6 @@ void setup()
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);
     options_window_ins.read_options();
-    // Initialize effects
-    effects_rack.init();
-    // Initialize controls
-    controls.init();
-    // Initialize display
-    display.init();
-    last_frame_time = millis();
 
     pinMode(LED_BUILTIN, OUTPUT);
     test_time = millis();
