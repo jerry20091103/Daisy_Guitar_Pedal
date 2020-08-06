@@ -7,6 +7,7 @@
 #include "options_window.h"
 #include "effects_rack.h"
 #include "memory.h"
+#include <stdio.h>
 
 volatile unsigned char cmd_type[MAX_COMMAND_BUF] = {CMD_NA}; // The actuall commands
 volatile unsigned char cmd_count = 0;                        // Conunt of how many commands are in the buffer
@@ -279,8 +280,14 @@ void command_handler()
         switch (options_window_ins.cur_option)
         {
         case OPT_SAVE_FLASH:
-            memory.save_to_flash();
-            show_msg(MSG_INFO, 13, "Save Successful","");
+            effects_rack.save_cur_preset_num();
+            effects_rack.save_cur_preset();
+            options_window_ins.save_options();
+            int bytes_wrote;
+            char msg2[20];
+            bytes_wrote = memory.save_to_flash();
+            sprintf(msg2, "size: %d bytes", bytes_wrote);
+            show_msg(MSG_INFO, 13, "Save Successful",msg2);
             break;
 
         default:

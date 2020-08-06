@@ -21,6 +21,8 @@ public:
     virtual void on_btn_pressed(buttons id) override;
     virtual void on_btn_holded(buttons id) override;
     virtual void on_enc_turned(RotaryEncoder::Direction dir) override;
+    void read_options();
+    void save_options();
     uint8_t cur_option = 0;
     uint8_t cur_page = 0;
     // option values

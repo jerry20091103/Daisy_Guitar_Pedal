@@ -1,6 +1,7 @@
 #include "options_window.h"
 #include "display.h"
 #include "command.h"
+#include "memory.h"
 
 options_window options_window_ins;
 
@@ -53,7 +54,7 @@ void options_window::draw()
     // Draw bottom text
     u8g2.setFont(u8g2_font_5x8_mr);
     u8g2.drawStr(1, 62, "----/----  |  SELECT/BACK");
-    
+
     // Draw 8x8 matrix
     u8g2_8x8.setFont(u8g2_font_open_iconic_embedded_1x_t);
     u8g2_8x8.drawGlyph(0, 8, 72);
@@ -98,7 +99,7 @@ all_windows options_window::get_window_id()
 
 void options_window::on_btn_pressed(buttons id)
 {
-     switch (id)
+    switch (id)
     {
     case BTN_LEFT:
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_PAGE_UP;
@@ -160,5 +161,38 @@ void options_window::on_enc_turned(RotaryEncoder::Direction dir)
 
     default:
         break;
+    }
+}
+
+void options_window::read_options()
+{
+    for(unsigned char i=0; i<OPTIONS_AMOUNT; i++)
+    {
+        switch (i)
+        {
+        case OPT_LED_BRIGHTNESS:
+            led_lvl = memory.options_mem[OPT_LED_BRIGHTNESS];
+            break;
+        
+        default:
+            break;
+        }
+    }
+}
+
+void options_window::save_options()
+{
+    for(unsigned char i=0; i<OPTIONS_AMOUNT; i++)
+    {
+        switch (i)
+        {
+        case OPT_LED_BRIGHTNESS:
+            memory.options_mem[OPT_LED_BRIGHTNESS] = led_lvl;
+            break;
+        
+        default:
+            memory.options_mem[i] = 0;
+            break;
+        }
     }
 }
