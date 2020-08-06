@@ -47,6 +47,7 @@ void reverb_effect::process(float in, float &out)
 
 void reverb_effect::set_param(uint8_t id, unsigned char val)
 {
+    param[id].value = val;
     switch (id)
     {
     case 0:

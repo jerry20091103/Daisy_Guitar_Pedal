@@ -6,6 +6,7 @@ effects::effects()
     for (uint8_t i = 0; i < MAX_PARAM_NUM; i++)
     {
         param[i].enable = false;
+        param[i].value = 0;
     }
     // effects are bypassed by default
     enable = false;

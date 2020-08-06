@@ -13,6 +13,7 @@ _memory::_memory()
             {
                 effect_param_mem[i][j][k] = 0;
             }
+            effect_id_mem[i][j] = 0;
             effect_enable_mem[i][j] = 0;
         }
     }

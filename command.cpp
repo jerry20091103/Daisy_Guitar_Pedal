@@ -4,6 +4,7 @@
 #include "effect_param_window.h"
 #include "effect_select_window.h"
 #include "effects_rack.h"
+#include "memory.h"
 
 volatile unsigned char cmd_type[MAX_COMMAND_BUF] = {CMD_NA}; // The actuall commands
 volatile unsigned char cmd_count = 0;                        // Conunt of how many commands are in the buffer
@@ -31,7 +32,7 @@ void command_handler()
     case CMD_NA:
         break;
 
-    case CMD_EFFECTS_PARAM_INC:
+    case CMD_EFFECTS_PARAM_INC: // can be better
         if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].enable)
         {
             if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value + effect_param_window_ins.cur_step <= 255)
@@ -47,7 +48,7 @@ void command_handler()
         }
         break;
 
-    case CMD_EFFECTS_PARAM_DEC:
+    case CMD_EFFECTS_PARAM_DEC: // can be better
         if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].enable)
         {
             if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value - effect_param_window_ins.cur_step >= 0)
@@ -81,7 +82,7 @@ void command_handler()
         if (signal_chain[main_window_ins.cur_effect] != nullptr)
             display.change_window(EFFECT_PARAM_WINDOW);
         else
-            display.change_window(EFFECT_SELECT_WINDOW);        
+            display.change_window(EFFECT_SELECT_WINDOW);
         break;
 
     case CMD_UI_SIG_CUR_ONOFF:
@@ -185,6 +186,20 @@ void command_handler()
 
     case CMD_UI_EFFECT_CUR_CANCEL:
         display.change_window(MAIN_WINDOW);
+        break;
+
+    case CMD_UI_PRESET_UP:
+        if (effects_rack.cur_preset > 0)
+        {
+            effects_rack.change_preset(effects_rack.cur_preset - 1);
+        }
+        break;
+
+    case CMD_UI_PRESET_DOWN:
+        if (effects_rack.cur_preset < MAX_USER_PRESET - 1)
+        {
+            effects_rack.change_preset(effects_rack.cur_preset + 1);
+        }
         break;
 
     default:

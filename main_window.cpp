@@ -125,7 +125,9 @@ void main_window::draw()
 
     // Draw topic
     u8g2.setDrawColor(0);
-    u8g2.drawStr(1, 8, "Preset 0");
+    u8g2.drawStr(1, 8, "Preset");
+    u8g2.setCursor(40, 8);
+    u8g2.print(effects_rack.cur_preset);
     // Draw bottom text
     u8g2.setFont(u8g2_font_5x8_mr);
     u8g2.drawStr(1, 62, "ON OFF/OPTION | ENTER/DEL");
@@ -170,7 +172,17 @@ void main_window::on_btn_pressed(buttons id)
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_ONOFF;
         cmd_count++;
         break;
+    
+    case BTN_FS0:
+        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PRESET_UP;
+        cmd_count++;
+        break;
 
+    case BTN_FS1:
+        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PRESET_DOWN;
+        cmd_count++;
+        break;
+    
     default:
         break;
     }

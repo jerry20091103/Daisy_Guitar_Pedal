@@ -30,7 +30,9 @@ enum command : unsigned char{
     CMD_UI_EFFECT_PAGE_DOWN,
     CMD_UI_EFFECT_CUR_SELECT,
     CMD_UI_EFFECT_CUR_CANCEL,
-    // Settings command
+    CMD_UI_PRESET_UP,
+    CMD_UI_PRESET_DOWN,
+    // Options command
     CMD_SET_
 };
 
