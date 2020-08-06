@@ -196,6 +196,10 @@ void main_window::on_btn_holded(buttons id)
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_DEL;
         cmd_count++;
         break;
+    case BTN_ENCODER:
+        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_OPT;
+        cmd_count++;
+        break;
     
     default:
         break;

@@ -18,6 +18,7 @@ enum command : unsigned char{
     CMD_UI_SIG_CUR_SELECT,
     CMD_UI_SIG_CUR_ONOFF,
     CMD_UI_SIG_CUR_DEL,
+    CMD_UI_SIG_CUR_OPT,
     CMD_UI_PARAM_CUR_LEFT,
     CMD_UI_PARAM_CUR_RIGHT,
     CMD_UI_PARAM_CUR_UP,
@@ -32,8 +33,15 @@ enum command : unsigned char{
     CMD_UI_EFFECT_CUR_CANCEL,
     CMD_UI_PRESET_UP,
     CMD_UI_PRESET_DOWN,
+    CMD_UI_OPT_CUR_UP,
+    CMD_UI_OPT_CUR_DOWN,
+    CMD_UI_OPT_PAGE_UP,
+    CMD_UI_OPT_PAGE_DOWN,
+    CMD_UI_OPT_BACK,
     // Options command
-    CMD_SET_
+    CMD_OPT_INC,
+    CMD_OPT_DEC,
+    CMD_OPT_SELECT
 };
 
 void command_handler();

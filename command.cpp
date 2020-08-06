@@ -3,6 +3,8 @@
 #include "main_window.h"
 #include "effect_param_window.h"
 #include "effect_select_window.h"
+#include "msg_window.h"
+#include "options_window.h"
 #include "effects_rack.h"
 #include "memory.h"
 
@@ -98,6 +100,10 @@ void command_handler()
             effects_rack.effect_used[signal_chain[main_window_ins.cur_effect]->id] = false;
             signal_chain[main_window_ins.cur_effect] = nullptr;
         }
+        break;
+
+    case CMD_UI_SIG_CUR_OPT:
+        display.change_window(OPTIONS_WINDOW);
         break;
 
     case CMD_UI_PARAM_CUR_LEFT:
@@ -200,6 +206,87 @@ void command_handler()
         {
             effects_rack.change_preset(effects_rack.cur_preset + 1);
         }
+        break;
+
+    case CMD_UI_OPT_CUR_UP:
+        if (options_window_ins.cur_option > 0)
+        {
+            options_window_ins.cur_option--;
+        }
+        break;
+
+    case CMD_UI_OPT_CUR_DOWN:
+        if (options_window_ins.cur_option < OPTIONS_AMOUNT - 1)
+        {
+            options_window_ins.cur_option++;
+        }
+
+        break;
+
+    case CMD_UI_OPT_PAGE_UP:
+        if (options_window_ins.cur_option - 4 >= 0)
+        {
+            options_window_ins.cur_option -= 4;
+        }
+        break;
+
+    case CMD_UI_OPT_PAGE_DOWN:
+        if (options_window_ins.cur_option + 4 < EFFECTS_AMOUNT)
+        {
+            options_window_ins.cur_option += 4;
+        }
+        break;
+
+    case CMD_UI_OPT_BACK:
+        display.change_window(MAIN_WINDOW);
+        break;
+
+    case CMD_OPT_INC:
+        switch (options_window_ins.cur_option)
+        {
+        case OPT_LED_BRIGHTNESS:
+            if (options_window_ins.led_lvl < 250)
+            {
+                options_window_ins.led_lvl += 25;
+                u8g2_8x8.setContrast(options_window_ins.led_lvl);
+            }
+            break;
+
+        default:
+            break;
+        }
+
+        break;
+
+    case CMD_OPT_DEC:
+        switch (options_window_ins.cur_option)
+        {
+        case OPT_LED_BRIGHTNESS:
+            if (options_window_ins.led_lvl > 0)
+            {
+                options_window_ins.led_lvl -= 25;
+                u8g2_8x8.setContrast(options_window_ins.led_lvl);
+            }
+            break;
+
+        default:
+            break;
+        }
+
+        break;
+
+    case CMD_OPT_SELECT:
+        switch (options_window_ins.cur_option)
+        {
+        case OPT_SAVE_FLASH:
+            memory.save_to_flash();
+            show_msg(MSG_INFO, 7, "Save Successful","");
+            break;
+
+        default:
+            break;
+        }
+        
         break;
 
     default:

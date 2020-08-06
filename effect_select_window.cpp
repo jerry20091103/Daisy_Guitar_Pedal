@@ -14,7 +14,6 @@ void effect_select_window::draw()
 
     // Draw effect names
     u8g2.setFont(u8g2_font_6x10_mr);
-    cur_effect_id = 1;
     for (uint8_t i = cur_page * 4 + 1; i < EFFECTS_AMOUNT; i++)
     {
         unsigned char pos = (i - 1) % 4;

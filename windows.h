@@ -3,14 +3,15 @@
 
 #include "controls.h"
 
-#define MAX_WINDOWS_NUM 4
+#define MAX_WINDOWS_NUM 5
 
 enum all_windows : byte
 {
     MAIN_WINDOW,
     MSG_WINDOW,
     EFFECT_PARAM_WINDOW,
-    EFFECT_SELECT_WINDOW
+    EFFECT_SELECT_WINDOW,
+    OPTIONS_WINDOW
 };
 
 class windows

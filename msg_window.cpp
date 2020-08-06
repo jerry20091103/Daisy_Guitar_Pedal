@@ -1,5 +1,6 @@
 #include "msg_window.h"
 #include "display.h"
+#include "command.h"
 
 msg_window msg_window_ins;
 
@@ -31,16 +32,21 @@ void msg_window::draw()
     // Draw message type
     u8g2.setDrawColor(0);
     u8g2.setFont(u8g2_font_7x13_mr);
+    u8g2_8x8.setFont(u8g2_font_open_iconic_embedded_1x_t);
     switch (msg_type)
     {
     case MSG_INFO:
         u8g2.drawStr(4, 15, "INFO:");
+        u8g2_8x8.drawGlyph(0, 8, 65);
         break;
     case MSG_WARNING:
         u8g2.drawStr(4, 15, "WARNING:");
+        u8g2_8x8.drawGlyph(1, 8, 71);
         break;
     case MSG_ERROR:
         u8g2.drawStr(4, 15, "ERROR:");
+        u8g2_8x8.setFont(u8g2_font_open_iconic_check_1x_t);
+        u8g2_8x8.drawGlyph(0, 8, 68);
     default:
         break;
     }
@@ -49,7 +55,7 @@ void msg_window::draw()
 void msg_window::update()
 {
     time++;
-    if(time >= msg_popup_time)
+    if (time >= msg_popup_time)
     {
         time = 0;
         display.change_window(display.last_window->get_window_id());
