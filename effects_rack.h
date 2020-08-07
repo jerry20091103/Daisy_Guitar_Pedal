@@ -1,12 +1,14 @@
 #include "effects.h"
 #include "reverb_effect.h"
+#include "analog_effect.h"
 
-#define EFFECTS_AMOUNT 2 // How many effects
+#define EFFECTS_AMOUNT 3 // How many effects
 
 enum effect_id : unsigned char
 {
     EMPTY_EFFECT_ID,
-    REVERB_MOD01_ID
+    REVERB_MOD01_ID,
+    ANALOG_ID
 };
 
 class _effects_rack
@@ -22,7 +24,9 @@ public:
     unsigned char cur_preset = 0;
     bool effect_used[EFFECTS_AMOUNT] = {false};
     effects *effects_arr[EFFECTS_AMOUNT] = {nullptr};
+    // All effect instances
     reverb_effect reverb_mod01;
+    analog_effect analog;
 };
 
 // A home for all effect instances

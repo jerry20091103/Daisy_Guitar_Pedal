@@ -142,13 +142,13 @@ void command_handler()
     case CMD_UI_PARAM_STEP:
         if (effect_param_window_ins.cur_step == 1)
         {
-            effect_param_window_ins.cur_step = 4;
+            effect_param_window_ins.cur_step = 3;
         }
-        else if (effect_param_window_ins.cur_step == 4)
+        else if (effect_param_window_ins.cur_step == 3)
         {
-            effect_param_window_ins.cur_step = 8;
+            effect_param_window_ins.cur_step = 7;
         }
-        else if (effect_param_window_ins.cur_step == 8)
+        else if (effect_param_window_ins.cur_step == 7)
         {
             effect_param_window_ins.cur_step = 1;
         }

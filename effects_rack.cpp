@@ -12,13 +12,17 @@ void _effects_rack::init()
 {
     // Init effects
     reverb_mod01.init();
+    analog.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
+    analog.id = ANALOG_ID;
     // Set effect names
     strcpy(reverb_mod01.effect_name, "Reverb1");
+    strcpy(analog.effect_name, "Analog");
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
     effects_arr[REVERB_MOD01_ID] = &reverb_mod01;
+    effects_arr[ANALOG_ID] = &analog;
 }
 
 // Read a preset into the signal_chain

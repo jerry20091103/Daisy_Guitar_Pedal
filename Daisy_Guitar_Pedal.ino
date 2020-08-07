@@ -18,13 +18,24 @@ void audio_callback(float **in, float **out, size_t size)
     {
         float signal, temp;
         // Mono only
+        // [0] is main in/out,  [1] is for external effects loop
         signal = in[0][i];
         // process all the effects in the chain
         for (uint8_t i = 0; i < MAX_EFFECTS_NUM; i++)
         {
+            // if effect is empty
             if (signal_chain[i] == nullptr)
                 continue;
-            signal_chain[i]->process(signal, temp);
+            // if the effect is the external analog module
+            if(signal_chain[i] = &effects_rack.analog)
+            {
+                out[1][i] = signal; // send
+                temp = in[1][i]; // return
+            }
+            else
+            {
+                signal_chain[i]->process(signal, temp);
+            }
             signal = temp;
         }
         // Assign output
