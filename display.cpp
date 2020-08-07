@@ -15,6 +15,7 @@ void _display::init()
 {
     // Initialize 8x8 led matrix
     u8g2_8x8.begin();
+    u8g2_8x8.setDisplayRotation(U8G2_R1);
     u8g2_8x8.clearBuffer();
     u8g2_8x8.setContrast(options_window_ins.led_lvl);
     // Initialize 128x64 lcd
