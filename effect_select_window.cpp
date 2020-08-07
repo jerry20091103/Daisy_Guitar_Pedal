@@ -20,13 +20,13 @@ void effect_select_window::draw()
         if (i == cur_effect_id)
         {
             u8g2.setDrawColor(0);
-            u8g2.drawStr(24, 19 + 11 * pos, effects_rack.get_effect_name(i));
+            u8g2.drawStr(24, 19 + 11 * pos, effects_rack.effects_arr[i]->effect_name);
             u8g2.setDrawColor(1);
             u8g2.drawVLine(23, 11 + 11 * pos, 10);
         }
         else
         {
-            u8g2.drawStr(24, 19 + 11 * pos, effects_rack.get_effect_name(i));
+            u8g2.drawStr(24, 19 + 11 * pos, effects_rack.effects_arr[i]->effect_name);
         }
         if (effects_rack.effect_used[i])
         {

@@ -155,7 +155,7 @@ void command_handler()
         break;
 
     case CMD_UI_EFFECT_CUR_UP:
-        if (effect_select_window_ins.cur_effect_id > 0)
+        if (effect_select_window_ins.cur_effect_id > 1)
         {
             effect_select_window_ins.cur_effect_id--;
         }

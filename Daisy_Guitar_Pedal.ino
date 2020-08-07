@@ -27,10 +27,10 @@ void audio_callback(float **in, float **out, size_t size)
             if (signal_chain[i] == nullptr)
                 continue;
             // if the effect is the external analog module
-            if(signal_chain[i] = &effects_rack.analog)
+            if (signal_chain[i] == &effects_rack.analog)
             {
                 out[1][i] = signal; // send
-                temp = in[1][i]; // return
+                temp = in[1][i];    // return
             }
             else
             {

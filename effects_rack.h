@@ -20,7 +20,6 @@ public:
     void read_cur_preset_num();
     void save_cur_preset_num();
     void change_preset(unsigned char preset);
-    char* get_effect_name(unsigned char id);
     unsigned char cur_preset = 0;
     bool effect_used[EFFECTS_AMOUNT] = {false};
     effects *effects_arr[EFFECTS_AMOUNT] = {nullptr};

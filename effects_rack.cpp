@@ -117,17 +117,3 @@ void _effects_rack::save_cur_preset_num()
 {
     memory.cur_preset_mem = cur_preset;
 }
-
-char *_effects_rack::get_effect_name(unsigned char id)
-{
-    switch (id)
-    {
-    case REVERB_MOD01_ID:
-        return reverb_mod01.effect_name;
-        break;
-
-    default:
-        return 0;
-        break;
-    }
-}
