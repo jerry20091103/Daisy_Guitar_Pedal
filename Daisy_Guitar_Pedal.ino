@@ -21,20 +21,27 @@ void audio_callback(float **in, float **out, size_t size)
         // [0] is main in/out,  [1] is for external effects loop
         signal = in[0][i];
         // process all the effects in the chain
-        for (uint8_t i = 0; i < MAX_EFFECTS_NUM; i++)
+        for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
         {
             // if effect is empty
-            if (signal_chain[i] == nullptr)
+            if (signal_chain[j] == nullptr)
                 continue;
             // if the effect is the external analog module
-            if (signal_chain[i] == &effects_rack.analog)
+            if (signal_chain[j] == &effects_rack.analog)
             {
-                out[1][i] = signal; // send
-                temp = in[1][i];    // return
+                if (signal_chain[j]->enable)
+                {
+                    out[1][i] = signal; // send
+                    temp = in[1][i];    // return
+                }
+                else // passthrough
+                {
+                    temp = signal;
+                }
             }
             else
             {
-                signal_chain[i]->process(signal, temp);
+                signal_chain[j]->process(signal, temp);
             }
             signal = temp;
         }

@@ -7,3 +7,5 @@
 0 5v relay x3
 0 red led bright x8
 0 hc05 x1
+
+// 2nd buying parts
