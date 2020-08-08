@@ -8,4 +8,10 @@
 0 red led bright x8
 0 hc05 x1
 
-// 2nd buying parts
+// The second time 
+
+###TS-808
+
+R
+
+
