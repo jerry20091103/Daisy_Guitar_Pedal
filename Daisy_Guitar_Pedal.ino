@@ -52,6 +52,8 @@ void audio_callback(float **in, float **out, size_t size)
 
 void setup()
 {
+    // Wait for the power to be stable
+    delay(500);
     Serial.begin(9600);
     // Initialize for Daisy pod at 48kHz
     hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
@@ -82,6 +84,10 @@ void setup()
 
     Serial.println("Setup OK");
     show_msg(MSG_WARNING, 25, "v0.1 alpha", "May be unstable!");
+    mcp.digitalWrite(LED_FS0_PIN, HIGH);
+    mcp.digitalWrite(LED_FS1_PIN, HIGH);
+    mcp.digitalWrite(LED_FS2_PIN, HIGH);
+    mcp.digitalWrite(LED_FS3_PIN, HIGH);
 }
 
 void loop()
@@ -104,12 +110,10 @@ void loop()
         if (test_state)
         {
             digitalWrite(LED_BUILTIN, HIGH);
-            mcp.digitalWrite(LED_FS1_PIN, HIGH);
         }
         else
         {
             digitalWrite(LED_BUILTIN, LOW);
-            mcp.digitalWrite(LED_FS1_PIN, LOW);
         }
         test_time = current_time;
         test_state = !test_state;
