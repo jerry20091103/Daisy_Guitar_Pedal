@@ -63,6 +63,12 @@ void _memory::read_from_flash()
     // read memory_valid
     memory_valid = eeprom_buffered_read_byte(addr);
     addr++;
+    // read options_mem
+    for (int i = 0; i < OPTIONS_AMOUNT; i++)
+    {
+        options_mem[i] = eeprom_buffered_read_byte(addr);
+        addr++;
+    }
     // read cur_preset_mem
     cur_preset_mem = eeprom_buffered_read_byte(addr);
     addr++;
@@ -96,12 +102,6 @@ void _memory::read_from_flash()
             addr++;
         }
     }
-    // read options_mem
-    for (int i = 0; i < OPTIONS_AMOUNT; i++)
-    {
-        options_mem[i] = eeprom_buffered_read_byte(addr);
-        addr++;
-    }
 }
 
 int _memory::save_to_flash()
@@ -110,6 +110,12 @@ int _memory::save_to_flash()
     // write valid memory mark = 1
     eeprom_buffered_write_byte(addr, 1);
     addr++;
+    // write options_mem
+    for (int i = 0; i < OPTIONS_AMOUNT; i++)
+    {
+        eeprom_buffered_write_byte(addr, options_mem[i]);
+        addr++;
+    }
     // write cur_preset_mem
     eeprom_buffered_write_byte(addr, cur_preset_mem);
     addr++;
@@ -142,12 +148,6 @@ int _memory::save_to_flash()
             eeprom_buffered_write_byte(addr, effect_enable_mem[i][j]);
             addr++;
         }
-    }
-    // write options_mem
-    for (int i = 0; i < OPTIONS_AMOUNT; i++)
-    {
-        eeprom_buffered_write_byte(addr, options_mem[i]);
-        addr++;
     }
 
     // Copy the data from the buffer to the flash

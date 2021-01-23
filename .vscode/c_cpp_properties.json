@@ -20,7 +20,8 @@
                 "C:/Users/Lenovo/Documents/Arduino/libraries/DaisyDuino/src",
                 "C:/Users/Lenovo/Documents/Arduino/libraries/EasyButton/src",
                 "C:/Users/Lenovo/Documents/Arduino/libraries/RotaryEncoder",
-                "C:/Users/Lenovo/AppData/Local/Arduino15/packages/STM32/hardware/stm32/1.9.0/libraries/SPI/src"
+                "C:/Users/Lenovo/AppData/Local/Arduino15/packages/STM32/hardware/stm32/1.9.0/libraries/SPI/src",
+                "C:\\Users\\Lenovo\\Documents\\Arduino\\libraries\\**"
             ],
             "forcedInclude": [
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h",

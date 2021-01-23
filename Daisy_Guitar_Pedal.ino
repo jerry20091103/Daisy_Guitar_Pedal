@@ -69,6 +69,7 @@ void setup()
     bluetooth_init();
     // Initialize memory
     memory.init();
+    Serial.println("memory inited");
     if (memory.memory_valid != 1)
         memory.reset_memory();
     // Read from memory
@@ -79,10 +80,13 @@ void setup()
     pinMode(LED_BUILTIN, OUTPUT);
     test_time = millis();
 
+    Serial.println("Setup OK");
+
     // Begin audio callback
     DAISY.begin(audio_callback);
 
-    Serial.println("Setup OK");
+    Serial.println("Audio started");
+
     show_msg(MSG_WARNING, 25, "v0.1 alpha", "May be unstable!");
     mcp.digitalWrite(LED_FS0_PIN, HIGH);
     mcp.digitalWrite(LED_FS1_PIN, HIGH);

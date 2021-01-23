@@ -5,11 +5,14 @@
 _effects_rack effects_rack;
 
 // the main signal chain
-effects *signal_chain[10] = {nullptr};
+effects *signal_chain[MAX_EFFECTS_NUM] = {nullptr};
 
 // Initialize all effect instances
 void _effects_rack::init()
 {
+    // reset signal_chain
+    for(int i=0; i<MAX_EFFECTS_NUM; i++)
+        signal_chain[i] = nullptr;
     // Init effects
     reverb_mod01.init();
     analog.init();
@@ -91,11 +94,11 @@ void _effects_rack::save_cur_preset()
             // save effect enable
             if (signal_chain[i]->enable)
             {
-                memory.effect_enable_mem[cur_preset][i] = true;
+                memory.effect_enable_mem[cur_preset][i] = 1;
             }
             else
             {
-                memory.effect_enable_mem[cur_preset][i] = false;
+                memory.effect_enable_mem[cur_preset][i] = 0;
             }
         }
     }

@@ -32,4 +32,4 @@ public:
 extern _effects_rack effects_rack;
 
 // the main signal chain
-extern effects *signal_chain[10];
+extern effects *signal_chain[MAX_EFFECTS_NUM];

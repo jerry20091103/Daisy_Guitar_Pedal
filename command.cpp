@@ -263,7 +263,7 @@ void command_handler()
         switch (options_window_ins.cur_option)
         {
         case OPT_LED_BRIGHTNESS:
-            if (options_window_ins.led_lvl > 0)
+            if (options_window_ins.led_lvl >= 25)
             {
                 options_window_ins.led_lvl -= 25;
                 u8g2_8x8.setContrast(options_window_ins.led_lvl);
