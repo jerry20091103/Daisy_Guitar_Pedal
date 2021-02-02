@@ -14,6 +14,7 @@ public:
     int save_to_flash();
     void read_from_flash();
     void reset_memory();
+    void reset_flash();
     unsigned char memory_valid;
     unsigned char cur_preset_mem;
     unsigned char effect_id_mem[MAX_USER_PRESET][MAX_EFFECTS_NUM]; // [preset][effect]

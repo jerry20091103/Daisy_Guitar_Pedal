@@ -1,5 +1,5 @@
-#include "command.h"
 #include "effects_rack.h"
+#include "command.h"
 #include "display.h"
 #include "controls.h"
 #include "memory.h"
@@ -61,6 +61,7 @@ void setup()
     // Initialize effects
     effects_rack.init();
     // Initialize controls
+    command_init();
     controls.init();
     // Initialize display
     display.init();
@@ -68,10 +69,71 @@ void setup()
     // Initialize bluetooth
     bluetooth_init();
     // Initialize memory
+    // add option to reset memory or dump memory to serial
+    //  hold and release btn OK to reset flash memory
+    //  hold and release btn UP to dump flash memory
+    if (!digitalRead(30))
+    {
+        while (!digitalRead(30))
+        {
+            delay(100);
+        }
+        memory.reset_memory();
+        memory.save_to_flash();
+        Serial.println("memory reset");
+    }
+    else if (!digitalRead(28))
+    {
+        while (!digitalRead(28))
+        {
+            delay(100);
+        }
+        Serial.println("Dumping started.");
+        memory.read_from_flash();
+        Serial.println("Memory inited");
+        for (int i = 0; i < MAX_USER_PRESET; i++)
+        {
+            for (int j = 0; j < MAX_EFFECTS_NUM; j++)
+            {
+                for (int k = 0; k < MAX_PARAM_NUM; k++)
+                {
+                    Serial.print("effect param ");
+                    Serial.print(i);
+                    Serial.print(" ");
+                    Serial.print(j);
+                    Serial.print(" ");
+                    Serial.print(k);
+                    Serial.print(" : ");
+                    Serial.println(memory.effect_param_mem[i][j][k]);
+                }
+                Serial.print(i);
+                Serial.print(" ");
+                Serial.print(j);
+                Serial.print(" ");
+                Serial.print("id: ");
+                Serial.print(memory.effect_id_mem[i][j]);
+                Serial.print(" / ");
+                Serial.println(memory.effect_enable_mem[i][j]);
+            }
+        }
+        Serial.print("cur_preset: ");
+        Serial.println(memory.cur_preset_mem);
+        Serial.print(" / valid: ");
+        Serial.println(memory.memory_valid);
+        for (int i = 0; i < OPTIONS_AMOUNT; i++)
+        {
+            Serial.print("option ");
+            Serial.print(i);
+            Serial.print(" : ");
+            Serial.println(memory.options_mem[i]);
+        }
+    }
     memory.init();
     Serial.println("memory inited");
     if (memory.memory_valid != 1)
+    {
         memory.reset_memory();
+    }
     // Read from memory
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);

@@ -188,7 +188,7 @@ void options_window::save_options()
         switch (i)
         {
         case OPT_LED_BRIGHTNESS:
-            memory.options_mem[OPT_LED_BRIGHTNESS] = led_lvl;
+            memory.options_mem[i] = led_lvl;
             break;
         
         default:

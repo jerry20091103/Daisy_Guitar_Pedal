@@ -5,25 +5,7 @@ _memory memory;
 
 _memory::_memory()
 {
-    // set all memory to zero
-    for (int i = 0; i < MAX_USER_PRESET; i++)
-    {
-        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-        {
-            for (int k = 0; k < MAX_PARAM_NUM; k++)
-            {
-                effect_param_mem[i][j][k] = 0;
-            }
-            effect_id_mem[i][j] = 0;
-            effect_enable_mem[i][j] = 0;
-        }
-    }
-    cur_preset_mem = 0;
-    memory_valid = 0;
-    for(int i=0; i<OPTIONS_AMOUNT; i++)
-    {
-        options_mem[i] = 0;
-    }
+    reset_memory();
 }
 
 void _memory::init()
@@ -54,8 +36,66 @@ void _memory::reset_memory()
     }
 }
 
+void _memory::reset_flash()
+{
+    //------------------------INT disabled
+    noInterrupts();
+
+    int addr = 0;
+    // write valid memory mark = 1
+    eeprom_buffered_write_byte(addr, 0);
+    addr++;
+    // write options_mem
+    for (int i = 0; i < OPTIONS_AMOUNT; i++)
+    {
+        eeprom_buffered_write_byte(addr, 0);
+        addr++;
+    }
+    // write cur_preset_mem
+    eeprom_buffered_write_byte(addr, 0);
+    addr++;
+    // write effect_id_mem
+    for (int i = 0; i < MAX_USER_PRESET; i++)
+    {
+        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
+        {
+            eeprom_buffered_write_byte(addr, 0);
+            addr++;
+        }
+    }
+    // write effect_param_mem
+    for (int i = 0; i < MAX_USER_PRESET; i++)
+    {
+        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
+        {
+            for (int k = 0; k < MAX_PARAM_NUM; k++)
+            {
+                eeprom_buffered_write_byte(addr, 0);
+                addr++;
+            }
+        }
+    }
+    // write effect_enable_mem
+    for (int i = 0; i < MAX_USER_PRESET; i++)
+    {
+        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
+        {
+            eeprom_buffered_write_byte(addr, 0);
+            addr++;
+        }
+    }
+
+    // Copy the data from the buffer to the flash
+	//eeprom_buffer_flush();
+
+    interrupts();
+    //------------------------INT enabled
+}
+
 void _memory::read_from_flash()
 {
+    //------------------------INT disabled
+    noInterrupts();
     // Copy the data from the flash to the buffer
 	eeprom_buffer_fill();
 
@@ -102,13 +142,18 @@ void _memory::read_from_flash()
             addr++;
         }
     }
+    interrupts();
+    //------------------------INT enabled
 }
 
 int _memory::save_to_flash()
 {
+    //------------------------INT disabled
+    noInterrupts();
+
     int addr = 0;
     // write valid memory mark = 1
-    eeprom_buffered_write_byte(addr, 1);
+    eeprom_buffered_write_byte(addr, memory_valid);
     addr++;
     // write options_mem
     for (int i = 0; i < OPTIONS_AMOUNT; i++)
@@ -152,6 +197,9 @@ int _memory::save_to_flash()
 
     // Copy the data from the buffer to the flash
 	eeprom_buffer_flush();
+
+    interrupts();
+    //------------------------INT enabled
     
     return addr;
 }

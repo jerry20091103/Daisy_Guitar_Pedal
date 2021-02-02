@@ -53,7 +53,7 @@ void _controls::init()
 
     // Initialize encoder
     attachInterrupt(digitalPinToInterrupt(15), encoder_interrupt, CHANGE);
-    attachInterrupt(16, encoder_interrupt, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(16), encoder_interrupt, CHANGE);
 }
 
 void _controls::btn_update()

@@ -45,6 +45,7 @@ enum command : unsigned char{
 };
 
 void command_handler();
+void command_init();
 
 extern volatile unsigned char cmd_type[MAX_COMMAND_BUF]; // The actuall commands
 extern volatile unsigned char cmd_count; // Conunt of how many commands are in the buffer

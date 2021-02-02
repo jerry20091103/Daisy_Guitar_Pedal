@@ -1,6 +1,6 @@
 {
     "sketch": "Daisy_Guitar_Pedal.ino",
     "board": "STM32:stm32:GenH7",
-    "configuration": "pnum=DAISY_SEED,upload_method=dfuMethod,xserial=generic,usb=CDCgen,xusb=FS,opt=osstd,rtlib=nano",
+    "configuration": "pnum=DAISY_SEED,upload_method=dfuMethod,xserial=generic,usb=CDCgen,xusb=FS,opt=o2std,rtlib=nano",
     "port": "COM5"
 }
