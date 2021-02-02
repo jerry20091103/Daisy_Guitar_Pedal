@@ -33,7 +33,6 @@
                 "HAL_UART_MODULE_ENABLED"
             ],
             "intelliSenseMode": "clang-x64",
-            "compilerPath": "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\bin\\avr-gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17"
         }
