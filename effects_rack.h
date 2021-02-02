@@ -2,15 +2,17 @@
 #include "reverb_effect.h"
 #include "analog_effect.h"
 #include "pitchshift_effect.h"
+#include "gain_effect.h"
 
-#define EFFECTS_AMOUNT 4 // How many effects
+#define EFFECTS_AMOUNT 5 // How many effects
 
 enum effect_id : unsigned char
 {
     EMPTY_EFFECT_ID,
     REVERB_MOD01_ID,
     ANALOG_ID,
-    PITCHSHIFT_MOD01_ID
+    PITCHSHIFT_MOD01_ID,
+    GAIN_MOD01_ID
 };
 
 class _effects_rack
@@ -29,6 +31,7 @@ public:
     reverb_effect reverb_mod01;
     analog_effect analog;
     pitchshift_effect pitchshift_mod01;
+    gain_effect gain_mod01;
 };
 
 // A home for all effect instances
