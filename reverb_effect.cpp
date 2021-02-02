@@ -4,7 +4,7 @@ void reverb_effect::init()
 {
     // Initialize reverbsc
     reverb.Init(sample_rate);
-    // Initial all the parameters
+    // Initialize all parameters
     strcpy(param[0].name, "Feedback");
     param[0].enable = true;
     param[0].value = 180;

@@ -43,7 +43,7 @@ void effect_select_window::draw()
     u8g2.print(cur_page + 1);
     u8g2.drawStr(7, 35, "/");
     u8g2.setCursor(13, 35);
-    u8g2.print(EFFECTS_AMOUNT / 4 + 1);
+    u8g2.print((EFFECTS_AMOUNT-1) / 5 + 1);
 
     // Draw page arrows
     for (uint8_t i = 0; i <= 3; i++)
@@ -83,7 +83,7 @@ void effect_select_window::update()
     // Update page
     if (cur_effect_id > 0) // starts from 1 since 0 is empty effect
     {
-        cur_page = (cur_effect_id - 1) / 4;
+        cur_page = (cur_effect_id - 1) / 5;
     }
 }
 
