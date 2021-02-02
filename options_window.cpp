@@ -35,7 +35,7 @@ void options_window::draw()
     u8g2.print(cur_page + 1);
     u8g2.drawStr(7, 35, "/");
     u8g2.setCursor(13, 35);
-    u8g2.print(OPTIONS_AMOUNT / 4 + 1);
+    u8g2.print(OPTIONS_AMOUNT / 5 + 1);
 
     // Draw page arrows
     for (uint8_t i = 0; i <= 3; i++)
@@ -89,7 +89,7 @@ void options_window::update()
         time = 0;
     }
     // Update page
-    cur_page = cur_option / 4;
+    cur_page = cur_option / 5;
 }
 
 all_windows options_window::get_window_id()
