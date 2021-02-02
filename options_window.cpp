@@ -14,7 +14,7 @@ void options_window::draw()
 
     // Draw option names and values
     u8g2.setFont(u8g2_font_profont10_mr);
-    for (uint8_t i = cur_page * 4; i < OPTIONS_AMOUNT; i++)
+    for (uint8_t i = cur_page * 4; i < OPTIONS_AMOUNT && i < cur_page * 4 + 4; i++)
     {
         unsigned char pos = i % 4;
         if (i == cur_option)
@@ -89,7 +89,7 @@ void options_window::update()
         time = 0;
     }
     // Update page
-    cur_page = cur_option / 5;
+    cur_page = cur_option / 4;
 }
 
 all_windows options_window::get_window_id()
