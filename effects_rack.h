@@ -3,8 +3,9 @@
 #include "analog_effect.h"
 #include "pitchshift_effect.h"
 #include "gain_effect.h"
+#include "overdrive_effect.h"
 
-#define EFFECTS_AMOUNT 5 // How many effects
+#define EFFECTS_AMOUNT 6 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -12,6 +13,7 @@ enum effect_id : unsigned char
     REVERB_MOD01_ID,
     ANALOG_ID,
     PITCHSHIFT_MOD01_ID,
+    OVERDRIVE_MOD01_ID,
     GAIN_MOD01_ID
 };
 
@@ -31,6 +33,7 @@ public:
     reverb_effect reverb_mod01;
     analog_effect analog;
     pitchshift_effect pitchshift_mod01;
+    overdrive_effect overdrive_mod01;
     gain_effect gain_mod01;
 };
 
