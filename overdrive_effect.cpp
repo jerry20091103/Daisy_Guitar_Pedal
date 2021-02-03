@@ -4,6 +4,7 @@ void overdrive_effect::init()
 {
     // Initialize
     od.Init();
+    tone.Init(sample_rate);
     // Initialize all parameters
     strcpy(param[0].name, "Drive");
     param[0].enable = true;
@@ -15,6 +16,11 @@ void overdrive_effect::init()
     param[1].value = 128;
     set_param(1, param[1].value);
 
+    strcpy(param[2].name, "LP Freq");
+    param[2].enable = true;
+    param[2].value = 127;
+    set_param(2, param[2].value);
+
     // Initialize name
     strcpy(effect_short_name, "Driv");
 }
@@ -23,9 +29,10 @@ void overdrive_effect::process(float in, float &out)
 {
     if (enable)
     {
-        float after;
-        after = od.Process(in) * 0.5;
-        out = after * level;       
+        float driven, after;
+        driven = od.Process(in) * 0.4;
+        after = tone.Process(driven);
+        out = after * level*level;       
     }
     else // bypass
     {
@@ -44,8 +51,13 @@ void overdrive_effect::set_param(uint8_t id, unsigned char val)
         break;
 
     case 1:
-        param[1].true_val = (float)val * 0.0025;
+        param[1].true_val = (float)val * 0.0039;
         level = param[1].true_val;
+        break;
+
+    case 2:
+        param[2].true_val = 400 + val * ((float)val * 0.9 + 25.5) * 0.2;
+        tone.SetFreq(param[2].true_val);
         break;
 
     default:

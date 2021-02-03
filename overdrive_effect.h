@@ -11,6 +11,7 @@ public:
     virtual void init() override;
 private:
     daisysp::Overdrive od;
+    daisysp::Tone tone;
     float level;
 };
 
