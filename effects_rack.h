@@ -5,8 +5,9 @@
 #include "gain_effect.h"
 #include "overdrive_effect.h"
 #include "fuzz_effect.h"
+#include "compressor_effect.h"
 
-#define EFFECTS_AMOUNT 7 // How many effects
+#define EFFECTS_AMOUNT 8 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -16,6 +17,7 @@ enum effect_id : unsigned char
     PITCHSHIFT_MOD01_ID,
     OVERDRIVE_MOD01_ID,
     FUZZ_MOD01_ID,
+    COMPRESSOR_MOD01_ID,
     GAIN_MOD01_ID
 };
 
@@ -31,12 +33,14 @@ public:
     unsigned char cur_preset = 0;
     bool effect_used[EFFECTS_AMOUNT] = {false};
     effects *effects_arr[EFFECTS_AMOUNT] = {nullptr};
+private:
     // All effect instances
     reverb_effect reverb_mod01;
     analog_effect analog;
     pitchshift_effect pitchshift_mod01;
     overdrive_effect overdrive_mod01;
     fuzz_effect fuzz_mod01;
+    compressor_effect compressor_mod01;
     gain_effect gain_mod01;
 };
 

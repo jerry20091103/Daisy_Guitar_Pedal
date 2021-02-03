@@ -27,7 +27,7 @@ void audio_callback(float **in, float **out, size_t size)
             if (signal_chain[j] == nullptr)
                 continue;
             // if the effect is the external analog module
-            if (signal_chain[j] == &effects_rack.analog)
+            if (signal_chain[j] == effects_rack.effects_arr[ANALOG_ID])
             {
                 if (signal_chain[j]->enable)
                 {

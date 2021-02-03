@@ -19,6 +19,7 @@ void _effects_rack::init()
     pitchshift_mod01.init();
     overdrive_mod01.init();
     fuzz_mod01.init();
+    compressor_mod01.init();
     gain_mod01.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
@@ -26,6 +27,7 @@ void _effects_rack::init()
     pitchshift_mod01.id = PITCHSHIFT_MOD01_ID;
     overdrive_mod01.id = OVERDRIVE_MOD01_ID;
     fuzz_mod01.id = FUZZ_MOD01_ID;
+    compressor_mod01.id = COMPRESSOR_MOD01_ID;
     gain_mod01.id = GAIN_MOD01_ID;
     // Set effect names
     strcpy(reverb_mod01.effect_name, "Reverb1");
@@ -33,6 +35,7 @@ void _effects_rack::init()
     strcpy(pitchshift_mod01.effect_name, "Pitch_Shifter1");
     strcpy(overdrive_mod01.effect_name, "D_Overdrive1");
     strcpy(fuzz_mod01.effect_name, "D_Fuzz1");
+    strcpy(compressor_mod01.effect_name, "Compressor1");
     strcpy(gain_mod01.effect_name, "Gain1");
 
     // Assign to effect_arr
@@ -42,6 +45,7 @@ void _effects_rack::init()
     effects_arr[PITCHSHIFT_MOD01_ID] = &pitchshift_mod01;
     effects_arr[OVERDRIVE_MOD01_ID] = &overdrive_mod01;
     effects_arr[FUZZ_MOD01_ID] = &fuzz_mod01;
+    effects_arr[COMPRESSOR_MOD01_ID] = &compressor_mod01;
     effects_arr[GAIN_MOD01_ID] = &gain_mod01;
 }
 

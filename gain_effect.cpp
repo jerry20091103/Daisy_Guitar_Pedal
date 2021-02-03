@@ -10,6 +10,11 @@ void gain_effect::init()
     param[0].value = 50;
     set_param(0, param[0].value);
 
+    /*strcpy(param[1].name, "Meter");
+    param[1].enable = true;
+    param[1].value = 0;
+    set_param(1, param[1].value);*/
+
     // Initialize name
     strcpy(effect_short_name, "Gain");
 }
