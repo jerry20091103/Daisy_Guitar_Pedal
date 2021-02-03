@@ -11,6 +11,9 @@ public:
     virtual void init() override;
 private:
     float amount;
+    float cur_peak;
+    float cur_sum;
+    int time_count;
 };
 
 #endif
