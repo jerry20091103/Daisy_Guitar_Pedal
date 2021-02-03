@@ -12,7 +12,7 @@ void reverb_effect::init()
 
     strcpy(param[1].name, "LP Freq");
     param[1].enable = true;
-    param[1].value = 190;
+    param[1].value = 218;
     set_param(1, param[1].value);
 
     strcpy(param[2].name, "Dry");
@@ -55,7 +55,7 @@ void reverb_effect::set_param(uint8_t id, unsigned char val)
         reverb.SetFeedback(param[0].true_val);
         break;
     case 1:
-        param[1].true_val = 800 + (float)val * 75;
+        param[1].true_val =  400 + val * ((float)val * 0.9 + 25.5) * 0.3;
         reverb.SetLpFreq(param[1].true_val);
         break;
     case 2:
