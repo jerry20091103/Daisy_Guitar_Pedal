@@ -21,6 +21,7 @@ void _effects_rack::init()
     fuzz_mod01.init();
     compressor_mod01.init();
     gain_mod01.init();
+    delay_mod.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
     analog.id = ANALOG_ID;
@@ -29,6 +30,7 @@ void _effects_rack::init()
     fuzz_mod01.id = FUZZ_MOD01_ID;
     compressor_mod01.id = COMPRESSOR_MOD01_ID;
     gain_mod01.id = GAIN_MOD01_ID;
+    delay_mod.id = DELAY_MOD_ID;
     // Set effect names
     strcpy(reverb_mod01.effect_name, "Reverb1");
     strcpy(analog.effect_name, "Analog");
@@ -37,6 +39,7 @@ void _effects_rack::init()
     strcpy(fuzz_mod01.effect_name, "D_Fuzz1");
     strcpy(compressor_mod01.effect_name, "Compressor1");
     strcpy(gain_mod01.effect_name, "Gain1");
+    strcpy(delay_mod.effect_name, "Delay");
 
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
@@ -47,6 +50,7 @@ void _effects_rack::init()
     effects_arr[FUZZ_MOD01_ID] = &fuzz_mod01;
     effects_arr[COMPRESSOR_MOD01_ID] = &compressor_mod01;
     effects_arr[GAIN_MOD01_ID] = &gain_mod01;
+    effects_arr[DELAY_MOD_ID] = &delay_mod;
 }
 
 // Read a preset into the signal_chain

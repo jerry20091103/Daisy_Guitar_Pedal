@@ -3,12 +3,13 @@
 
 #include "windows.h"
 
-#define OPTIONS_AMOUNT 2
+#define OPTIONS_AMOUNT 3
 
 enum all_options : unsigned char
 {
     OPT_SAVE_FLASH,
-    OPT_LED_BRIGHTNESS
+    OPT_LED_BRIGHTNESS,
+    OPT_DELAY_UNIT
 };
 
 // Options Window class
@@ -27,6 +28,7 @@ public:
     uint8_t cur_page = 0;
     // option values
     unsigned char led_lvl = 25;
+    bool delay_ms = false;
 
 private:
     void draw_option(unsigned char id, unsigned char pos);

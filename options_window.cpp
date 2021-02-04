@@ -74,6 +74,17 @@ void options_window::draw_option(unsigned char id, unsigned char pos)
         u8g2.print((unsigned char)(led_lvl / 25));
         break;
 
+    case OPT_DELAY_UNIT:
+        u8g2.drawStr(24, 19 + 11 * pos, "Delay time unit");
+        u8g2.drawStr(103, 19 + 11 * pos, "<   >");
+        u8g2.setCursor(109, 19 + 11 * pos);
+        if(delay_ms)
+            u8g2.print("MS");
+        else
+            u8g2.print("BPM");
+
+        break;
+
     default:
         break;
     }
@@ -166,7 +177,7 @@ void options_window::on_enc_turned(RotaryEncoder::Direction dir)
 
 void options_window::read_options()
 {
-    for(unsigned char i=0; i<OPTIONS_AMOUNT; i++)
+    for (unsigned char i = 0; i < OPTIONS_AMOUNT; i++)
     {
         switch (i)
         {
@@ -174,7 +185,7 @@ void options_window::read_options()
             led_lvl = memory.options_mem[OPT_LED_BRIGHTNESS];
             u8g2_8x8.setContrast(led_lvl);
             break;
-        
+
         default:
             break;
         }
@@ -183,14 +194,14 @@ void options_window::read_options()
 
 void options_window::save_options()
 {
-    for(unsigned char i=0; i<OPTIONS_AMOUNT; i++)
+    for (unsigned char i = 0; i < OPTIONS_AMOUNT; i++)
     {
         switch (i)
         {
         case OPT_LED_BRIGHTNESS:
             memory.options_mem[i] = led_lvl;
             break;
-        
+
         default:
             memory.options_mem[i] = 0;
             break;

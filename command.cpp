@@ -345,6 +345,11 @@ void command_handler()
                 u8g2_8x8.setContrast(options_window_ins.led_lvl);
             }
             break;
+        
+        case OPT_DELAY_UNIT:
+            options_window_ins.delay_ms = !options_window_ins.delay_ms;
+            effects_rack.effects_arr[DELAY_MOD_ID]->set_param(0, effects_rack.effects_arr[DELAY_MOD_ID]->param[0].value);
+            break;
 
         default:
             break;
@@ -361,6 +366,11 @@ void command_handler()
                 options_window_ins.led_lvl -= 25;
                 u8g2_8x8.setContrast(options_window_ins.led_lvl);
             }
+            break;
+        
+        case OPT_DELAY_UNIT:
+            options_window_ins.delay_ms = !options_window_ins.delay_ms;
+            effects_rack.effects_arr[DELAY_MOD_ID]->set_param(0, effects_rack.effects_arr[DELAY_MOD_ID]->param[0].value);
             break;
 
         default:

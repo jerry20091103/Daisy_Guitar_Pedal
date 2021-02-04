@@ -6,8 +6,9 @@
 #include "overdrive_effect.h"
 #include "fuzz_effect.h"
 #include "compressor_effect.h"
+#include "delay_effect.h"
 
-#define EFFECTS_AMOUNT 8 // How many effects
+#define EFFECTS_AMOUNT 9 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -18,7 +19,8 @@ enum effect_id : unsigned char
     OVERDRIVE_MOD01_ID,
     FUZZ_MOD01_ID,
     COMPRESSOR_MOD01_ID,
-    GAIN_MOD01_ID
+    GAIN_MOD01_ID,
+    DELAY_MOD_ID
 };
 
 class _effects_rack
@@ -42,6 +44,7 @@ private:
     fuzz_effect fuzz_mod01;
     compressor_effect compressor_mod01;
     gain_effect gain_mod01;
+    delay_effect delay_mod;
 };
 
 // A home for all effect instances
