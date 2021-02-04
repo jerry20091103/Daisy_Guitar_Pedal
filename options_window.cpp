@@ -2,6 +2,7 @@
 #include "display.h"
 #include "command.h"
 #include "memory.h"
+#include "effects_rack.h"
 
 options_window options_window_ins;
 
@@ -53,7 +54,7 @@ void options_window::draw()
     u8g2.drawStr(1, 8, "Options:");
     // Draw bottom text
     u8g2.setFont(u8g2_font_5x8_mr);
-    u8g2.drawStr(1, 62, "----/----  |  SELECT/BACK");
+    u8g2.drawStr(1, 62, "BACK/----  |  SELECT/----");
 
     // Draw 8x8 matrix
     u8g2_8x8.setFont(u8g2_font_open_iconic_embedded_1x_t);
@@ -136,6 +137,11 @@ void options_window::on_btn_pressed(buttons id)
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_OPT_SELECT;
         cmd_count++;
         break;
+    
+    case BTN_ENCODER:
+        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_BACK;
+        cmd_count++;
+        break;
 
     default:
         break;
@@ -146,10 +152,6 @@ void options_window::on_btn_holded(buttons id)
 {
     switch (id)
     {
-    case BTN_OK:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_BACK;
-        cmd_count++;
-        break;
 
     default:
         break;
@@ -185,6 +187,10 @@ void options_window::read_options()
             led_lvl = memory.options_mem[OPT_LED_BRIGHTNESS];
             u8g2_8x8.setContrast(led_lvl);
             break;
+        
+        case OPT_DELAY_UNIT:
+            delay_ms = memory.options_mem[OPT_DELAY_UNIT];
+            effects_rack.effects_arr[DELAY_MOD_ID]->set_param(0, effects_rack.effects_arr[DELAY_MOD_ID]->param[0].value);
 
         default:
             break;
@@ -200,6 +206,10 @@ void options_window::save_options()
         {
         case OPT_LED_BRIGHTNESS:
             memory.options_mem[i] = led_lvl;
+            break;
+        
+        case OPT_DELAY_UNIT:
+            memory.options_mem[i] = delay_ms;
             break;
 
         default:
