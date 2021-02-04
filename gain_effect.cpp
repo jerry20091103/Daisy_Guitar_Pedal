@@ -9,7 +9,7 @@ void gain_effect::init()
     // Initialize all parameters
     strcpy(param[0].name, "Amount");
     param[0].enable = true;
-    param[0].value = 50;
+    param[0].value = 150;
     set_param(0, param[0].value);
 
     strcpy(param[1].name, "Peak"); // show current peak value (in 0.5 second)
@@ -31,7 +31,7 @@ void gain_effect::process(float in, float &out)
 {
     if (enable)
     {
-        out = in * ((float)1 + amount);       
+        out = in * amount;     
     }
     else // bypass
     {
@@ -62,8 +62,8 @@ void gain_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = ((float)val - 50) * 0.02;
-        amount = param[0].true_val;
+        param[0].true_val = -30 + (float)val * 0.2; // -30 ~ 21 dB
+        amount = daisysp::pow10f(param[0].true_val * 0.05);
         break;
 
     case 1:
