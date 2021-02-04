@@ -22,6 +22,8 @@ void _effects_rack::init()
     compressor_mod01.init();
     gain_mod01.init();
     delay_mod.init();
+    chorus_mod01.init();
+    flanger_mod01.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
     analog.id = ANALOG_ID;
@@ -31,15 +33,19 @@ void _effects_rack::init()
     compressor_mod01.id = COMPRESSOR_MOD01_ID;
     gain_mod01.id = GAIN_MOD01_ID;
     delay_mod.id = DELAY_MOD_ID;
+    chorus_mod01.id = CHORUS_MOD01_ID;
+    flanger_mod01.id = FLANGER_MOD01_ID;
     // Set effect names
-    strcpy(reverb_mod01.effect_name, "Reverb1");
+    strcpy(reverb_mod01.effect_name, "Reverb");
     strcpy(analog.effect_name, "Analog");
-    strcpy(pitchshift_mod01.effect_name, "Pitch_Shifter1");
-    strcpy(overdrive_mod01.effect_name, "D_Overdrive1");
-    strcpy(fuzz_mod01.effect_name, "D_Fuzz1");
-    strcpy(compressor_mod01.effect_name, "Compressor1");
-    strcpy(gain_mod01.effect_name, "Gain1");
+    strcpy(pitchshift_mod01.effect_name, "Pitch_Shifter");
+    strcpy(overdrive_mod01.effect_name, "D_Overdrive");
+    strcpy(fuzz_mod01.effect_name, "D_Fuzz");
+    strcpy(compressor_mod01.effect_name, "Compressor");
+    strcpy(gain_mod01.effect_name, "Gain");
     strcpy(delay_mod.effect_name, "Delay");
+    strcpy(chorus_mod01.effect_name, "Chorus");
+    strcpy(flanger_mod01.effect_name, "Flanger");
 
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
@@ -51,6 +57,8 @@ void _effects_rack::init()
     effects_arr[COMPRESSOR_MOD01_ID] = &compressor_mod01;
     effects_arr[GAIN_MOD01_ID] = &gain_mod01;
     effects_arr[DELAY_MOD_ID] = &delay_mod;
+    effects_arr[CHORUS_MOD01_ID] = &chorus_mod01;
+    effects_arr[FLANGER_MOD01_ID] = &flanger_mod01;
 }
 
 // Read a preset into the signal_chain

@@ -7,20 +7,24 @@
 #include "fuzz_effect.h"
 #include "compressor_effect.h"
 #include "delay_effect.h"
+#include "chorus_effect.h"
+#include "flanger_effect.h"
 
-#define EFFECTS_AMOUNT 9 // How many effects
+#define EFFECTS_AMOUNT 11 // How many effects
 
 enum effect_id : unsigned char
 {
     EMPTY_EFFECT_ID,
-    REVERB_MOD01_ID,
     ANALOG_ID,
-    PITCHSHIFT_MOD01_ID,
     OVERDRIVE_MOD01_ID,
     FUZZ_MOD01_ID,
-    COMPRESSOR_MOD01_ID,
     GAIN_MOD01_ID,
-    DELAY_MOD_ID
+    REVERB_MOD01_ID,
+    DELAY_MOD_ID,
+    CHORUS_MOD01_ID,
+    FLANGER_MOD01_ID,
+    COMPRESSOR_MOD01_ID,
+    PITCHSHIFT_MOD01_ID
 };
 
 class _effects_rack
@@ -45,6 +49,8 @@ private:
     compressor_effect compressor_mod01;
     gain_effect gain_mod01;
     delay_effect delay_mod;
+    chorus_effect chorus_mod01;
+    flanger_effect flanger_mod01;
 };
 
 // A home for all effect instances
