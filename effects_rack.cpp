@@ -24,6 +24,7 @@ void _effects_rack::init()
     delay_mod.init();
     chorus_mod01.init();
     flanger_mod01.init();
+    bitcrusher_mod01.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
     analog.id = ANALOG_ID;
@@ -35,6 +36,7 @@ void _effects_rack::init()
     delay_mod.id = DELAY_MOD_ID;
     chorus_mod01.id = CHORUS_MOD01_ID;
     flanger_mod01.id = FLANGER_MOD01_ID;
+    bitcrusher_mod01.id = BITCRUSHER_MOD01_ID;
     // Set effect names
     strcpy(reverb_mod01.effect_name, "Reverb");
     strcpy(analog.effect_name, "Analog");
@@ -46,6 +48,7 @@ void _effects_rack::init()
     strcpy(delay_mod.effect_name, "Delay");
     strcpy(chorus_mod01.effect_name, "Chorus");
     strcpy(flanger_mod01.effect_name, "Flanger");
+    strcpy(bitcrusher_mod01.effect_name, "Bitcrusher");
 
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
@@ -59,6 +62,7 @@ void _effects_rack::init()
     effects_arr[DELAY_MOD_ID] = &delay_mod;
     effects_arr[CHORUS_MOD01_ID] = &chorus_mod01;
     effects_arr[FLANGER_MOD01_ID] = &flanger_mod01;
+    effects_arr[BITCRUSHER_MOD01_ID] = &bitcrusher_mod01;
 }
 
 // Read a preset into the signal_chain
