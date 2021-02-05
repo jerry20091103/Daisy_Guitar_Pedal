@@ -217,43 +217,6 @@ void command_handler()
         {
             effects_rack.change_preset(effects_rack.cur_preset - 1);
 
-            //debug
-            for (int i = 0; i < MAX_USER_PRESET; i++)
-            {
-                for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-                {
-                    for (int k = 0; k < MAX_PARAM_NUM; k++)
-                    {
-                        Serial.print("effect param ");
-                        Serial.print(i);
-                        Serial.print(" ");
-                        Serial.print(j);
-                        Serial.print(" ");
-                        Serial.print(k);
-                        Serial.print(" : ");
-                        Serial.println(memory.effect_param_mem[i][j][k]);
-                    }
-                    Serial.print(i);
-                    Serial.print(" ");
-                    Serial.print(j);
-                    Serial.print(" ");
-                    Serial.print("id: ");
-                    Serial.print(memory.effect_id_mem[i][j]);
-                    Serial.print(" / ");
-                    Serial.println(memory.effect_enable_mem[i][j]);
-                }
-            }
-            Serial.print("cur_preset: ");
-            Serial.println(memory.cur_preset_mem);
-            Serial.print(" / valid: ");
-            Serial.println(memory.memory_valid);
-            for (int i = 0; i < OPTIONS_AMOUNT; i++)
-            {
-                Serial.print("option ");
-                Serial.print(i);
-                Serial.print(" : ");
-                Serial.println(memory.options_mem[i]);
-            }
         }
         break;
 
@@ -261,44 +224,6 @@ void command_handler()
         if (effects_rack.cur_preset < MAX_USER_PRESET - 1)
         {
             effects_rack.change_preset(effects_rack.cur_preset + 1);
-
-            //debug
-            for (int i = 0; i < MAX_USER_PRESET; i++)
-            {
-                for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-                {
-                    for (int k = 0; k < MAX_PARAM_NUM; k++)
-                    {
-                        Serial.print("effect param ");
-                        Serial.print(i);
-                        Serial.print(" ");
-                        Serial.print(j);
-                        Serial.print(" ");
-                        Serial.print(k);
-                        Serial.print(" : ");
-                        Serial.println(memory.effect_param_mem[i][j][k]);
-                    }
-                    Serial.print(i);
-                    Serial.print(" ");
-                    Serial.print(j);
-                    Serial.print(" ");
-                    Serial.print("id: ");
-                    Serial.print(memory.effect_id_mem[i][j]);
-                    Serial.print(" / ");
-                    Serial.println(memory.effect_enable_mem[i][j]);
-                }
-            }
-            Serial.print("cur_preset: ");
-            Serial.println(memory.cur_preset_mem);
-            Serial.print(" / valid: ");
-            Serial.println(memory.memory_valid);
-            for (int i = 0; i < OPTIONS_AMOUNT; i++)
-            {
-                Serial.print("option ");
-                Serial.print(i);
-                Serial.print(" : ");
-                Serial.println(memory.options_mem[i]);
-            }
         }
         break;
 
@@ -389,95 +314,12 @@ void command_handler()
             effects_rack.save_cur_preset();
             options_window_ins.save_options();
             memory.memory_valid = 1;
-            // debug only
-            for (int i = 0; i < MAX_USER_PRESET; i++)
-            {
-                for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-                {
-                    for (int k = 0; k < MAX_PARAM_NUM; k++)
-                    {
-                        Serial.print("effect param ");
-                        Serial.print(i);
-                        Serial.print(" ");
-                        Serial.print(j);
-                        Serial.print(" ");
-                        Serial.print(k);
-                        Serial.print(" : ");
-                        Serial.println(memory.effect_param_mem[i][j][k]);
-                    }
-                    Serial.print(i);
-                    Serial.print(" ");
-                    Serial.print(j);
-                    Serial.print(" ");
-                    Serial.print("id: ");
-                    Serial.print(memory.effect_id_mem[i][j]);
-                    Serial.print(" / ");
-                    Serial.println(memory.effect_enable_mem[i][j]);
-                }
-            }
-            Serial.print("cur_preset: ");
-            Serial.println(memory.cur_preset_mem);
-            Serial.print(" / valid: ");
-            Serial.println(memory.memory_valid);
-            for (int i = 0; i < OPTIONS_AMOUNT; i++)
-            {
-                Serial.print("option ");
-                Serial.print(i);
-                Serial.print(" : ");
-                Serial.println(memory.options_mem[i]);
-            }
-            Serial.println("=======================");
-            delay(1000);
-            // ==========================
-            // clear flash first
-            //memory.reset_flash();
+            
             int bytes_wrote;
             char msg2[20];
             bytes_wrote = memory.save_to_flash();
             itoa(bytes_wrote, msg2, 10);
             show_msg(MSG_INFO, 13, "Save Successful", msg2);
-            // debug only
-            memory.read_from_flash();
-            delay(1000);
-            for (int i = 0; i < MAX_USER_PRESET; i++)
-            {
-                for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-                {
-                    for (int k = 0; k < MAX_PARAM_NUM; k++)
-                    {
-                        Serial.print("effect param ");
-                        Serial.print(i);
-                        Serial.print(" ");
-                        Serial.print(j);
-                        Serial.print(" ");
-                        Serial.print(k);
-                        Serial.print(" : ");
-                        Serial.println(memory.effect_param_mem[i][j][k]);
-                    }
-                    Serial.print(i);
-                    Serial.print(" ");
-                    Serial.print(j);
-                    Serial.print(" ");
-                    Serial.print("id: ");
-                    Serial.print(memory.effect_id_mem[i][j]);
-                    Serial.print(" / ");
-                    Serial.println(memory.effect_enable_mem[i][j]);
-                }
-            }
-            Serial.print("cur_preset: ");
-            Serial.println(memory.cur_preset_mem);
-            Serial.print(" / valid: ");
-            Serial.println(memory.memory_valid);
-            for (int i = 0; i < OPTIONS_AMOUNT; i++)
-            {
-                Serial.print("option ");
-                Serial.print(i);
-                Serial.print(" : ");
-                Serial.println(memory.options_mem[i]);
-            }
-
-            Serial.println("Size: ");
-            Serial.println(EEPROM.length());
 
             // resume audio callback
             DAISY.begin(audio_callback);

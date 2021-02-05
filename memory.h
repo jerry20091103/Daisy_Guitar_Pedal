@@ -3,6 +3,8 @@
 
 #include "effects.h"
 #include "options_window.h"
+#include <Wire.h>
+#include "extEEPROM.h"
 
 #define MAX_USER_PRESET 10
 
@@ -24,5 +26,6 @@ public:
 };
 
 extern _memory memory;
+extern extEEPROM eep;
 
 #endif

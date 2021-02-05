@@ -78,6 +78,8 @@ void setup()
         {
             delay(100);
         }
+        memory.init();
+        Serial.println("Memory inited");
         memory.reset_memory();
         memory.save_to_flash();
         Serial.println("memory reset");
@@ -89,6 +91,7 @@ void setup()
             delay(100);
         }
         Serial.println("Dumping started.");
+        memory.init();
         memory.read_from_flash();
         Serial.println("Memory inited");
         for (int i = 0; i < MAX_USER_PRESET; i++)
@@ -129,6 +132,7 @@ void setup()
         }
     }
     memory.init();
+    memory.read_from_flash();
     Serial.println("memory inited");
     if (memory.memory_valid != 1)
     {
