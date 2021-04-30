@@ -31,14 +31,14 @@ void command_init()
 }
 
 // The command handler
-void command_handler()
+int command_handler()
 {
     //------------------------INT disabled
     noInterrupts();
     if (cmd_count == 0)
     {
         interrupts();
-        return;
+        return 0;
     }
     unsigned char cmd_type_cpy = cmd_type[cmd_pos];
     cmd_pos++;
@@ -335,4 +335,6 @@ void command_handler()
     default:
         break;
     }
+    // tell display to refresh refresh the display
+    return 1;
 }

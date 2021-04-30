@@ -44,7 +44,7 @@ enum command : unsigned char{
     CMD_OPT_SELECT
 };
 
-void command_handler();
+int command_handler();
 void command_init();
 
 extern volatile unsigned char cmd_type[MAX_COMMAND_BUF]; // The actuall commands

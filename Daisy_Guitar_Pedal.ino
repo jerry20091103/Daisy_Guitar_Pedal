@@ -55,7 +55,7 @@ void setup()
     // Wait for the power to be stable
     delay(500);
     Serial.begin(9600);
-    // Initialize for Daisy pod at 48kHz
+    // Initialize Daisy seed at 48kHz
     hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
     sample_rate = DAISY.get_samplerate();
     // Initialize effects
@@ -144,7 +144,6 @@ void setup()
     options_window_ins.read_options();
 
     pinMode(LED_BUILTIN, OUTPUT);
-    test_time = millis();
 
     Serial.println("Setup OK");
 
@@ -169,23 +168,10 @@ void loop()
     bluetooth_get_command();
     // Handle commands sent by interrupt and bluetooth
     command_handler();
-    // draw the display at about 6.67 fps
-    if (current_time - last_frame_time > 150)
+    // draw the display when a new command happens with max fps about 10 fps
+    if (current_time - last_frame_time > 100)
     {
         display.draw();
         last_frame_time = current_time;
-    }
-    if (current_time - test_time > 5000)
-    {
-        if (test_state)
-        {
-            digitalWrite(LED_BUILTIN, HIGH);
-        }
-        else
-        {
-            digitalWrite(LED_BUILTIN, LOW);
-        }
-        test_time = current_time;
-        test_state = !test_state;
     }
 }
