@@ -9,8 +9,6 @@
 DaisyHardware hw;
 
 unsigned long last_frame_time;
-unsigned long test_time;
-bool test_state = false;
 
 void audio_callback(float **in, float **out, size_t size)
 {
@@ -168,7 +166,7 @@ void loop()
     bluetooth_get_command();
     // Handle commands sent by interrupt and bluetooth
     command_handler();
-    // draw the display when a new command happens with max fps about 10 fps
+    // draw the display with max fps at about 10 fps
     if (current_time - last_frame_time > 100)
     {
         display.draw();
