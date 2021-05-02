@@ -335,6 +335,6 @@ int command_handler()
     default:
         break;
     }
-    // tell display to refresh the display
+    
     return 1;
 }
