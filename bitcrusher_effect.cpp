@@ -17,6 +17,7 @@ void bitcrusher_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Bit ");
+    strcpy(effect_name, "Bitcrusher");
 }
 
 void bitcrusher_effect::process(float in, float &out)

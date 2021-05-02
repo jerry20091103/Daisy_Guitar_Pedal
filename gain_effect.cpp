@@ -25,6 +25,7 @@ void gain_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Gain");
+    strcpy(effect_name, "Gain");
 }
 
 void gain_effect::process(float in, float &out)

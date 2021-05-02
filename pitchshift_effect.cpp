@@ -27,6 +27,7 @@ void pitchshift_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Pith");
+    strcpy(effect_name, "Pitch_Shifter");
 }
 
 void pitchshift_effect::process(float in, float &out)

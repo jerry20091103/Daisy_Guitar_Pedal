@@ -36,6 +36,7 @@ void delay_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Dely");
+    strcpy(effect_name, "Delay");
 }
 
 void delay_effect::process(float in, float &out)

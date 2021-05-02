@@ -27,6 +27,7 @@ void fuzz_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Fuzz");
+    strcpy(effect_name, "D_Fuzz");
 }
 
 void fuzz_effect::process(float in, float &out)

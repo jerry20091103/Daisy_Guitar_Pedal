@@ -27,6 +27,7 @@ void reverb_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Revb");
+    strcpy(effect_name, "Reverb");
 }
 
 void reverb_effect::process(float in, float &out)

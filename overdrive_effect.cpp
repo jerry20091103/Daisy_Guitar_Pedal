@@ -23,6 +23,7 @@ void overdrive_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Driv");
+    strcpy(effect_name, "D_Overdrive");
 }
 
 void overdrive_effect::process(float in, float &out)

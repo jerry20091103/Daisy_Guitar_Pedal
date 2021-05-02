@@ -28,6 +28,7 @@ void flanger_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Flng");
+    strcpy(effect_name, "Flanger");
 }
 
 void flanger_effect::process(float in, float &out)

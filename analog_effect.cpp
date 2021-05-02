@@ -22,6 +22,7 @@ void analog_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Anlg");
+    strcpy(effect_name, "Analog");
 }
 
 void analog_effect::process(float in, float &out)

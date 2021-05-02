@@ -28,6 +28,7 @@ void chorus_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Chor");
+    strcpy(effect_name, "Chorus");
 }
 
 void chorus_effect::process(float in, float &out)

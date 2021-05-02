@@ -39,6 +39,7 @@ void compressor_effect::init()
 
     // Initialize name
     strcpy(effect_short_name, "Comp");
+    strcpy(effect_name, "Compressor");
 }
 
 void compressor_effect::process(float in, float &out)
