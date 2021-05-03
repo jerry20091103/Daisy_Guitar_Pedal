@@ -10,8 +10,9 @@
 #include "chorus_effect.h"
 #include "flanger_effect.h"
 #include "bitcrusher_effect.h"
+#include "IR_filter_effect.h"
 
-#define EFFECTS_AMOUNT 12 // How many effects
+#define EFFECTS_AMOUNT 13 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -26,7 +27,8 @@ enum effect_id : unsigned char
     FLANGER_MOD01_ID,
     BITCRUSHER_MOD01_ID,
     COMPRESSOR_MOD01_ID,
-    PITCHSHIFT_MOD01_ID
+    PITCHSHIFT_MOD01_ID,
+    IR_ID
 };
 
 class _effects_rack
@@ -54,6 +56,7 @@ private:
     chorus_effect chorus_mod01;
     flanger_effect flanger_mod01;
     bitcrusher_effect bitcrusher_mod01;
+    IR_filter_effect ir;
 };
 
 // A home for all effect instances

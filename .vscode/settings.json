@@ -12,6 +12,11 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "random": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "cmath": "cpp",
+        "string": "cpp",
+        "iosfwd": "cpp",
+        "cwchar": "cpp",
+        "typeinfo": "cpp"
     }
 }
