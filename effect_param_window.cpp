@@ -113,7 +113,7 @@ void effect_param_window::draw()
     u8g2.setCursor(114, 8);
     u8g2.print(cur_step);
     // Draw bottom text
-    u8g2.setFont(u8g2_font_5x8_mr);
+    u8g2.setFont(u8g2_font_profont10_mr);
     u8g2.drawStr(1, 62, "ON OFF/STEP  |  BACK/----");
 
     // Draw 8x8 matrix
