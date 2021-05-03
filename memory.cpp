@@ -13,10 +13,10 @@ _memory::_memory()
 void _memory::init()
 {
     if(eep.begin(extEEPROM::twiClock400kHz))
-    {   Serial.println("EEPROM error");
+    {   //Serial.println("EEPROM error");
         return;
     }
-    Serial.println("EEPROM begin");
+    //Serial.println("EEPROM begin");
 }
 
 void _memory::reset_memory()

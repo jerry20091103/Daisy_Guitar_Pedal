@@ -4,7 +4,7 @@
 #include "controls.h"
 #include "memory.h"
 #include "msg_window.h"
-#include "bluetooth.h"
+//#include "bluetooth.h"
 
 DaisyHardware hw;
 
@@ -52,7 +52,7 @@ void setup()
 {
     // Wait for the power to be stable
     delay(500);
-    Serial.begin(9600);
+    //Serial.begin(9600);
     // Initialize Daisy seed at 48kHz
     hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
     sample_rate = DAISY.get_samplerate();
@@ -65,7 +65,7 @@ void setup()
     display.init();
     last_frame_time = millis();
     // Initialize bluetooth
-    bluetooth_init();
+    //bluetooth_init();
     // Initialize memory
     // add option to reset memory or dump memory to serial
     //  hold and release btn OK to reset flash memory
@@ -77,10 +77,10 @@ void setup()
             delay(100);
         }
         memory.init();
-        Serial.println("Memory inited");
+        //Serial.println("Memory inited");
         memory.reset_memory();
         memory.save_to_flash();
-        Serial.println("memory reset");
+        //Serial.println("memory reset");
     }
     else if (!digitalRead(28))
     {
@@ -88,50 +88,50 @@ void setup()
         {
             delay(100);
         }
-        Serial.println("Dumping started.");
+        //Serial.println("Dumping started.");
         memory.init();
         memory.read_from_flash();
-        Serial.println("Memory inited");
+        //Serial.println("Memory inited");
         for (int i = 0; i < MAX_USER_PRESET; i++)
         {
             for (int j = 0; j < MAX_EFFECTS_NUM; j++)
             {
                 for (int k = 0; k < MAX_PARAM_NUM; k++)
                 {
-                    Serial.print("effect param ");
-                    Serial.print(i);
-                    Serial.print(" ");
-                    Serial.print(j);
-                    Serial.print(" ");
-                    Serial.print(k);
-                    Serial.print(" : ");
-                    Serial.println(memory.effect_param_mem[i][j][k]);
+                    //Serial.print("effect param ");
+                    //Serial.print(i);
+                    //Serial.print(" ");
+                    //Serial.print(j);
+                    //Serial.print(" ");
+                    //Serial.print(k);
+                    //Serial.print(" : ");
+                    //Serial.println(memory.effect_param_mem[i][j][k]);
                 }
-                Serial.print(i);
-                Serial.print(" ");
-                Serial.print(j);
-                Serial.print(" ");
-                Serial.print("id: ");
-                Serial.print(memory.effect_id_mem[i][j]);
-                Serial.print(" / ");
-                Serial.println(memory.effect_enable_mem[i][j]);
+                //Serial.print(i);
+                //Serial.print(" ");
+                //Serial.print(j);
+                //Serial.print(" ");
+                //Serial.print("id: ");
+                //Serial.print(memory.effect_id_mem[i][j]);
+                //Serial.print(" / ");
+                //Serial.println(memory.effect_enable_mem[i][j]);
             }
         }
-        Serial.print("cur_preset: ");
-        Serial.println(memory.cur_preset_mem);
-        Serial.print(" / valid: ");
-        Serial.println(memory.memory_valid);
+        //Serial.print("cur_preset: ");
+        //Serial.println(memory.cur_preset_mem);
+        //Serial.print(" / valid: ");
+        //Serial.println(memory.memory_valid);
         for (int i = 0; i < OPTIONS_AMOUNT; i++)
         {
-            Serial.print("option ");
-            Serial.print(i);
-            Serial.print(" : ");
-            Serial.println(memory.options_mem[i]);
+            //Serial.print("option ");
+            //Serial.print(i);
+            //Serial.print(" : ");
+            //Serial.println(memory.options_mem[i]);
         }
     }
     memory.init();
     memory.read_from_flash();
-    Serial.println("memory inited");
+    //Serial.println("memory inited");
     if (memory.memory_valid != 1)
     {
         memory.reset_memory();
@@ -143,12 +143,12 @@ void setup()
 
     pinMode(LED_BUILTIN, OUTPUT);
 
-    Serial.println("Setup OK");
+    //Serial.println("Setup OK");
 
     // Begin audio callback
     DAISY.begin(audio_callback);
 
-    Serial.println("Audio started");
+    //Serial.println("Audio started");
 
     show_msg(MSG_WARNING, 25, "v0.1 alpha", "May be unstable!");
     mcp.digitalWrite(LED_FS0_PIN, HIGH);
@@ -163,7 +163,7 @@ void loop()
     // Update buttons
     controls.btn_update();
     // get bluetooth commands
-    bluetooth_get_command();
+    //bluetooth_get_command();
     // Handle commands sent by interrupt and bluetooth
     command_handler();
     // draw the display with max fps at about 10 fps
