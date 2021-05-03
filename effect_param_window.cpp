@@ -21,7 +21,7 @@ void effect_param_window::draw()
     u8g2.drawVLine(85, 10, 45);
 
     // Draw parameter values
-    u8g2.setFont(u8g2_font_profont10_mn);
+    u8g2.setFont(u8g2_font_profont10_mr);
     // (0)
     if (signal_chain[cur_effect]->param[0].enable)
     {
@@ -117,7 +117,7 @@ void effect_param_window::draw()
     u8g2.drawStr(1, 62, "ON OFF/STEP  |  BACK/----");
 
     // Draw 8x8 matrix
-    u8g2_8x8.setFont(u8g2_font_profont10_mn);
+    u8g2_8x8.setFont(u8g2_font_profont10_mr);
     u8g2_8x8.setCursor(2, 6);
     u8g2_8x8.print(effects_rack.cur_preset);
 }

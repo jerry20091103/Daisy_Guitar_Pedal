@@ -31,7 +31,7 @@ void msg_window::draw()
     u8g2.drawStr(4, 50, msg2);
     // Draw message type
     u8g2.setDrawColor(0);
-    u8g2.setFont(u8g2_font_7x13_mr);
+    u8g2.setFont(u8g2_font_6x12_mr);
     u8g2_8x8.setFont(u8g2_font_open_iconic_embedded_1x_t);
     switch (msg_type)
     {
