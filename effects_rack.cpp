@@ -24,7 +24,6 @@ void _effects_rack::init()
     delay_mod.init();
     chorus_mod01.init();
     flanger_mod01.init();
-    bitcrusher_mod01.init();
     ir.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
@@ -37,7 +36,6 @@ void _effects_rack::init()
     delay_mod.id = DELAY_MOD_ID;
     chorus_mod01.id = CHORUS_MOD01_ID;
     flanger_mod01.id = FLANGER_MOD01_ID;
-    bitcrusher_mod01.id = BITCRUSHER_MOD01_ID;
     ir.id = IR_ID;
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
@@ -51,7 +49,6 @@ void _effects_rack::init()
     effects_arr[DELAY_MOD_ID] = &delay_mod;
     effects_arr[CHORUS_MOD01_ID] = &chorus_mod01;
     effects_arr[FLANGER_MOD01_ID] = &flanger_mod01;
-    effects_arr[BITCRUSHER_MOD01_ID] = &bitcrusher_mod01;
     effects_arr[IR_ID] = &ir;
 }
 
