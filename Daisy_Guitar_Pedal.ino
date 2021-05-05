@@ -56,8 +56,6 @@ void setup()
     // Initialize Daisy seed at 48kHz
     hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
     sample_rate = DAISY.get_samplerate();
-    // Initialize effects
-    effects_rack.init();
     // Initialize controls
     command_init();
     controls.init();
@@ -82,7 +80,7 @@ void setup()
         memory.save_to_flash();
         //Serial.println("memory reset");
     }
-    else if (!digitalRead(28))
+    /*else if (!digitalRead(28))
     {
         while (!digitalRead(28))
         {
@@ -128,7 +126,7 @@ void setup()
             //Serial.print(" : ");
             //Serial.println(memory.options_mem[i]);
         }
-    }
+    }*/
     memory.init();
     memory.read_from_flash();
     //Serial.println("memory inited");
@@ -136,6 +134,8 @@ void setup()
     {
         memory.reset_memory();
     }
+    // Initialize effects
+    effects_rack.init();
     // Read from memory
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);

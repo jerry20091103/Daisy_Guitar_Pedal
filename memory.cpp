@@ -1,6 +1,5 @@
 #include "memory.h"
 
-
 _memory memory;
 
 extEEPROM eep(kbits_256, 1, 64); // 24C256 external I2C eeprom
@@ -12,8 +11,8 @@ _memory::_memory()
 
 void _memory::init()
 {
-    if(eep.begin(extEEPROM::twiClock400kHz))
-    {   //Serial.println("EEPROM error");
+    if (eep.begin(extEEPROM::twiClock400kHz))
+    { //Serial.println("EEPROM error");
         return;
     }
     //Serial.println("EEPROM begin");
@@ -36,9 +35,14 @@ void _memory::reset_memory()
     }
     cur_preset_mem = 0;
     memory_valid = 0;
-    for(int i=0; i<OPTIONS_AMOUNT; i++)
+    for (int i = 0; i < OPTIONS_AMOUNT; i++)
     {
         options_mem[i] = 0;
+    }
+    ir_num = 0;
+    for (int i = 0; i < IR_LENGTH; i++)
+    {
+        cur_ir.fp[i] = 0;
     }
 }
 
@@ -134,6 +138,8 @@ void _memory::read_from_flash()
             addr++;
         }
     }
+    // read ir_num
+    read_ir_num();
 }
 
 int _memory::save_to_flash()
@@ -181,6 +187,28 @@ int _memory::save_to_flash()
             addr++;
         }
     }
-    
+
     return addr;
+}
+
+void _memory::read_ir_num()
+{
+    ir_num = eep.read(1023); // number of irs stored addr[1023]
+}
+
+int _memory::load_ir(uint8_t id)
+{
+    if(id > ir_num)
+        return 1;
+
+    int addr = 1024 + IR_LENGTH * 4 * id; // IRs stored after addr[1023]
+    for (int i = 0; i < IR_LENGTH; i++)
+    {
+        for(uint8_t k = 0; k < 4; k++)
+        {
+            cur_ir.bin[i * 4 + k] = eep.read(addr);
+            addr++;
+        }
+    }
+    return 0;
 }

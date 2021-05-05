@@ -3,13 +3,14 @@
 void IR_filter_effect::init()
 {
     // Initialize
-    fir.Init(ir_01, 512, true);
+    memory.load_ir(0);
+    fir.Init(memory.cur_ir.fp, 256, true);
     // Initialize all parameters
+    strcpy(param[0].name, "Mode");
+    param[0].enable = true;
+    param[0].value = 128;
+    set_param(0, param[0].value);
     
-    
-    
-    
-
     // Initialize name
     strcpy(effect_short_name, " IR ");
     strcpy(effect_name, "IR Cab_Sim");
@@ -33,7 +34,9 @@ void IR_filter_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        
+        param[0].true_val = val % memory.ir_num;
+        memory.load_ir(param[0].true_val);
+        fir.SetIR(memory.cur_ir.fp, 256, true);
         break;
 
     default:

@@ -308,8 +308,6 @@ int command_handler()
         switch (options_window_ins.cur_option)
         {
         case OPT_SAVE_FLASH:
-            // pause audio callback
-            DAISY.end();
             effects_rack.save_cur_preset_num();
             effects_rack.save_cur_preset();
             options_window_ins.save_options();
@@ -320,9 +318,6 @@ int command_handler()
             bytes_wrote = memory.save_to_flash();
             itoa(bytes_wrote, msg2, 10);
             show_msg(MSG_INFO, 13, "Save Successful", msg2);
-
-            // resume audio callback
-            DAISY.begin(audio_callback);
 
             break;
 
