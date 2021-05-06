@@ -39,57 +39,9 @@ void _memory::reset_memory()
     {
         options_mem[i] = 0;
     }
-    ir_num = 0;
     for (int i = 0; i < IR_LENGTH; i++)
     {
         cur_ir.fp[i] = 0;
-    }
-}
-
-void _memory::reset_flash()
-{
-    int addr = 0;
-    // write valid memory mark = 1
-    eep.write(addr, 0);
-    addr++;
-    // write options_mem
-    for (int i = 0; i < OPTIONS_AMOUNT; i++)
-    {
-        eep.write(addr, 0);
-        addr++;
-    }
-    // write cur_preset_mem
-    eep.write(addr, 0);
-    addr++;
-    // write effect_id_mem
-    for (int i = 0; i < MAX_USER_PRESET; i++)
-    {
-        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-        {
-            eep.write(addr, 0);
-            addr++;
-        }
-    }
-    // write effect_param_mem
-    for (int i = 0; i < MAX_USER_PRESET; i++)
-    {
-        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-        {
-            for (int k = 0; k < MAX_PARAM_NUM; k++)
-            {
-                eep.write(addr, 0);
-                addr++;
-            }
-        }
-    }
-    // write effect_enable_mem
-    for (int i = 0; i < MAX_USER_PRESET; i++)
-    {
-        for (int j = 0; j < MAX_EFFECTS_NUM; j++)
-        {
-            eep.write(addr, 0);
-            addr++;
-        }
     }
 }
 

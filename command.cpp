@@ -186,16 +186,25 @@ int command_handler()
         break;
 
     case CMD_UI_EFFECT_PAGE_UP:
-        if (effect_select_window_ins.cur_effect_id - 4 >= 0)
+        if (effect_select_window_ins.cur_effect_id - 4 > 0)
         {
             effect_select_window_ins.cur_effect_id -= 4;
         }
+        else
+        {
+            effect_select_window_ins.cur_effect_id = 1;
+        }
+        
         break;
 
     case CMD_UI_EFFECT_PAGE_DOWN:
         if (effect_select_window_ins.cur_effect_id + 4 < EFFECTS_AMOUNT)
         {
             effect_select_window_ins.cur_effect_id += 4;
+        }
+        else
+        {
+            effect_select_window_ins.cur_effect_id = EFFECTS_AMOUNT - 1;
         }
         break;
 
@@ -247,12 +256,21 @@ int command_handler()
         {
             options_window_ins.cur_option -= 4;
         }
+        else
+        {
+            options_window_ins.cur_option = 0;
+        }
+        
         break;
 
     case CMD_UI_OPT_PAGE_DOWN:
-        if (options_window_ins.cur_option + 4 < EFFECTS_AMOUNT)
+        if (options_window_ins.cur_option + 4 < OPTIONS_AMOUNT)
         {
             options_window_ins.cur_option += 4;
+        }
+        else
+        {
+            options_window_ins.cur_option = OPTIONS_AMOUNT - 1;
         }
         break;
 
