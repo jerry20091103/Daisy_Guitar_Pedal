@@ -15,4 +15,6 @@ private:
     daisysp::FIR<IR_LENGTH, 1> fir;
 };
 
+extern IR_filter_effect IR_ins;
+
 #endif

@@ -145,15 +145,15 @@ int _memory::save_to_flash()
 
 void _memory::read_ir_num()
 {
-    ir_num = eep.read(1023); // number of irs stored addr[1023]
+    ir_num = eep.read(1023) + 1; // number of irs stored addr[1023], +1 because 0 is for off
 }
 
 int _memory::load_ir(uint8_t id)
 {
-    if(id > ir_num)
+    if(id > ir_num || id == 0)
         return 1;
 
-    int addr = 1024 + IR_LENGTH * 4 * id; // IRs stored after addr[1023]
+    int addr = 1024 + IR_LENGTH * 4 * (id - 1); // IRs stored after addr[1023]
     for (int i = 0; i < IR_LENGTH; i++)
     {
         for(uint8_t k = 0; k < 4; k++)

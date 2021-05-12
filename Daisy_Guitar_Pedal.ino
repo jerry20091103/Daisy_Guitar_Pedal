@@ -43,6 +43,10 @@ void audio_callback(float **in, float **out, size_t size)
             }
             signal = temp;
         }
+        // Process IR cab sim
+        IR_ins.process(signal, temp);
+        signal = temp;
+        
         // Assign output
         out[0][i] = signal;
     }

@@ -294,6 +294,10 @@ int command_handler()
             effects_rack.effects_arr[DELAY_MOD_ID]->set_param(0, effects_rack.effects_arr[DELAY_MOD_ID]->param[0].value);
             break;
 
+        case OPT_IR:
+            IR_ins.set_param(0, IR_ins.param[0].value + 1);
+        break;
+
         default:
             break;
         }
@@ -315,6 +319,10 @@ int command_handler()
             options_window_ins.delay_ms = !options_window_ins.delay_ms;
             effects_rack.effects_arr[DELAY_MOD_ID]->set_param(0, effects_rack.effects_arr[DELAY_MOD_ID]->param[0].value);
             break;
+        
+        case OPT_IR:
+            IR_ins.set_param(0, IR_ins.param[0].value - 1);
+        break;
 
         default:
             break;

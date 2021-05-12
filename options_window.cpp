@@ -3,6 +3,7 @@
 #include "command.h"
 #include "memory.h"
 #include "effects_rack.h"
+#include "IR_filter_effect.h"
 
 options_window options_window_ins;
 
@@ -79,11 +80,26 @@ void options_window::draw_option(unsigned char id, unsigned char pos)
         u8g2.drawStr(24, 19 + 11 * pos, "Delay time unit");
         u8g2.drawStr(103, 19 + 11 * pos, "<   >");
         u8g2.setCursor(109, 19 + 11 * pos);
-        if(delay_ms)
+        if (delay_ms)
             u8g2.print("MS");
         else
             u8g2.print("BPM");
 
+        break;
+
+    case OPT_IR:
+        u8g2.drawStr(24, 19 + 11 * pos, "IR Cab Sim");
+        u8g2.drawStr(103, 19 + 11 * pos, "<   >");
+        if (IR_ins.param[0].true_val == 0)
+        {
+            u8g2.setCursor(109, 19 + 11 * pos);
+            u8g2.print("OFF");
+        }
+        else
+        {
+            u8g2.setCursor(115, 19 + 11 * pos);
+            u8g2.print((uint8_t)IR_ins.param[0].true_val);
+        }
         break;
 
     default:
@@ -137,7 +153,7 @@ void options_window::on_btn_pressed(buttons id)
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_OPT_SELECT;
         cmd_count++;
         break;
-    
+
     case BTN_ENCODER:
         cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_BACK;
         cmd_count++;
@@ -187,10 +203,15 @@ void options_window::read_options()
             led_lvl = memory.options_mem[OPT_LED_BRIGHTNESS];
             u8g2_8x8.setContrast(led_lvl);
             break;
-        
+
         case OPT_DELAY_UNIT:
             delay_ms = memory.options_mem[OPT_DELAY_UNIT];
             effects_rack.effects_arr[DELAY_MOD_ID]->set_param(0, effects_rack.effects_arr[DELAY_MOD_ID]->param[0].value);
+            break;
+
+        case OPT_IR:
+            IR_ins.set_param(0, memory.options_mem[OPT_IR]);
+            break;
 
         default:
             break;
@@ -207,9 +228,13 @@ void options_window::save_options()
         case OPT_LED_BRIGHTNESS:
             memory.options_mem[i] = led_lvl;
             break;
-        
+
         case OPT_DELAY_UNIT:
             memory.options_mem[i] = delay_ms;
+            break;
+            
+        case OPT_IR:
+            memory.options_mem[i] = IR_ins.param[0].value;
             break;
 
         default:
