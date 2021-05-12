@@ -1,11 +1,11 @@
 #include "command.h"
 #include "display.h"
-#include "main_window.h"
-#include "effect_param_window.h"
-#include "effect_select_window.h"
-#include "msg_window.h"
-#include "options_window.h"
-#include "effects_rack.h"
+#include "src/windows/main_window.h"
+#include "src/windows/effect_param_window.h"
+#include "src/windows/effect_select_window.h"
+#include "src/windows/msg_window.h"
+#include "src/windows/options_window.h"
+#include "src/effect_modules/effects_rack.h"
 #include "memory.h"
 #include <stdio.h>
 #include <EEPROM.h>

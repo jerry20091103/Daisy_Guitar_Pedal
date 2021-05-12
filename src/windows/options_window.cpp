@@ -1,9 +1,9 @@
 #include "options_window.h"
-#include "display.h"
-#include "command.h"
-#include "memory.h"
-#include "effects_rack.h"
-#include "IR_filter_effect.h"
+#include "src/display.h"
+#include "src/command.h"
+#include "src/memory.h"
+#include "src/effect_modules/effects_rack.h"
+#include "src/effect_modules/IR_filter_effect.h"
 
 options_window options_window_ins;
 

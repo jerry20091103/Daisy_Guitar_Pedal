@@ -1,8 +1,8 @@
 #ifndef MEMORY_H
 #define MEMORY_H
 
-#include "effects.h"
-#include "options_window.h"
+#include "src/effect_modules/effects.h"
+#include "src/windows/options_window.h"
 #include <Wire.h>
 #include "extEEPROM.h"
 

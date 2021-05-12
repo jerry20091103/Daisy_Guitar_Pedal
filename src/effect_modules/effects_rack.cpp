@@ -1,5 +1,5 @@
 #include "effects_rack.h"
-#include "memory.h"
+#include "src/memory.h"
 
 // A home for all effect instances
 _effects_rack effects_rack;

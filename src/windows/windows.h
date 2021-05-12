@@ -1,7 +1,7 @@
 #ifndef WINDOWS_H
 #define WINDOWS_H
 
-#include "controls.h"
+#include "src/controls.h"
 
 #define MAX_WINDOWS_NUM 5
 

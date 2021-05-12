@@ -1,6 +1,6 @@
 #include "msg_window.h"
-#include "display.h"
-#include "command.h"
+#include "src/display.h"
+#include "src/command.h"
 
 msg_window msg_window_ins;
 

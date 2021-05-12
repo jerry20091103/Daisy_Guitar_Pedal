@@ -2,7 +2,7 @@
 #define IR_FILTER_EFFECT_H
 
 #include "effects.h"
-#include "memory.h"
+#include "src/memory.h"
 
 class IR_filter_effect : public effects
 {

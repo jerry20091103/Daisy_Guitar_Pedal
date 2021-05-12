@@ -1,7 +1,7 @@
 #ifndef OPTIONS_WINDOW_H
 #define OPTIONS_WINDOW_H
 
-#include "windows.h"
+#include "src/windows/windows.h"
 
 #define OPTIONS_AMOUNT 4
 

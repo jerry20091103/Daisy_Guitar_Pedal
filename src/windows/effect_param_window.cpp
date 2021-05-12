@@ -1,7 +1,7 @@
 #include "effect_param_window.h"
-#include "display.h"
-#include "command.h"
-#include "effects_rack.h"
+#include "src/display.h"
+#include "src/command.h"
+#include "src/effect_modules/effects_rack.h"
 #include "main_window.h"
 
 effect_param_window effect_param_window_ins;

@@ -1,7 +1,7 @@
 #include "effect_select_window.h"
-#include "display.h"
-#include "command.h"
-#include "effects_rack.h"
+#include "src/display.h"
+#include "src/command.h"
+#include "src/effect_modules/effects_rack.h"
 
 effect_select_window effect_select_window_ins;
 

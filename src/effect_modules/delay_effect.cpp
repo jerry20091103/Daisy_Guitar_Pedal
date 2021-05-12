@@ -1,5 +1,5 @@
 #include "delay_effect.h"
-#include "options_window.h"
+#include "src/windows/options_window.h"
 
 daisysp::DelayLine<float, 96000> DSY_SDRAM_BSS delay_buf;
 

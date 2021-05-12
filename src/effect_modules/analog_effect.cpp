@@ -1,5 +1,5 @@
 #include "analog_effect.h"
-#include "display.h"
+#include "src/display.h"
 
 void analog_effect::init()
 {

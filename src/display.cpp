@@ -1,9 +1,9 @@
 #include "display.h"
-#include "msg_window.h"
-#include "main_window.h"
-#include "effect_param_window.h"
-#include "effect_select_window.h"
-#include "options_window.h"
+#include "src/windows/msg_window.h"
+#include "src/windows/main_window.h"
+#include "src/windows/effect_param_window.h"
+#include "src/windows/effect_select_window.h"
+#include "src/windows/options_window.h"
 
 U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/7, /* reset=*/6);
 U8G2_MAX7219_8X8_F_4W_SW_SPI u8g2_8x8(U8G2_R0, /* clock=*/3, /* data=*/5, /* cs=*/4, /* dc=*/U8X8_PIN_NONE, /* reset=*/U8X8_PIN_NONE);

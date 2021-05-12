@@ -3,7 +3,7 @@
 
 #include <U8g2lib.h>
 #include <Adafruit_MCP23017.h>
-#include "windows.h"
+#include "src/windows/windows.h"
 
 #define LED_FS0_PIN 4
 #define LED_FS1_PIN 5

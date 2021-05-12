@@ -1,10 +1,10 @@
-#include "effects_rack.h"
-#include "command.h"
-#include "display.h"
-#include "controls.h"
-#include "memory.h"
-#include "msg_window.h"
-//#include "bluetooth.h"
+#include "src/effect_modules/effects_rack.h"
+#include "src/command.h"
+#include "src/display.h"
+#include "src/controls.h"
+#include "src/memory.h"
+#include "src/windows/msg_window.h"
+//#include "src/bluetooth.h"
 
 DaisyHardware hw;
 
