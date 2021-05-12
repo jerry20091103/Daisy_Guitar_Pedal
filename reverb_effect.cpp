@@ -52,20 +52,20 @@ void reverb_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = (float)val * 0.0039;
-        reverb.SetFeedback(param[0].true_val);
+        param[id].true_val = (float)val * 0.0039;
+        reverb.SetFeedback(param[id].true_val);
         break;
     case 1:
-        param[1].true_val =  400 + val * ((float)val * 0.9 + 25.5) * 0.3;
-        reverb.SetLpFreq(param[1].true_val);
+        param[id].true_val =  400 + val * ((float)val * 0.9 + 25.5) * 0.3;
+        reverb.SetLpFreq(param[id].true_val);
         break;
     case 2:
-        param[2].true_val = (float)val * 0.0039;
-        dry = param[2].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        dry = param[id].true_val;
         break;
     case 3:
-        param[3].true_val = (float)val * 0.0039;
-        wet = param[3].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        wet = param[id].true_val;
         break;
     default:
         // Maybe do an error log

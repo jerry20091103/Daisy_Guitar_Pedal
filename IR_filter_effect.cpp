@@ -36,8 +36,8 @@ void IR_filter_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = val % memory.ir_num;
-        memory.load_ir(param[0].true_val);
+        param[id].true_val = val % memory.ir_num;
+        memory.load_ir(param[id].true_val);
         fir.SetIR(memory.cur_ir.fp, 256, true);
         break;
 

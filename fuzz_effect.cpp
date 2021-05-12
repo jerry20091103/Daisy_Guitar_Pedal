@@ -64,23 +64,23 @@ void fuzz_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = (float)val * 0.06;
-        gain = param[0].true_val;
+        param[id].true_val = (float)val * 0.06;
+        gain = param[id].true_val;
         break;
 
     case 1:
-        param[1].true_val = (float)val * 0.0039;
-        level = param[1].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        level = param[id].true_val;
         break;
     
     case 2:
-        param[2].true_val = (float)val * 0.0039;
-        threshold = param[2].true_val * 0.5;
+        param[id].true_val = (float)val * 0.0039;
+        threshold = param[id].true_val * 0.5;
         break;
 
     case 3:
-        param[3].true_val = 400 + val * ((float)val * 0.9 + 25.5) * 0.2;
-        tone.SetFreq(param[3].true_val);
+        param[id].true_val = 400 + val * ((float)val * 0.9 + 25.5) * 0.2;
+        tone.SetFreq(param[id].true_val);
         break;
 
     default:

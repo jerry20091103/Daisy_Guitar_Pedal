@@ -63,16 +63,8 @@ void gain_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = -30 + (float)val * 0.2; // -30 ~ 21 dB
-        amount = daisysp::pow10f(param[0].true_val * 0.05);
-        break;
-
-    case 1:
-        param[1].true_val = val;
-        break;
-    
-    case 2:
-        param[2].true_val = val;
+        param[id].true_val = -30 + (float)val * 0.2; // -30 ~ 21 dB
+        amount = daisysp::pow10f(param[id].true_val * 0.05);
         break;
 
     default:

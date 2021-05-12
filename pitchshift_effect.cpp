@@ -52,16 +52,16 @@ void pitchshift_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = (float)val * 0.0039;
-        dry = param[0].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        dry = param[id].true_val;
         break;
     case 1:
-        param[1].true_val = (float)val * 0.0039;
-        wet = param[1].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        wet = param[id].true_val;
         break;
     case 2:
-        param[2].true_val = ((float)val - 127) * 0.1;
-        pitchshift.SetTransposition(param[2].true_val);
+        param[id].true_val = ((float)val - 127) * 0.1;
+        pitchshift.SetTransposition(param[id].true_val);
         break;
     case 3:
         switch (val%8)
@@ -94,7 +94,7 @@ void pitchshift_effect::set_param(uint8_t id, unsigned char val)
             target = 8192;
             break;
         }
-        param[3].true_val = target;
+        param[id].true_val = target;
         pitchshift.SetDelSize(target);
         break;
 

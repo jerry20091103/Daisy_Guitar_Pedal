@@ -64,37 +64,37 @@ void delay_effect::set_param(uint8_t id, unsigned char val)
     case 0: // delay time
         if(!range)
         {
-            param[0].true_val = 30 + val;
+            param[id].true_val = 30 + val;
         }
         else
         {
-            param[0].true_val = 285 + val;
+            param[id].true_val = 285 + val;
         }
         // convert bpm to ms
-        delay_time = (1 / float(param[0].true_val)) * 60000;
+        delay_time = (1 / float(param[id].true_val)) * 60000;
         if(options_window_ins.delay_ms)
-            param[0].true_val = delay_time;
+            param[id].true_val = delay_time;
         delay_buf.SetDelay(delay_time * 48);
         break;
 
     case 1: // feedback
-        param[1].true_val = (float)val * 0.0039;
-        feedback = param[1].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        feedback = param[id].true_val;
         break;
     
     case 2: // mix
-        param[2].true_val = (float)val * 0.0039;
-        mix = param[2].true_val;
+        param[id].true_val = (float)val * 0.0039;
+        mix = param[id].true_val;
         break;
     
     case 3: // tone
-        param[3].true_val = 400 + val * ((float)val * 0.9 + 25.5) * 0.3;
-        tone.SetFreq(param[3].true_val);
+        param[id].true_val = 400 + val * ((float)val * 0.9 + 25.5) * 0.3;
+        tone.SetFreq(param[id].true_val);
         break;
 
     case 4: // range
-        param[4].true_val = val % 2;
-        range = (bool)param[4].true_val;
+        param[id].true_val = val % 2;
+        range = (bool)param[id].true_val;
         set_param(0, param[0].value);
         break;
 

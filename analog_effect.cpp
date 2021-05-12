@@ -36,16 +36,16 @@ void analog_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = val % 2;
-        mcp.digitalWrite(RELAY_0_PIN, param[0].true_val); // control the relay
+        param[id].true_val = val % 2;
+        mcp.digitalWrite(RELAY_0_PIN, param[id].true_val); // control the relay
         break;
     case 1:
-        param[1].true_val = val % 2;
-        mcp.digitalWrite(RELAY_1_PIN, param[1].true_val);
+        param[id].true_val = val % 2;
+        mcp.digitalWrite(RELAY_1_PIN, param[id].true_val);
         break;
     case 2:
-        param[2].true_val = val % 2;
-        mcp.digitalWrite(RELAY_2_PIN, param[2].true_val);
+        param[id].true_val = val % 2;
+        mcp.digitalWrite(RELAY_2_PIN, param[id].true_val);
         break;
     default:
         // Maybe do an error log

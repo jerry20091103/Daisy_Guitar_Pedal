@@ -49,23 +49,23 @@ void flanger_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[0].true_val = 0.1 + float(val) * (float(val) * 0.8 + 51) * 0.00015; // 0.1 ~ 9.85 Hz
-        flang.SetLfoFreq(param[0].true_val);
+        param[id].true_val = 0.1 + float(val) * (float(val) * 0.8 + 51) * 0.00015; // 0.1 ~ 9.85 Hz
+        flang.SetLfoFreq(param[id].true_val);
         break;
 
     case 1:
-        param[1].true_val = float(val) * 0.0039; // 0 ~ 1
-        flang.SetLfoDepth(param[1].true_val);
+        param[id].true_val = float(val) * 0.0039; // 0 ~ 1
+        flang.SetLfoDepth(param[id].true_val);
         break;
     
     case 2:
-        param[2].true_val = 0.1 + float(val) * 0.0232; // 0.1 ~ 6 ms
-        flang.SetDelayMs(param[2].true_val);
+        param[id].true_val = 0.1 + float(val) * 0.0232; // 0.1 ~ 6 ms
+        flang.SetDelayMs(param[id].true_val);
         break;
 
     case 3:
-        param[3].true_val = float(val) * 0.0039; // 0 ~ 1
-        flang.SetFeedback(param[3].true_val);
+        param[id].true_val = float(val) * 0.0039; // 0 ~ 1
+        flang.SetFeedback(param[id].true_val);
 
     default:
         // Maybe do an error log

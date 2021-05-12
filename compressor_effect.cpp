@@ -88,42 +88,42 @@ void compressor_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0: // ratio
-        param[0].true_val = 1 + (float)val * ((float)val * 0.8 + 51) * 0.000446; // 1 ~ 30.001 
-        comp.SetRatio(param[0].true_val);
+        param[id].true_val = 1 + (float)val * ((float)val * 0.8 + 51) * 0.000446; // 1 ~ 30.001 
+        comp.SetRatio(param[id].true_val);
         break;
 
     case 1: // threshold
-        param[1].true_val = -((float)val * ((float)val * 0.8 + 51) * 0.0012); // 0 ~ -78.03
-        comp.SetThreshold(param[1].true_val);
+        param[id].true_val = -((float)val * ((float)val * 0.8 + 51) * 0.0012); // 0 ~ -78.03
+        comp.SetThreshold(param[id].true_val);
         break;
 
     case 2: // attack
-        param[2].true_val = 0.001 + (float)val * ((float)val * 0.9 + 25) * 0.00015; // 0.001 ~ 9.74
-        comp.SetAttack(param[2].true_val);
+        param[id].true_val = 0.001 + (float)val * ((float)val * 0.9 + 25) * 0.00015; // 0.001 ~ 9.74
+        comp.SetAttack(param[id].true_val);
         break;
 
     case 3: // release
-        param[3].true_val = 0.001 + (float)val * ((float)val * 0.9 + 25) * 0.00015; // 0.001 ~ 9.74
-        comp.SetRelease(param[3].true_val);
+        param[id].true_val = 0.001 + (float)val * ((float)val * 0.9 + 25) * 0.00015; // 0.001 ~ 9.74
+        comp.SetRelease(param[id].true_val);
         break;
     
     case 4: // makeup
         // if auto makeup
         if(param[5].true_val)
         {
-            param[4].true_val = comp.GetMakeup();
+            param[id].true_val = comp.GetMakeup();
         }
         // manual makeup
         else
         {
-            param[4].true_val = ((float)val * ((float)val * 0.8 + 51) * 0.0012); // 0 ~ 78.03
-            comp.SetMakeup(param[4].true_val);
+            param[id].true_val = ((float)val * ((float)val * 0.8 + 51) * 0.0012); // 0 ~ 78.03
+            comp.SetMakeup(param[id].true_val);
         }
         break;
     
     case 5: // auto makeup
-        param[5].true_val = val%2;
-        comp.AutoMakeup(param[5].true_val);
+        param[id].true_val = val%2;
+        comp.AutoMakeup(param[id].true_val);
         break;
 
     default:
