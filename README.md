@@ -12,8 +12,8 @@ The Analog Module contains overdrive, distortion, and a tube boost.
 
 ## Features
 <ul>
-  <li>A 128*64 Monochorme LCD and a 8*8 LED matrix for display.</li>
-  <li>10 presets controled by two footswitchs. (up and down)</li>
+  <li>A 128*64 Monochrome LCD and a 8*8 LED matrix for display.</li>
+  <li>10 presets controlled by two footswitchs. (up and down)</li>
   <li>Each preset has 10 "effect slots", the user can insert any effects they like and arrange them in any order.</li>
   <li>Easy UI navigation with four arrow keys and an enter button.</li>
   <li>IR based guitar amp simulation.</li>
@@ -31,7 +31,7 @@ The Analog Module contains overdrive, distortion, and a tube boost.
   <li>Reverb</li>
   <li>Pitchshifter</li>
   <li>Analog Module</li>
-  <li>Overdirve (digital)</li>
+  <li>Overdrive (digital)</li>
   <li>Fuzz (digital)</li>
   <li>Compressor</li>
   <li>Gain</li>
