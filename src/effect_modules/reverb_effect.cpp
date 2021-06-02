@@ -37,7 +37,6 @@ void reverb_effect::process(float in, float &out)
         float after_l = 0.0f;
         float after_r = 0.0f;
         reverb.Process(in, in, &after_l, &after_r);
-        after_l = after_l * 0.5f + after_r * 0.5f; // Mix two channels
         out = in * dry + after_l * wet;            // Dry and wet mix
     }
     else // bypass
