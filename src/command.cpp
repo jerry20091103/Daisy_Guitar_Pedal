@@ -55,32 +55,32 @@ int command_handler()
     case CMD_EFFECTS_PARAM_INC: // can be better
         if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].enable)
         {
-            if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value + effect_param_window_ins.cur_step <= 255)
+            uint8_t cur_value = signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value;
+            if (cur_value + effect_param_window_ins.cur_step <= 255)
             {
-                signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value += effect_param_window_ins.cur_step;
+                cur_value += effect_param_window_ins.cur_step;
             }
             else
             {
-                signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value = 255;
+                cur_value = 255;
             }
-            signal_chain[main_window_ins.cur_effect]->set_param(effect_param_window_ins.cur_param,
-                                                                signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value);
+            signal_chain[main_window_ins.cur_effect]->set_param(effect_param_window_ins.cur_param, cur_value);
         }
         break;
 
     case CMD_EFFECTS_PARAM_DEC: // can be better
         if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].enable)
         {
-            if (signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value - effect_param_window_ins.cur_step >= 0)
+            uint8_t cur_value = signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value;
+            if (cur_value - effect_param_window_ins.cur_step >= 0)
             {
-                signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value -= effect_param_window_ins.cur_step;
+                cur_value -= effect_param_window_ins.cur_step;
             }
             else
             {
-                signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value = 0;
+                cur_value = 0;
             }
-            signal_chain[main_window_ins.cur_effect]->set_param(effect_param_window_ins.cur_param,
-                                                                signal_chain[main_window_ins.cur_effect]->param[effect_param_window_ins.cur_param].value);
+            signal_chain[main_window_ins.cur_effect]->set_param(effect_param_window_ins.cur_param, cur_value);
         }
         break;
 

@@ -52,7 +52,7 @@ void reverb_effect::set_param(uint8_t id, unsigned char val)
     {
     case 0:
         param[id].true_val = (float)val * 0.0039;
-        reverb.SetFeedback(param[id].true_val);
+        reverb.SetFeedback(fastlog10f(param[id].true_val + 0.112) + 0.953);
         break;
     case 1:
         param[id].true_val =  400 + val * ((float)val * 0.9 + 25.5) * 0.3;
