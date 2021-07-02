@@ -130,33 +130,27 @@ void options_window::on_btn_pressed(buttons id)
     switch (id)
     {
     case BTN_LEFT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_PAGE_UP;
-        cmd_count++;
+        insert_command(CMD_UI_OPT_PAGE_UP);
         break;
 
     case BTN_RIGHT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_PAGE_DOWN;
-        cmd_count++;
+        insert_command(CMD_UI_OPT_PAGE_DOWN);
         break;
 
     case BTN_UP:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_CUR_UP;
-        cmd_count++;
+        insert_command(CMD_UI_OPT_CUR_UP);
         break;
 
     case BTN_DOWN:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_CUR_DOWN;
-        cmd_count++;
+        insert_command(CMD_UI_OPT_CUR_DOWN);
         break;
 
     case BTN_OK:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_OPT_SELECT;
-        cmd_count++;
+        insert_command(CMD_OPT_SELECT);
         break;
 
     case BTN_ENCODER:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_OPT_BACK;
-        cmd_count++;
+        insert_command(CMD_UI_OPT_BACK);
         break;
 
     default:
@@ -179,13 +173,11 @@ void options_window::on_enc_turned(RotaryEncoder::Direction dir)
     switch (dir)
     {
     case ENCODER_CW:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_OPT_INC;
-        cmd_count++;
+        insert_command(CMD_OPT_INC);
         break;
 
     case ENCODER_CCW:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_OPT_DEC;
-        cmd_count++;
+        insert_command(CMD_OPT_DEC);
         break;
 
     default:

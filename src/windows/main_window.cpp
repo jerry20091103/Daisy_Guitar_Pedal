@@ -156,33 +156,28 @@ void main_window::on_btn_pressed(buttons id)
     switch (id)
     {
     case BTN_LEFT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_LEFT;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_LEFT);
         break;
 
     case BTN_RIGHT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_RIGHT;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_RIGHT);
         break;
 
     case BTN_OK:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_SELECT;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_SELECT);
         break;
 
     case BTN_ENCODER:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_ONOFF;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_ONOFF);
         break;
     
     case BTN_FS0:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PRESET_UP;
+        insert_command(CMD_UI_PRESET_UP);
         cmd_count++;
         break;
 
     case BTN_FS1:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PRESET_DOWN;
-        cmd_count++;
+        insert_command(CMD_UI_PRESET_DOWN);
         break;
     
     default:
@@ -195,12 +190,10 @@ void main_window::on_btn_holded(buttons id)
     switch (id)
     {
     case BTN_OK:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_DEL;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_DEL);
         break;
     case BTN_ENCODER:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_OPT;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_OPT);
         break;
     
     default:

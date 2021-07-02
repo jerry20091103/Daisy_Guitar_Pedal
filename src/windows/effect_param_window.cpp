@@ -142,33 +142,27 @@ void effect_param_window::on_btn_pressed(buttons id)
     switch (id)
     {
     case BTN_LEFT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PARAM_CUR_LEFT;
-        cmd_count++;
+        insert_command(CMD_UI_PARAM_CUR_LEFT);
         break;
 
     case BTN_RIGHT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PARAM_CUR_RIGHT;
-        cmd_count++;
+        insert_command(CMD_UI_PARAM_CUR_RIGHT);
         break;
 
     case BTN_UP:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PARAM_CUR_UP;
-        cmd_count++;
+        insert_command(CMD_UI_PARAM_CUR_UP);
         break;
 
     case BTN_DOWN:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PARAM_CUR_DOWN;
-        cmd_count++;
+        insert_command(CMD_UI_PARAM_CUR_DOWN);
         break;
 
     case BTN_OK:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PARAM_CUR_SELECT;
-        cmd_count++;
+        insert_command(CMD_UI_PARAM_CUR_SELECT);
         break;
 
     case BTN_ENCODER:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_SIG_CUR_ONOFF;
-        cmd_count++;
+        insert_command(CMD_UI_SIG_CUR_ONOFF);
         break;
 
     default:
@@ -181,8 +175,7 @@ void effect_param_window::on_btn_holded(buttons id)
     switch (id)
     {
     case BTN_ENCODER:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_PARAM_STEP;
-        cmd_count++;
+        insert_command(CMD_UI_PARAM_STEP);
         break;
 
     default:
@@ -195,13 +188,11 @@ void effect_param_window::on_enc_turned(RotaryEncoder::Direction dir)
     switch (dir)
     {
     case ENCODER_CW:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_EFFECTS_PARAM_INC;
-        cmd_count++;
+        insert_command(CMD_EFFECTS_PARAM_INC);
         break;
 
     case ENCODER_CCW:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_EFFECTS_PARAM_DEC;
-        cmd_count++;
+        insert_command(CMD_EFFECTS_PARAM_DEC);
         break;
 
     default:

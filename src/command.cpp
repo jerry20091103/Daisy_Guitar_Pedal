@@ -6,6 +6,7 @@
 #include "src/windows/msg_window.h"
 #include "src/windows/options_window.h"
 #include "src/effect_modules/effects_rack.h"
+#include "src/looper.h"
 #include "memory.h"
 #include <stdio.h>
 #include <EEPROM.h>
@@ -28,6 +29,13 @@ void command_init()
     cmd_pos = 0;
     interrupts();
     //------------------------INT enabled
+}
+
+// put a new command into the queue
+void insert_command(command cmd)
+{
+    cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = cmd;
+    cmd_count++;
 }
 
 // The command handler
@@ -351,6 +359,38 @@ int command_handler()
             break;
         }
 
+        break;
+    
+    case CMD_LOOPER_RECORD:
+        if(display.current_window->get_window_id() != LOOPER_WINDOW)
+            display.change_window(LOOPER_WINDOW);
+        looper.record();
+        break;
+    
+    case CMD_LOOPER_STOP:
+        if(display.current_window->get_window_id() != LOOPER_WINDOW)
+            display.change_window(LOOPER_WINDOW);
+        looper.stop();
+        break;
+    
+    case CMD_LOOPER_REDO:
+        looper.redo();
+        break;
+    
+    case CMD_LOOPER_UNDO:
+        looper.undo();
+        break;
+    
+    case CMD_LOOPER_BACK:
+        display.change_window(MAIN_WINDOW);
+        break;
+    
+    case CMD_LOOPER_LVL_INC:
+        looper.loop_level_inc();
+        break;
+    
+    case CMD_LOOPER_LVL_DEC:
+        looper.loop_level_dec();
         break;
 
     default:

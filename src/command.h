@@ -41,11 +41,20 @@ enum command : unsigned char{
     // Options command
     CMD_OPT_INC,
     CMD_OPT_DEC,
-    CMD_OPT_SELECT
+    CMD_OPT_SELECT,
+    // Looper command
+    CMD_LOOPER_RECORD,
+    CMD_LOOPER_STOP,
+    CMD_LOOPER_UNDO,
+    CMD_LOOPER_REDO,
+    CMD_LOOPER_BACK,
+    CMD_LOOPER_LVL_INC,
+    CMD_LOOPER_LVL_DEC,
 };
 
 int command_handler();
 void command_init();
+void insert_command(command cmd);
 
 extern volatile unsigned char cmd_type[MAX_COMMAND_BUF]; // The actuall commands
 extern volatile unsigned char cmd_count; // Conunt of how many commands are in the buffer

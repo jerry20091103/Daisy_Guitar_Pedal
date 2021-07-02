@@ -97,33 +97,27 @@ void effect_select_window::on_btn_pressed(buttons id)
     switch (id)
     {
     case BTN_LEFT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_EFFECT_PAGE_UP;
-        cmd_count++;
+        insert_command(CMD_UI_EFFECT_PAGE_UP);
         break;
 
     case BTN_RIGHT:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_EFFECT_PAGE_DOWN;
-        cmd_count++;
+        insert_command(CMD_UI_EFFECT_PAGE_DOWN);
         break;
 
     case BTN_UP:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_EFFECT_CUR_UP;
-        cmd_count++;
+        insert_command(CMD_UI_EFFECT_CUR_UP);
         break;
 
     case BTN_DOWN:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_EFFECT_CUR_DOWN;
-        cmd_count++;
+        insert_command(CMD_UI_EFFECT_CUR_DOWN);
         break;
 
     case BTN_OK:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_EFFECT_CUR_SELECT;
-        cmd_count++;
+        insert_command(CMD_UI_EFFECT_CUR_SELECT);
         break;
     
     case BTN_ENCODER:
-        cmd_type[(cmd_pos + cmd_count) % MAX_COMMAND_BUF] = CMD_UI_EFFECT_CUR_CANCEL;
-        cmd_count++;
+        insert_command(CMD_UI_EFFECT_CUR_CANCEL);
         break;
 
     default:
@@ -133,12 +127,6 @@ void effect_select_window::on_btn_pressed(buttons id)
 
 void effect_select_window::on_btn_holded(buttons id)
 {
-    switch (id)
-    {
-
-    default:
-        break;
-    }
 }
 
 void effect_select_window::on_enc_turned(RotaryEncoder::Direction dir)
