@@ -4,6 +4,7 @@
 #include "src/controls.h"
 #include "src/memory.h"
 #include "src/windows/msg_window.h"
+#include "src/looper.h"
 //#include "src/bluetooth.h"
 
 DaisyHardware hw;
@@ -46,7 +47,11 @@ void audio_callback(float **in, float **out, size_t size)
         // Process IR cab sim
         IR_ins.process(signal, temp);
         signal = temp;
-        
+
+        // Process looper
+        looper.process(signal, temp);
+        signal = temp;
+
         // Assign output
         out[0][i] = signal;
     }
@@ -140,6 +145,7 @@ void setup()
     }
     // Initialize effects
     effects_rack.init();
+    looper.init();
     // Read from memory
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);

@@ -4,6 +4,7 @@
 #include "src/windows/effect_param_window.h"
 #include "src/windows/effect_select_window.h"
 #include "src/windows/options_window.h"
+#include "src/windows/looper_window.h"
 
 U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/7, /* reset=*/6);
 U8G2_MAX7219_8X8_F_4W_SW_SPI u8g2_8x8(U8G2_R0, /* clock=*/3, /* data=*/5, /* cs=*/4, /* dc=*/U8X8_PIN_NONE, /* reset=*/U8X8_PIN_NONE);
@@ -33,6 +34,7 @@ void _display::init()
     windows_arr[EFFECT_PARAM_WINDOW] = &effect_param_window_ins;
     windows_arr[EFFECT_SELECT_WINDOW] = &effect_select_window_ins;
     windows_arr[OPTIONS_WINDOW] = &options_window_ins;
+    windows_arr[LOOPER_WINDOW] = &looper_window_ins;
     current_window = windows_arr[MAIN_WINDOW];
     last_window = windows_arr[MAIN_WINDOW];
 }

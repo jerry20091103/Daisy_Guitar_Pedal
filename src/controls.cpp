@@ -1,5 +1,6 @@
 #include "controls.h"
 #include "display.h"
+#include "command.h"
 
 EasyButton btn[10]{17, 18, 19, 21, 22, 26, 27, 28, 29, 30};
 RotaryEncoder encoder(15, 16);
@@ -69,21 +70,21 @@ void btn0_press()
 {
     display.current_window->on_btn_pressed(BTN_ENCODER);
 }
-void btn1_press()
+void btn1_press() // fs0
 {
     display.current_window->on_btn_pressed(BTN_FS0);
 }
-void btn2_press()
+void btn2_press() // fs1
 {
     display.current_window->on_btn_pressed(BTN_FS1);
 }
-void btn3_press()
+void btn3_press() // fs2 looper rec / redo
 {
-    display.current_window->on_btn_pressed(BTN_FS2);
+    insert_command(CMD_LOOPER_RECORD);
 }
-void btn4_press()
+void btn4_press() // fs3 looper play/stop / undo / clear
 {
-    display.current_window->on_btn_pressed(BTN_FS3);
+    insert_command(CMD_LOOPER_STOP);
 }
 void btn5_press()
 {
@@ -119,13 +120,13 @@ void btn2_hold()
 {
     display.current_window->on_btn_holded(BTN_FS1);
 }
-void btn3_hold()
+void btn3_hold() // fs2 looper rec / redo
 {
-    display.current_window->on_btn_holded(BTN_FS2);
+    insert_command(CMD_LOOPER_REDO);
 }
-void btn4_hold()
+void btn4_hold() // fs3 looper play/stop / undo / clear
 {
-    display.current_window->on_btn_holded(BTN_FS3);
+    insert_command(CMD_LOOPER_UNDO);
 }
 void btn5_hold()
 {
