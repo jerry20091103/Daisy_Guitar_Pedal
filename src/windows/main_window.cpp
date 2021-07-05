@@ -173,7 +173,6 @@ void main_window::on_btn_pressed(buttons id)
     
     case BTN_FS0:
         insert_command(CMD_UI_PRESET_UP);
-        cmd_count++;
         break;
 
     case BTN_FS1:

@@ -49,6 +49,7 @@ int command_handler()
         return 0;
     }
     unsigned char cmd_type_cpy = cmd_type[cmd_pos];
+    cmd_type[cmd_pos] = CMD_NA;
     cmd_pos++;
     cmd_pos %= MAX_COMMAND_BUF;
     cmd_count--;
