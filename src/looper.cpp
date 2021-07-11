@@ -1,4 +1,5 @@
 #include "looper.h"
+#include "src/memory.h"
 
 uint16_t DSY_SDRAM_BSS looper_mem[28800000];
 _looper looper;
@@ -166,4 +167,17 @@ float _looper::get_loop_pos()
 float _looper::get_meory_usage()
 {
     return (layer_count * loop_size) / (float)LOOPER_MEM_SIZE;
+}
+
+void _looper::read_options()
+{
+    if(memory.looper_options_mem[0] <= 0 || memory.looper_options_mem[0] > 10)
+        loop_level = 0.9;
+    else
+        loop_level = memory.looper_options_mem[0] * 0.1;
+}
+
+void _looper::save_options()
+{
+    memory.looper_options_mem[0] = loop_level * 10;
 }

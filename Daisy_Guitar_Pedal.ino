@@ -19,6 +19,8 @@ void audio_callback(float **in, float **out, size_t size)
         // Mono only
         // [0] is main in/out,  [1] is for external effects loop
         signal = in[0][i];
+        // set the effects loop output to zero first
+        out[1][i] = 0;
         // process all the effects in the chain
         for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
         {
@@ -150,6 +152,7 @@ void setup()
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);
     options_window_ins.read_options();
+    looper.read_options();
 
     pinMode(LED_BUILTIN, OUTPUT);
 

@@ -43,6 +43,10 @@ void _memory::reset_memory()
     {
         cur_ir.fp[i] = 0;
     }
+    for (int i = 0; i < LOOPER_OPTIONS_AMOUNT; i++)
+    {
+        looper_options_mem[i] = 0;
+    }
 }
 
 void _memory::read_from_flash()
@@ -89,6 +93,12 @@ void _memory::read_from_flash()
             effect_enable_mem[i][j] = eep.read(addr);
             addr++;
         }
+    }
+    // read looper options
+    for (int i = 0; i < LOOPER_OPTIONS_AMOUNT; i++)
+    {
+        looper_options_mem[i] = eep.read(addr);
+        addr++;
     }
     // read ir_num
     read_ir_num();
@@ -138,6 +148,12 @@ int _memory::save_to_flash()
             eep.write(addr, effect_enable_mem[i][j]);
             addr++;
         }
+    }
+    // write looper options
+    for (int i = 0; i < LOOPER_OPTIONS_AMOUNT; i++)
+    {
+        eep.write(addr, looper_options_mem[i]);
+        addr++;
     }
 
     return addr;

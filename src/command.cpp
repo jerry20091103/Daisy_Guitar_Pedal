@@ -346,6 +346,7 @@ int command_handler()
             effects_rack.save_cur_preset_num();
             effects_rack.save_cur_preset();
             options_window_ins.save_options();
+            looper.save_options();
             memory.memory_valid = 1;
             
             int bytes_wrote;

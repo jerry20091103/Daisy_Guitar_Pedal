@@ -3,6 +3,7 @@
 
 #include "effect_modules/effects.h"
 #define LOOPER_MEM_SIZE 28800000
+#define LOOPER_OPTIONS_AMOUNT 1
 
 // 10 mins of total loop time in SDRAM
 extern uint16_t DSY_SDRAM_BSS looper_mem[LOOPER_MEM_SIZE];
@@ -30,6 +31,8 @@ public:
     int cur_layer;       // current layer that is active (layers <= cur_layer are acitve)
     bool enable;
     bool recording;
+    void read_options();
+    void save_options();
 
 private:
     bool first_loop;     // whether this is the first loop layer or not
