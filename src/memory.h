@@ -8,7 +8,7 @@
 #include "src/looper.h"
 
 #define MAX_USER_PRESET 10
-#define IR_LENGTH 512
+#define IR_LENGTH 1024
 
 typedef union{
     float fp[IR_LENGTH];
