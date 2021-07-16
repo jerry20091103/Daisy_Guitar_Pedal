@@ -10,8 +10,9 @@
 #include "chorus_effect.h"
 #include "flanger_effect.h"
 #include "IR_filter_effect.h"
+#include "equalizer_effect.h"
 
-#define EFFECTS_AMOUNT 11 // How many effects
+#define EFFECTS_AMOUNT 13 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -19,11 +20,13 @@ enum effect_id : unsigned char
     ANALOG_ID,
     OVERDRIVE_MOD01_ID,
     FUZZ_MOD01_ID,
-    GAIN_MOD01_ID,
     REVERB_MOD01_ID,
     DELAY_MOD_ID,
     CHORUS_MOD01_ID,
     FLANGER_MOD01_ID,
+    EQUALIZER_MOD01_ID,
+    GAIN_MOD01_ID,
+    GAIN_MOD02_ID,
     COMPRESSOR_MOD01_ID,
     PITCHSHIFT_MOD01_ID,
 };
@@ -49,9 +52,11 @@ private:
     fuzz_effect fuzz_mod01;
     compressor_effect compressor_mod01;
     gain_effect gain_mod01;
+    gain_effect gain_mod02;
     delay_effect delay_mod;
     chorus_effect chorus_mod01;
     flanger_effect flanger_mod01;
+    equalizer_effect equalizer_mod01;
 };
 
 // A home for all effect instances

@@ -21,9 +21,11 @@ void _effects_rack::init()
     fuzz_mod01.init();
     compressor_mod01.init();
     gain_mod01.init();
+    gain_mod02.init();
     delay_mod.init();
     chorus_mod01.init();
     flanger_mod01.init();
+    equalizer_mod01.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
     analog.id = ANALOG_ID;
@@ -32,9 +34,11 @@ void _effects_rack::init()
     fuzz_mod01.id = FUZZ_MOD01_ID;
     compressor_mod01.id = COMPRESSOR_MOD01_ID;
     gain_mod01.id = GAIN_MOD01_ID;
+    gain_mod02.id = GAIN_MOD02_ID;
     delay_mod.id = DELAY_MOD_ID;
     chorus_mod01.id = CHORUS_MOD01_ID;
     flanger_mod01.id = FLANGER_MOD01_ID;
+    equalizer_mod01.id = EQUALIZER_MOD01_ID;
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
     effects_arr[REVERB_MOD01_ID] = &reverb_mod01;
@@ -44,9 +48,11 @@ void _effects_rack::init()
     effects_arr[FUZZ_MOD01_ID] = &fuzz_mod01;
     effects_arr[COMPRESSOR_MOD01_ID] = &compressor_mod01;
     effects_arr[GAIN_MOD01_ID] = &gain_mod01;
+    effects_arr[GAIN_MOD02_ID] = &gain_mod02;
     effects_arr[DELAY_MOD_ID] = &delay_mod;
     effects_arr[CHORUS_MOD01_ID] = &chorus_mod01;
     effects_arr[FLANGER_MOD01_ID] = &flanger_mod01;
+    effects_arr[EQUALIZER_MOD01_ID] = &equalizer_mod01;
 }
 
 // Read a preset into the signal_chain
