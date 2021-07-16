@@ -8,10 +8,7 @@ void IR_filter_effect::init()
     memory.load_ir(0);
     fir.Init(memory.cur_ir.fp, IR_LENGTH, true);
     // Initialize all parameters
-    strcpy(param[0].name, "Mode");
-    param[0].enable = true;
-    param[0].value = 128;
-    set_param(0, param[0].value);
+    init_param(0, "Mode", true, 128);
 
     // Initialize name
     strcpy(effect_short_name, " IR ");

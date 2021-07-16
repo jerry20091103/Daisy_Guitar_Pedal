@@ -6,20 +6,11 @@ void overdrive_effect::init()
     od.Init();
     tone.Init(sample_rate);
     // Initialize all parameters
-    strcpy(param[0].name, "Drive");
-    param[0].enable = true;
-    param[0].value = 128;
-    set_param(0, param[0].value);
+    init_param(0, "Drive", true, 128);
 
-    strcpy(param[1].name, "Level");
-    param[1].enable = true;
-    param[1].value = 128;
-    set_param(1, param[1].value);
+    init_param(1, "Level", true, 128);
 
-    strcpy(param[2].name, "LP Freq");
-    param[2].enable = true;
-    param[2].value = 127;
-    set_param(2, param[2].value);
+    init_param(2, "LP Freq", true, 127);
 
     // Initialize name
     strcpy(effect_short_name, "Driv");

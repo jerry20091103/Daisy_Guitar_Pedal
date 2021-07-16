@@ -5,26 +5,13 @@ void chorus_effect::init()
     // Initialize
     chorus.Init(sample_rate);
     // Initialize all parameters
-    strcpy(param[0].name, "Rate");
-    param[0].enable = true;
-    param[0].value = 22;
-    set_param(0, param[0].value);
+    init_param(0, "Rate", true, 22);
 
-    strcpy(param[1].name, "Depth");
-    param[1].enable = true;
-    param[1].value = 100;
-    set_param(1, param[1].value);
+    init_param(1, "Depth", true, 100);
 
-    strcpy(param[2].name, "Delay");
-    param[2].enable = true;
-    param[2].value = 100;
-    set_param(2, param[2].value);
+    init_param(2, "Delay", true, 100);
 
-    strcpy(param[3].name, "Feedback");
-    param[3].enable = true;
-    param[3].value = 0;
-    set_param(3, param[3].value);
-
+    init_param(3, "Feedback", true, 0);
 
     // Initialize name
     strcpy(effect_short_name, "Chor");

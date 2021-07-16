@@ -12,5 +12,13 @@ effects::effects()
     enable = false;
 }
 
+void effects::init_param(unsigned char id, const char* name, bool enable, unsigned char value)
+{
+    strcpy(param[id].name, name);
+    param[id].enable = enable;
+    param[id].value = value;
+    set_param(id, value);
+}
+
 // A global variable to store sample rate
 float sample_rate;

@@ -5,25 +5,13 @@ void reverb_effect::init()
     // Initialize reverbsc
     reverb.Init(sample_rate);
     // Initialize all parameters
-    strcpy(param[0].name, "Feedback");
-    param[0].enable = true;
-    param[0].value = 180;
-    set_param(0, param[0].value);
+    init_param(0, "Feedback", true, 180);
 
-    strcpy(param[1].name, "LP Freq");
-    param[1].enable = true;
-    param[1].value = 218;
-    set_param(1, param[1].value);
+    init_param(1, "LP Freq", true, 218);
 
-    strcpy(param[2].name, "Dry");
-    param[2].enable = true;
-    param[2].value = 200;
-    set_param(2, param[2].value);
+    init_param(2, "Dry", true, 200);
 
-    strcpy(param[3].name, "Wet");
-    param[3].enable = true;
-    param[3].value = 200;
-    set_param(3, param[3].value);
+    init_param(3, "Wet", true, 200);
 
     // Initialize name
     strcpy(effect_short_name, "Revb");

@@ -5,25 +5,14 @@ void fuzz_effect::init()
     // Initialize
     tone.Init(sample_rate);
     // Initialize all parameters
-    strcpy(param[0].name, "Gain");
-    param[0].enable = true;
-    param[0].value = 128;
-    set_param(0, param[0].value);
 
-    strcpy(param[1].name, "Level");
-    param[1].enable = true;
-    param[1].value = 128;
-    set_param(1, param[1].value);
+    init_param(0, "Gain", true, 128);
 
-    strcpy(param[2].name, "Peak");
-    param[2].enable = true;
-    param[2].value = 128;
-    set_param(2, param[2].value);
+    init_param(1, "Level", true, 128);
 
-    strcpy(param[3].name, "LP Freq");
-    param[3].enable = true;
-    param[3].value = 128;
-    set_param(3, param[3].value);
+    init_param(2, "Peak", true, 128);
+
+    init_param(3, "LP Freq", true, 128);
 
     // Initialize name
     strcpy(effect_short_name, "Fuzz");

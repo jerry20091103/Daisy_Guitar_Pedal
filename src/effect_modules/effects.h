@@ -36,6 +36,7 @@ public:
     unsigned char id;
 
 protected:
+    void init_param(unsigned char id, const char* name, bool enable, unsigned char value);
 };
 // A global variable to store sample rate
 extern float sample_rate;

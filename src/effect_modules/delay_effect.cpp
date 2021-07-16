@@ -9,30 +9,15 @@ void delay_effect::init()
     delay_buf.Init();
     tone.Init(sample_rate);
     // Initialize all parameters
-    strcpy(param[0].name, "Time");
-    param[0].enable = true;
-    param[0].value = 50;
-    set_param(0, param[0].value);
+    init_param(0, "Time", true, 50);
 
-    strcpy(param[1].name, "Feedback"); 
-    param[1].enable = true;
-    param[1].value = 129;
-    set_param(1, param[1].value);
+    init_param(1, "Feedback", true, 129);
 
-    strcpy(param[2].name, "Mix");
-    param[2].enable = true;
-    param[2].value = 129;
-    set_param(2, param[2].value);
+    init_param(2, "Mix", true, 129);
 
-    strcpy(param[3].name, "LP Freq");
-    param[3].enable = true;
-    param[3].value = 150;
-    set_param(3, param[3].value);
+    init_param(3, "LP Freq", true, 150);
 
-    strcpy(param[4].name, "Range"); // two ranges for delay time
-    param[4].enable = true;
-    param[4].value = 128;
-    set_param(4, param[4].value);
+    init_param(4, "Range", true, 128); // two ranges for delay time
 
     // Initialize name
     strcpy(effect_short_name, "Dely");

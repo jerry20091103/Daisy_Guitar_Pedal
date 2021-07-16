@@ -5,25 +5,13 @@ void pitchshift_effect::init()
     // Initialize
     pitchshift.Init(sample_rate);
     // Initialize all parameters
-    strcpy(param[0].name, "Dry");
-    param[0].enable = true;
-    param[0].value = 250;
-    set_param(0, param[0].value);
+    init_param(0, "Dry", true, 250);
 
-    strcpy(param[1].name, "Wet");
-    param[1].enable = true;
-    param[1].value = 200;
-    set_param(1, param[1].value);
+    init_param(1, "Wet", true, 200);
 
-    strcpy(param[2].name, "Amount");
-    param[2].enable = true;
-    param[2].value = 127;
-    set_param(2, param[2].value);
+    init_param(2, "Amount", true, 127);
 
-    strcpy(param[3].name, "Buf Size");
-    param[3].enable = true;
-    param[3].value = 131;
-    set_param(3, param[3].value);
+    init_param(3, "Buf Size", true, 131);
 
     // Initialize name
     strcpy(effect_short_name, "Pith");

@@ -7,35 +7,17 @@ void compressor_effect::init()
     view_out = false;
     view_auto = false;
     // Initialize all parameters
-    strcpy(param[0].name, "Ratio");
-    param[0].enable = true;
-    param[0].value = 91;
-    set_param(0, param[0].value);
+    init_param(0, "Ratio", true, 91);
 
-    strcpy(param[1].name, "Thd/Out");
-    param[1].enable = true;
-    param[1].value = 100;
-    set_param(1, param[1].value);
+    init_param(1, "Thd/Out", true, 100);
 
-    strcpy(param[2].name, "Attack");
-    param[2].enable = true;
-    param[2].value = 20;
-    set_param(2, param[2].value);
+    init_param(2, "Attack", true, 20);
 
-    strcpy(param[3].name, "Release");
-    param[3].enable = true;
-    param[3].value = 75;
-    set_param(3, param[3].value);
+    init_param(3, "Release", true, 75);
 
-    strcpy(param[4].name, "Makeup");
-    param[4].enable = true;
-    param[4].value = 0;
-    set_param(4, param[4].value);
+    init_param(4, "Makeup", true, 0);
 
-    strcpy(param[5].name, "AutoGain");
-    param[5].enable = true;
-    param[5].value = 127;
-    set_param(5, param[5].value);
+    init_param(5, "AutoGain", true, 127);
 
     // Initialize name
     strcpy(effect_short_name, "Comp");

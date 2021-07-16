@@ -7,21 +7,11 @@ void gain_effect::init()
     cur_peak = 0;
     cur_sum = 0;
     // Initialize all parameters
-    strcpy(param[0].name, "Amount");
-    param[0].enable = true;
-    param[0].value = 150;
-    set_param(0, param[0].value);
+    init_param(0, "Amount", true, 150);
 
-    strcpy(param[1].name, "Peak"); // show current peak value (in 0.5 second)
-    param[1].enable = true;
-    param[1].value = 0;
-    set_param(1, param[1].value);
+    init_param(1, "Peak", true, 0); // show current peak value (in 0.5 second)
 
-    strcpy(param[2].name, "RMS"); // show current rms value (in 0.5 second)
-    param[2].enable = true;
-    param[2].value = 0;
-    set_param(2, param[2].value);
-
+    init_param(2, "RMS", true, 0); // show current rms value (in 0.5 second)
 
     // Initialize name
     strcpy(effect_short_name, "Gain");

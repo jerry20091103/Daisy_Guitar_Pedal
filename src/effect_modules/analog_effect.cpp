@@ -4,21 +4,11 @@
 void analog_effect::init()
 {
     // Initial all the parameters
-    strcpy(param[0].name, "Multi-OD");
-    param[0].enable = true;
-    param[0].value = 100;
-    set_param(0, param[0].value);
+    init_param(0, "Multi-OD", true, 100);
 
-    strcpy(param[1].name, "Dist.");
-    param[1].enable = true;
-    param[1].value = 100;
-    set_param(1, param[1].value);
+    init_param(1, "Dist.", true, 100);
 
-    strcpy(param[2].name, "Tube");
-    param[2].enable = true;
-    param[2].value = 100;
-    set_param(2, param[2].value);
-
+    init_param(2, "Tube", true, 100);
 
     // Initialize name
     strcpy(effect_short_name, "Anlg");
