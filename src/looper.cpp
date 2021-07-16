@@ -1,7 +1,7 @@
 #include "looper.h"
 #include "src/memory.h"
 
-uint16_t DSY_SDRAM_BSS looper_mem[28800000];
+int16_t DSY_SDRAM_BSS looper_mem[28800000];
 _looper looper;
 
 void _looper::init()

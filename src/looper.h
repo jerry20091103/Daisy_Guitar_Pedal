@@ -6,7 +6,7 @@
 #define LOOPER_OPTIONS_AMOUNT 1
 
 // 10 mins of total loop time in SDRAM
-extern uint16_t DSY_SDRAM_BSS looper_mem[LOOPER_MEM_SIZE];
+extern int16_t DSY_SDRAM_BSS looper_mem[LOOPER_MEM_SIZE];
 
 // the looper class for core looper functions
 // memory is handled like a stack.

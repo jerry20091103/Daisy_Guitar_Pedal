@@ -50,6 +50,8 @@ enum command : unsigned char{
     CMD_LOOPER_BACK,
     CMD_LOOPER_LVL_INC,
     CMD_LOOPER_LVL_DEC,
+    // Tuner command
+    CMD_OPEN_TUNER,
 };
 
 int command_handler();

@@ -5,6 +5,7 @@
 #include "src/memory.h"
 #include "src/windows/msg_window.h"
 #include "src/looper.h"
+#include "src/tuner.h"
 //#include "src/bluetooth.h"
 
 DaisyHardware hw;
@@ -21,38 +22,47 @@ void audio_callback(float **in, float **out, size_t size)
         signal = in[0][i];
         // set the effects loop output to zero first
         out[1][i] = 0;
-        // process all the effects in the chain
-        for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
+
+        // if the tuner is acitve
+        if (display.current_window->get_window_id() == TUNER_WINDOW)
         {
-            // if effect is empty
-            if (signal_chain[j] == nullptr)
-                continue;
-            // if the effect is the external analog module
-            if (signal_chain[j] == effects_rack.effects_arr[ANALOG_ID])
+            tuner.process(signal);
+        }
+        else
+        {
+            // process all the effects in the chain
+            for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
             {
-                if (signal_chain[j]->enable)
+                // if effect is empty
+                if (signal_chain[j] == nullptr)
+                    continue;
+                // if the effect is the external analog module
+                if (signal_chain[j] == effects_rack.effects_arr[ANALOG_ID])
                 {
-                    out[1][i] = signal; // send
-                    temp = in[1][i];    // return
+                    if (signal_chain[j]->enable)
+                    {
+                        out[1][i] = signal; // send
+                        temp = in[1][i];    // return
+                    }
+                    else // passthrough
+                    {
+                        temp = signal;
+                    }
                 }
-                else // passthrough
+                else
                 {
-                    temp = signal;
+                    signal_chain[j]->process(signal, temp);
                 }
+                signal = temp;
             }
-            else
-            {
-                signal_chain[j]->process(signal, temp);
-            }
+            // Process IR cab sim
+            IR_ins.process(signal, temp);
+            signal = temp;
+
+            // Process looper
+            looper.process(signal, temp);
             signal = temp;
         }
-        // Process IR cab sim
-        IR_ins.process(signal, temp);
-        signal = temp;
-
-        // Process looper
-        looper.process(signal, temp);
-        signal = temp;
 
         // Assign output
         out[0][i] = signal;
@@ -148,6 +158,7 @@ void setup()
     // Initialize effects
     effects_rack.init();
     looper.init();
+    tuner.init();
     // Read from memory
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);

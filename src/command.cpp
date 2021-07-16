@@ -394,6 +394,9 @@ int command_handler()
     case CMD_LOOPER_LVL_DEC:
         looper.loop_level_dec();
         break;
+    
+    case CMD_OPEN_TUNER:
+        display.change_window(TUNER_WINDOW);
 
     default:
         break;

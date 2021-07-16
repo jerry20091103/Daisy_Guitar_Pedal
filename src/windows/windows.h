@@ -3,7 +3,7 @@
 
 #include "src/controls.h"
 
-#define MAX_WINDOWS_NUM 6
+#define MAX_WINDOWS_NUM 7
 
 enum all_windows : byte
 {
@@ -12,7 +12,8 @@ enum all_windows : byte
     EFFECT_PARAM_WINDOW,
     EFFECT_SELECT_WINDOW,
     OPTIONS_WINDOW,
-    LOOPER_WINDOW
+    LOOPER_WINDOW,
+    TUNER_WINDOW
 };
 
 class windows
