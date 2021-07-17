@@ -11,46 +11,12 @@ void _controls::init()
 {
     // Initialize buttons
     for (int i = 0; i < 10; i++)
+    {
         btn[i].begin();
-    btn[0].onPressed(btn0_press);
-    btn[0].onPressedFor(BTN_HOLD_TIME, btn0_hold);
-    btn[0].enableInterrupt(btn0_int);
-
-    btn[1].onPressed(btn1_press);
-    btn[1].onPressedFor(BTN_HOLD_TIME, btn1_hold);
-    btn[1].enableInterrupt(btn1_int);
-
-    btn[2].onPressed(btn2_press);
-    btn[2].onPressedFor(BTN_HOLD_TIME, btn2_hold);
-    btn[2].enableInterrupt(btn2_int);
-
-    btn[3].onPressed(btn3_press);
-    btn[3].onPressedFor(BTN_HOLD_TIME, btn3_hold);
-    btn[3].enableInterrupt(btn3_int);
-
-    btn[4].onPressed(btn4_press);
-    btn[4].onPressedFor(BTN_HOLD_TIME, btn4_hold);
-    btn[4].enableInterrupt(btn4_int);
-
-    btn[5].onPressed(btn5_press);
-    btn[5].onPressedFor(BTN_HOLD_TIME, btn5_hold);
-    btn[5].enableInterrupt(btn5_int);
-
-    btn[6].onPressed(btn6_press);
-    btn[6].onPressedFor(BTN_HOLD_TIME, btn6_hold);
-    btn[6].enableInterrupt(btn6_int);
-
-    btn[7].onPressed(btn7_press);
-    btn[7].onPressedFor(BTN_HOLD_TIME, btn7_hold);
-    btn[7].enableInterrupt(btn7_int);
-
-    btn[8].onPressed(btn8_press);
-    btn[8].onPressedFor(BTN_HOLD_TIME, btn8_hold);
-    btn[8].enableInterrupt(btn8_int);
-
-    btn[9].onPressed(btn9_press);
-    btn[9].onPressedFor(BTN_HOLD_TIME, btn9_hold);
-    btn[9].enableInterrupt(btn9_int);
+        btn[i].onPressed(btn_press[i]);
+        btn[i].onPressedFor(BTN_HOLD_TIME, btn_hold[i]);
+        btn[i].enableInterrupt(btn_int[i]);
+    }
 
     // Initialize encoder
     attachInterrupt(digitalPinToInterrupt(15), encoder_interrupt, CHANGE);
@@ -64,6 +30,48 @@ void _controls::btn_update()
         btn[i].update();
     }
 }
+
+btn_callback btn_press[10] = 
+{
+    btn0_press,
+    btn1_press,
+    btn2_press,
+    btn3_press,
+    btn4_press,
+    btn5_press,
+    btn6_press,
+    btn7_press,
+    btn8_press,
+    btn9_press
+};
+
+btn_callback btn_hold[10] = 
+{
+    btn0_hold,
+    btn1_hold,
+    btn2_hold,
+    btn3_hold,
+    btn4_hold,
+    btn5_hold,
+    btn6_hold,
+    btn7_hold,
+    btn8_hold,
+    btn9_hold,
+};
+
+btn_callback btn_int[10] = 
+{
+    btn0_int,
+    btn1_int,
+    btn2_int,
+    btn3_int,
+    btn4_int,
+    btn5_int,
+    btn6_int,
+    btn7_int,
+    btn8_int,
+    btn9_int,
+};
 
 // press
 void btn0_press()

@@ -24,7 +24,14 @@ enum buttons : byte
     BTN_OK       // pin 30 #9
 };
 
+typedef void (*btn_callback)();
+
 extern RotaryEncoder encoder;
+
+// array of callback functions
+extern btn_callback btn_press[10];
+extern btn_callback btn_hold[10];
+extern btn_callback btn_int[10];
 
 class _controls
 {
