@@ -15,11 +15,6 @@ void effect_param_window::draw()
     u8g2.drawBox(0, 0, 128, 10);
     u8g2.drawBox(0, 55, 128, 9);
 
-    // Draw lines between parameters
-    u8g2.drawHLine(0, 32, 128);
-    u8g2.drawVLine(42, 10, 45);
-    u8g2.drawVLine(85, 10, 45);
-
     // Draw parameter values
     u8g2.setFont(u8g2_font_profont10_mr);
     for(int i=0; i<MAX_PARAM_NUM; i++)
@@ -58,6 +53,11 @@ void effect_param_window::draw()
                 u8g2.drawStr(1 + (i / 2) * 43, 19 + (i % 2) * 22, "----");
         }
     }
+
+    // Draw lines between parameters
+    u8g2.drawHLine(0, 32, 128);
+    u8g2.drawVLine(42, 10, 45);
+    u8g2.drawVLine(85, 10, 45);
 
     // Draw topic
     u8g2.setFont(u8g2_font_6x12_mr);

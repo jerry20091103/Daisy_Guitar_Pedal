@@ -26,6 +26,7 @@ void _effects_rack::init()
     chorus_mod01.init();
     flanger_mod01.init();
     equalizer_mod01.init();
+    tremolo_mod01.init();
     // Set effect id
     reverb_mod01.id = REVERB_MOD01_ID;
     analog.id = ANALOG_ID;
@@ -39,6 +40,7 @@ void _effects_rack::init()
     chorus_mod01.id = CHORUS_MOD01_ID;
     flanger_mod01.id = FLANGER_MOD01_ID;
     equalizer_mod01.id = EQUALIZER_MOD01_ID;
+    tremolo_mod01.id = TREMOLO_MOD01_ID;
     // Assign to effect_arr
     effects_arr[EMPTY_EFFECT_ID] = nullptr;
     effects_arr[REVERB_MOD01_ID] = &reverb_mod01;
@@ -53,6 +55,7 @@ void _effects_rack::init()
     effects_arr[CHORUS_MOD01_ID] = &chorus_mod01;
     effects_arr[FLANGER_MOD01_ID] = &flanger_mod01;
     effects_arr[EQUALIZER_MOD01_ID] = &equalizer_mod01;
+    effects_arr[TREMOLO_MOD01_ID] = &tremolo_mod01;
 }
 
 // Read a preset into the signal_chain

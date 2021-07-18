@@ -11,8 +11,9 @@
 #include "flanger_effect.h"
 #include "IR_filter_effect.h"
 #include "equalizer_effect.h"
+#include "tremolo_effect.h"
 
-#define EFFECTS_AMOUNT 13 // How many effects
+#define EFFECTS_AMOUNT 14 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -24,6 +25,7 @@ enum effect_id : unsigned char
     DELAY_MOD_ID,
     CHORUS_MOD01_ID,
     FLANGER_MOD01_ID,
+    TREMOLO_MOD01_ID,
     EQUALIZER_MOD01_ID,
     GAIN_MOD01_ID,
     GAIN_MOD02_ID,
@@ -57,6 +59,7 @@ private:
     chorus_effect chorus_mod01;
     flanger_effect flanger_mod01;
     equalizer_effect equalizer_mod01;
+    tremolo_effect tremolo_mod01;
 };
 
 // A home for all effect instances
