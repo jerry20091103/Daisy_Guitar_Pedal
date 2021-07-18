@@ -22,41 +22,13 @@ void effect_param_window::draw()
 
     // Draw parameter values
     u8g2.setFont(u8g2_font_profont10_mr);
-    // (0)
-    if (signal_chain[cur_effect]->param[0].enable)
+    for(int i=0; i<MAX_PARAM_NUM; i++)
     {
-        u8g2.setCursor(1, 29);
-        u8g2.print(signal_chain[cur_effect]->param[0].true_val);
-    }
-    // (1)
-    if (signal_chain[cur_effect]->param[1].enable)
-    {
-        u8g2.setCursor(1, 51);
-        u8g2.print(signal_chain[cur_effect]->param[1].true_val);
-    }
-    // (2)
-    if (signal_chain[cur_effect]->param[2].enable)
-    {
-        u8g2.setCursor(44, 29);
-        u8g2.print(signal_chain[cur_effect]->param[2].true_val);
-    }
-    // (3)
-    if (signal_chain[cur_effect]->param[3].enable)
-    {
-        u8g2.setCursor(44, 51);
-        u8g2.print(signal_chain[cur_effect]->param[3].true_val);
-    }
-    // (4)
-    if (signal_chain[cur_effect]->param[4].enable)
-    {
-        u8g2.setCursor(87, 29);
-        u8g2.print(signal_chain[cur_effect]->param[4].true_val);
-    }
-    // (5)
-    if (signal_chain[cur_effect]->param[5].enable)
-    {
-        u8g2.setCursor(87, 51);
-        u8g2.print(signal_chain[cur_effect]->param[5].true_val);
+        if (signal_chain[cur_effect]->param[i].enable)
+        {
+            u8g2.setCursor(1 + (i/2) * 43, 29 + i%2 * 22);
+            print_param(signal_chain[cur_effect]->param[i].mode, signal_chain[cur_effect]->param[i].true_val, signal_chain[cur_effect]->param[i].prec, signal_chain[cur_effect]->param[i].unit);
+        }
     }
 
     // Draw parameter names
@@ -197,5 +169,25 @@ void effect_param_window::on_enc_turned(RotaryEncoder::Direction dir)
 
     default:
         break;
+    }
+}
+
+void effect_param_window::print_param(char mode, param_true_val true_val, char prec, const char* unit)
+{
+    if(mode == BOOL) // ON / OFF
+    {
+        u8g2.print(true_val.b ? "ON" : "OFF");
+    }
+    else if(mode == FLOAT) // number (float)
+    {
+        u8g2.print(true_val.fp, prec);
+        u8g2.print(" ");
+        u8g2.print(unit);
+    }
+    else if(mode == STRING) // string
+    {
+        u8g2.print(true_val.str);
+        u8g2.print(" ");
+        u8g2.print(unit);
     }
 }

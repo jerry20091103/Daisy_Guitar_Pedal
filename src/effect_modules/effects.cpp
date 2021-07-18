@@ -12,11 +12,14 @@ effects::effects()
     enable = false;
 }
 
-void effects::init_param(unsigned char id, const char* name, bool enable, unsigned char value)
+void effects::init_param(unsigned char id, const char* name, bool enable, unsigned char value, param_mode mode, char prec, const char* unit)
 {
     strcpy(param[id].name, name);
     param[id].enable = enable;
     param[id].value = value;
+    param[id].mode = mode;
+    param[id].prec = prec;
+    strcpy(param[id].unit, unit);
     set_param(id, value);
 }
 

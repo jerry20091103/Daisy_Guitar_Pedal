@@ -9,15 +9,15 @@ void delay_effect::init()
     delay_buf.Init();
     tone.Init(sample_rate);
     // Initialize all parameters
-    init_param(0, "Time", true, 50);
+    init_param(0, "Time", true, 50, FLOAT, 0, "BPM");
 
-    init_param(1, "Feedback", true, 129);
+    init_param(1, "Feedback", true, 129, FLOAT, 2);
 
-    init_param(2, "Mix", true, 129);
+    init_param(2, "Mix", true, 129, FLOAT, 2);
 
-    init_param(3, "LP Freq", true, 150);
+    init_param(3, "LP Freq", true, 150, FLOAT, 0, "Hz");
 
-    init_param(4, "Range", true, 128); // two ranges for delay time
+    init_param(4, "Range", true, 128, STRING); // two ranges for delay time
 
     // Initialize name
     strcpy(effect_short_name, "Dely");
@@ -49,37 +49,47 @@ void delay_effect::set_param(uint8_t id, unsigned char val)
     case 0: // delay time
         if(!range)
         {
-            param[id].true_val = 30 + val;
+            param[id].true_val.fp = 30 + val;
         }
         else
         {
-            param[id].true_val = 285 + val;
+            param[id].true_val.fp = 285 + val;
         }
         // convert bpm to ms
-        delay_time = (1 / float(param[id].true_val)) * 60000;
+        delay_time = (1 / float(param[id].true_val.fp)) * 60000;
         if(options_window_ins.delay_ms)
-            param[id].true_val = delay_time;
+        {
+            param[id].true_val.fp = delay_time;
+            param[id].prec = 2;
+            strcpy(param[id].unit, "");
+        }
+        else
+        {
+            param[id].prec = 0;
+            strcpy(param[id].unit, "BPM");
+        }
+        
         delay_buf.SetDelay(delay_time * 48);
         break;
 
     case 1: // feedback
-        param[id].true_val = (float)val * 0.0039;
-        feedback = param[id].true_val;
+        param[id].true_val.fp = (float)val * 0.0039;
+        feedback = param[id].true_val.fp;
         break;
     
     case 2: // mix
-        param[id].true_val = (float)val * 0.0039;
-        mix = param[id].true_val;
+        param[id].true_val.fp = (float)val * 0.0039;
+        mix = param[id].true_val.fp;
         break;
     
     case 3: // tone
-        param[id].true_val = 400 + val * ((float)val * 0.9 + 25.5) * 0.3;
-        tone.SetFreq(param[id].true_val);
+        param[id].true_val.fp = 400 + val * ((float)val * 0.9 + 25.5) * 0.3;
+        tone.SetFreq(param[id].true_val.fp);
         break;
 
     case 4: // range
-        param[id].true_val = val % 2;
-        range = (bool)param[id].true_val;
+        range = (bool)(val % 2);
+        strcpy(param[id].true_val.str, range ? "HIGH" : "LOW");
         set_param(0, param[0].value);
         break;
 

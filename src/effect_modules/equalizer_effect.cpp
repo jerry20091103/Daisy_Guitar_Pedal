@@ -18,12 +18,12 @@ void equalizer_effect::init()
     pk_5120.CalcCoeffs(0, pk_5120_freq, q_value);
 
     // Initialize all parameters
-    init_param(0, "80 Hz", true, 130);
-    init_param(2, "184 Hz", true, 130);
-    init_param(4, "422 Hz", true, 130);
-    init_param(1, "970 Hz", true, 130);
-    init_param(3, "2.23 kHz", true, 130);
-    init_param(5, "5.12 kHz", true, 130);
+    init_param(0, "80 Hz", true, 130, FLOAT, 1, "dB");
+    init_param(2, "184 Hz", true, 130, FLOAT, 1, "dB");
+    init_param(4, "422 Hz", true, 130, FLOAT, 1, "dB");
+    init_param(1, "970 Hz", true, 130, FLOAT, 1, "dB");
+    init_param(3, "2.23 kHz", true, 130, FLOAT, 1, "dB");
+    init_param(5, "5.12 kHz", true, 130, FLOAT, 1, "dB");
 
     // Initialize name
     strcpy(effect_short_name, " EQ ");
@@ -48,33 +48,33 @@ void equalizer_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0: // 100Hz
-        param[id].true_val = -52 + (float)val * 0.4; // -52 ~ 50 dB
-        pk_80.CalcCoeffs(param[id].true_val, pk_80_freq, q_value);
+        param[id].true_val.fp = -52 + (float)val * 0.4; // -52 ~ 50 dB
+        pk_80.CalcCoeffs(param[id].true_val.fp, pk_80_freq, q_value);
         break;
 
     case 1: // 800Hz
-        param[id].true_val = -52 + (float)val * 0.4; // -52 ~ 50 dB
-        pk_970.CalcCoeffs(param[id].true_val, pk_970_freq, q_value);
+        param[id].true_val.fp = -52 + (float)val * 0.4; // -52 ~ 50 dB
+        pk_970.CalcCoeffs(param[id].true_val.fp, pk_970_freq, q_value);
         break;
 
     case 2: // 200Hz
-        param[id].true_val = -52 + (float)val * 0.4; // -52 ~ 50 dB
-        pk_184.CalcCoeffs(param[id].true_val, pk_184_freq, q_value);
+        param[id].true_val.fp = -52 + (float)val * 0.4; // -52 ~ 50 dB
+        pk_184.CalcCoeffs(param[id].true_val.fp, pk_184_freq, q_value);
         break;
 
     case 3: // 1.6kHz
-        param[id].true_val = -52 + (float)val * 0.4; // -52 ~ 50 dB
-        pk_2230.CalcCoeffs(param[id].true_val, pk_2230_freq, q_value);
+        param[id].true_val.fp = -52 + (float)val * 0.4; // -52 ~ 50 dB
+        pk_2230.CalcCoeffs(param[id].true_val.fp, pk_2230_freq, q_value);
         break;
 
     case 4: // 400Hz
-        param[id].true_val = -52 + (float)val * 0.4; // -52 ~ 50 dB
-        pk_422.CalcCoeffs(param[id].true_val, pk_422_freq, q_value);
+        param[id].true_val.fp = -52 + (float)val * 0.4; // -52 ~ 50 dB
+        pk_422.CalcCoeffs(param[id].true_val.fp, pk_422_freq, q_value);
         break;
 
     case 5: // 3.2kHz
-        param[id].true_val = -52 + (float)val * 0.4; // -52 ~ 50 dB
-        pk_5120.CalcCoeffs(param[id].true_val, pk_5120_freq, q_value);
+        param[id].true_val.fp = -52 + (float)val * 0.4; // -52 ~ 50 dB
+        pk_5120.CalcCoeffs(param[id].true_val.fp, pk_5120_freq, q_value);
         break;
 
     default:

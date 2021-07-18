@@ -10,11 +10,28 @@
 #define MAX_EFFECT_NAME 20
 #define MAX_EFFECT_SHORT_NAME 5
 
+// the displayed param value on screen for humans, can be a number or string.
+union param_true_val
+{
+    bool b;
+    float fp;
+    char str[MAX_PARAM_NAME];
+};
+enum param_mode : byte
+{
+    BOOL,
+    FLOAT,
+    STRING,
+};
+
 struct effects_param
 {
     char name[MAX_PARAM_NAME]; 
-    float true_val; // The parameter's converted value
+    param_true_val true_val; // The parameter's converted value
+    char unit[4]; // displayed unit on srceen
     unsigned char value; // Stores the value of parameter
+    param_mode mode;
+    char prec;
     bool enable; // whether the parameter is enabled or not
 };
 
@@ -36,7 +53,7 @@ public:
     unsigned char id;
 
 protected:
-    void init_param(unsigned char id, const char* name, bool enable, unsigned char value);
+    void init_param(unsigned char id, const char* name, bool enable, unsigned char value, param_mode mode, char prec = 0, const char* unit = "");
 };
 // A global variable to store sample rate
 extern float sample_rate;

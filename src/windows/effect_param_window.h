@@ -2,6 +2,7 @@
 #define EFFECT_PARAM_WINDOW_H
 
 #include "windows.h"
+#include "src/effect_modules/effects.h"
 
 // Effect Parameters Window class
 class effect_param_window : public windows
@@ -19,6 +20,7 @@ public:
 private:
     int time = 0;
     int step_arrows_state = false;
+    void print_param(char mode, param_true_val true_val, char prec, const char* unit); // print out the parameter with units
 };
 
 // create a single instance

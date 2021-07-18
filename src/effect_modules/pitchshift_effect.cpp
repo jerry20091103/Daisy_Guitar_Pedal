@@ -5,13 +5,13 @@ void pitchshift_effect::init()
     // Initialize
     pitchshift.Init(sample_rate);
     // Initialize all parameters
-    init_param(0, "Dry", true, 250);
+    init_param(0, "Dry", true, 250, FLOAT, 2);
 
-    init_param(1, "Wet", true, 200);
+    init_param(1, "Wet", true, 200, FLOAT, 2);
 
-    init_param(2, "Amount", true, 127);
+    init_param(2, "Amount", true, 127, FLOAT, 1);
 
-    init_param(3, "Buf Size", true, 131);
+    init_param(3, "Buf Size", true, 131, FLOAT, 0);
 
     // Initialize name
     strcpy(effect_short_name, "Pith");
@@ -40,16 +40,16 @@ void pitchshift_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[id].true_val = (float)val * 0.0039;
-        dry = param[id].true_val;
+        param[id].true_val.fp = (float)val * 0.0039;
+        dry = param[id].true_val.fp;
         break;
     case 1:
-        param[id].true_val = (float)val * 0.0039;
-        wet = param[id].true_val;
+        param[id].true_val.fp = (float)val * 0.0039;
+        wet = param[id].true_val.fp;
         break;
     case 2:
-        param[id].true_val = ((float)val - 127) * 0.1;
-        pitchshift.SetTransposition(param[id].true_val);
+        param[id].true_val.fp = ((float)val - 127) * 0.1;
+        pitchshift.SetTransposition(param[id].true_val.fp);
         break;
     case 3:
         switch (val%8)
@@ -82,7 +82,7 @@ void pitchshift_effect::set_param(uint8_t id, unsigned char val)
             target = 8192;
             break;
         }
-        param[id].true_val = target;
+        param[id].true_val.fp = target;
         pitchshift.SetDelSize(target);
         break;
 

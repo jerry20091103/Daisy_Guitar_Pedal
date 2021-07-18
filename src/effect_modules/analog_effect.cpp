@@ -4,11 +4,11 @@
 void analog_effect::init()
 {
     // Initial all the parameters
-    init_param(0, "Multi-OD", true, 100);
+    init_param(0, "Multi-OD", true, 100, BOOL);
 
-    init_param(1, "Dist.", true, 100);
+    init_param(1, "Dist.", true, 100, BOOL);
 
-    init_param(2, "Tube", true, 100);
+    init_param(2, "Tube", true, 100, BOOL);
 
     // Initialize name
     strcpy(effect_short_name, "Anlg");
@@ -26,16 +26,16 @@ void analog_effect::set_param(uint8_t id, unsigned char val)
     switch (id)
     {
     case 0:
-        param[id].true_val = val % 2;
-        mcp.digitalWrite(RELAY_0_PIN, param[id].true_val); // control the relay
+        param[id].true_val.b = val % 2;
+        mcp.digitalWrite(RELAY_0_PIN, param[id].true_val.b); // control the relay
         break;
     case 1:
-        param[id].true_val = val % 2;
-        mcp.digitalWrite(RELAY_1_PIN, param[id].true_val);
+        param[id].true_val.b = val % 2;
+        mcp.digitalWrite(RELAY_1_PIN, param[id].true_val.b);
         break;
     case 2:
-        param[id].true_val = val % 2;
-        mcp.digitalWrite(RELAY_2_PIN, param[id].true_val);
+        param[id].true_val.b = val % 2;
+        mcp.digitalWrite(RELAY_2_PIN, param[id].true_val.b);
         break;
     default:
         // Maybe do an error log

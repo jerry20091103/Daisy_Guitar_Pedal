@@ -90,7 +90,7 @@ void options_window::draw_option(unsigned char id, unsigned char pos)
     case OPT_IR:
         u8g2.drawStr(24, 19 + 11 * pos, "IR Cab Sim");
         u8g2.drawStr(103, 19 + 11 * pos, "<   >");
-        if (IR_ins.param[0].true_val == 0)
+        if (IR_ins.param[0].true_val.fp == 0)
         {
             u8g2.setCursor(109, 19 + 11 * pos);
             u8g2.print("OFF");
@@ -98,7 +98,7 @@ void options_window::draw_option(unsigned char id, unsigned char pos)
         else
         {
             u8g2.setCursor(115, 19 + 11 * pos);
-            u8g2.print((uint8_t)IR_ins.param[0].true_val);
+            u8g2.print((uint8_t)IR_ins.param[0].true_val.fp);
         }
         break;
 
