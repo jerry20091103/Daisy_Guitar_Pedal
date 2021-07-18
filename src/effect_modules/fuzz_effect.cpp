@@ -24,7 +24,7 @@ void fuzz_effect::process(float in, float &out)
     if (enable)
     {
         float fuzzed, after;
-        in = in * (1+gain) * (1+gain);
+        in = in * gain;
         // hard clipping
         if(in > threshold)
         {
@@ -39,7 +39,7 @@ void fuzz_effect::process(float in, float &out)
             fuzzed = in;
         }
         after = tone.Process(fuzzed) * 0.5;
-        out = after * level*level;       
+        out = after * level;       
     }
     else // bypass
     {
@@ -54,12 +54,12 @@ void fuzz_effect::set_param(uint8_t id, unsigned char val)
     {
     case 0:
         param[id].true_val.fp = (float)val * 0.06;
-        gain = param[id].true_val.fp;
+        gain = (1 + param[id].true_val.fp) * (1 + param[id].true_val.fp);
         break;
 
     case 1:
         param[id].true_val.fp = (float)val * 0.0039;
-        level = param[id].true_val.fp;
+        level = param[id].true_val.fp * param[id].true_val.fp;
         break;
     
     case 2:

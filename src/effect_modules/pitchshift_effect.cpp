@@ -22,10 +22,7 @@ void pitchshift_effect::process(float in, float &out)
 {
     if (enable)
     {
-        float before = in;
-        float after = 0.0f;
-        after = pitchshift.Process(before);
-        out = in * dry + after * wet;            // Dry and wet mix
+        out = in * dry + pitchshift.Process(in) * wet;
     }
     else // bypass
     {

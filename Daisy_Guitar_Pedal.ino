@@ -20,9 +20,9 @@ void audio_callback(float **in, float **out, size_t size)
         // Mono only
         // [0] is main in/out,  [1] is for external effects loop
         signal = in[0][i];
-        // set the effects loop output to zero first
+        // set outputs to zero first
         out[1][i] = 0;
-
+        out[0][i] = 0;
         // if the tuner is acitve
         if (display.current_window->get_window_id() == TUNER_WINDOW)
         {

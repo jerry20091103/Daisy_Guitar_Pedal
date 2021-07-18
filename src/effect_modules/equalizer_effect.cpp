@@ -34,7 +34,8 @@ void equalizer_effect::process(float in, float &out)
 {
     if (enable)
     {
-        out = pk_80.Filter(in) * 0.16667 + pk_184.Filter(in) * 0.16667 + pk_422.Filter(in) * 0.16667 + pk_970.Filter(in) * 0.16667 + pk_2230.Filter(in) * 0.16667 + pk_5120.Filter(in) * 0.16667;
+        in *= 0.16667;
+        out = pk_80.Filter(in) + pk_184.Filter(in) + pk_422.Filter(in) + pk_970.Filter(in) + pk_2230.Filter(in) + pk_5120.Filter(in);
     }
     else // bypass
     {

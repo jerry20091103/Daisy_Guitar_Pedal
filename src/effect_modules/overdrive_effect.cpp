@@ -24,7 +24,7 @@ void overdrive_effect::process(float in, float &out)
         float driven, after;
         driven = od.Process(in) * 0.4;
         after = tone.Process(driven);
-        out = after * level*level;       
+        out = after * level;       
     }
     else // bypass
     {
@@ -44,7 +44,7 @@ void overdrive_effect::set_param(uint8_t id, unsigned char val)
 
     case 1:
         param[id].true_val.fp = (float)val * 0.0039;
-        level = param[id].true_val.fp;
+        level = param[id].true_val.fp * param[id].true_val.fp;
         break;
 
     case 2:

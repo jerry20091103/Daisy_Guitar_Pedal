@@ -30,10 +30,10 @@ void delay_effect::process(float in, float &out)
     {
         float new_delay, delay_out;
         delay_out = delay_buf.Read();
-        new_delay = delay_out * feedback * feedback + in;
+        new_delay = delay_out * feedback + in;
         delay_buf.Write(tone.Process(new_delay));
 
-        out = in + delay_out * mix * mix;
+        out = in + delay_out * mix;
     }
     else // bypass
     {
@@ -74,12 +74,12 @@ void delay_effect::set_param(uint8_t id, unsigned char val)
 
     case 1: // feedback
         param[id].true_val.fp = (float)val * 0.0039;
-        feedback = param[id].true_val.fp;
+        feedback = param[id].true_val.fp * param[id].true_val.fp;
         break;
     
     case 2: // mix
         param[id].true_val.fp = (float)val * 0.0039;
-        mix = param[id].true_val.fp;
+        mix = param[id].true_val.fp * param[id].true_val.fp;
         break;
     
     case 3: // tone
