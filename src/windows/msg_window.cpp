@@ -24,7 +24,7 @@ void msg_window::draw()
     // Draw outer frame
     u8g2.drawFrame(0, 0, 128, 64);
     // Draw a line to fill the ugly gap
-    u8g2.drawVLine(3, 4, 13);
+    u8g2.drawVLine(3, 5, 12);
     // Draw message content
     u8g2.setFont(u8g2_font_6x12_mr);
     u8g2.drawStr(4, 35, msg1);

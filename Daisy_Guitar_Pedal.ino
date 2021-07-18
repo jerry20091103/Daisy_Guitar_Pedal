@@ -174,7 +174,7 @@ void setup()
 
     //Serial.println("Audio started");
 
-    show_msg(MSG_WARNING, 25, "v0.1 alpha", "May be unstable!");
+    show_msg(MSG_WARNING, 25, "v0.2 beta", "May be unstable!");
     mcp.digitalWrite(LED_FS0_PIN, HIGH);
     mcp.digitalWrite(LED_FS1_PIN, HIGH);
     mcp.digitalWrite(LED_FS2_PIN, HIGH);
