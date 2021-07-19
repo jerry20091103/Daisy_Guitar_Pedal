@@ -30,8 +30,8 @@ void tuner_window::draw()
 void tuner_window::update()
 {
     float temp = tuner.get_frequency();
-    if(temp < 5000)
-        frequency = tuner.get_frequency();
+    if(temp < 1500)
+        frequency = temp;
 }
 
 all_windows tuner_window::get_window_id()

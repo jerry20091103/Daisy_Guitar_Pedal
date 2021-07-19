@@ -5,10 +5,10 @@ _tuner tuner;
 
 void _tuner::init()
 {
-    tuner_sample_rate = 24000;
+    tuner_sample_rate = 48000;
     threshold = 0;
     filter_freq = 5000;
-    divider_state = 0;
+    cur_pos = 0;
     for (int i = 0; i < TUNER_SAMPLE_SIZE; i++)
     {
         in_buffer[i] = 0;
@@ -17,20 +17,19 @@ void _tuner::init()
 
 void _tuner::process(float in)
 {
-    if (!divider_state)
-    {
-        // shift entire buffer and add new sample
-        for (int i = TUNER_SAMPLE_SIZE - 1; i > 0; i--)
-        {
-            in_buffer[i] = in_buffer[i - 1];
-        }
-        in_buffer[0] = f2s16(in);
-    }
-    divider_state = (divider_state + 1) % TUNER_SAMPLE_RATE_DIVIDER;
+        in_buffer[cur_pos] = f2s16(in);
+        cur_pos = (cur_pos + 1) % TUNER_SAMPLE_SIZE;
+        // // shift entire buffer and add new sample
+        // for (int i = TUNER_SAMPLE_SIZE - 1; i > 0; i--)
+        // {
+        //     in_buffer[i] = in_buffer[i - 1];
+        // }
+        // in_buffer[0] = f2s16(in);
 }
 
 float _tuner::get_frequency()
 {
+    int temp_pos = 0;
     sum = 0;
     pd_state = 0;
     int period = 0;
@@ -40,7 +39,10 @@ float _tuner::get_frequency()
         sum_old = sum;
         sum = 0;
         for (int k = 0; k < TUNER_SAMPLE_SIZE - i; k++)
-            sum += (in_buffer[k]) * (in_buffer[k + i]) / 65536;
+        {
+            temp_pos = (k + cur_pos) % TUNER_SAMPLE_SIZE;
+            sum += (in_buffer[temp_pos]) * (in_buffer[temp_pos + i]) / 65536;
+        }
 
         // Peak Detect State Machine
         if (pd_state == 2 && (sum - sum_old) <= 0)

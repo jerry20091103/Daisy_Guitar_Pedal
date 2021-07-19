@@ -1,11 +1,9 @@
 #ifndef TUNER_H
 #define TUNER_H
 
-#include "arduinoFFT.h"
 #include "src/effect_modules/effects.h"
 
-#define TUNER_SAMPLE_SIZE 2048
-#define TUNER_SAMPLE_RATE_DIVIDER 2
+#define TUNER_SAMPLE_SIZE 4096
 
 // FFT based guitar tuner
 // GUIs are in tuner_window.h / .cpp
@@ -25,7 +23,7 @@ private:
     float freq_per = 0;
     byte pd_state = 0;
     float filter_freq;
-    unsigned char divider_state;
+    int cur_pos;
 };
 
 extern _tuner tuner;
