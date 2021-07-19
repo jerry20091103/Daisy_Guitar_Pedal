@@ -27,7 +27,9 @@ void _looper::process(float in, float &out)
             // write input into new layer
             if(first_loop)
             {
-                looper_mem[(cur_layer - 1) * loop_size + cur_pos] = f2s16(in);
+                looper_mem[cur_pos] += f2s16(in);
+                if(cur_pos == LOOPER_MEM_SIZE-1)
+                    first_loop_full = true;
             }
             else
             {
@@ -59,7 +61,10 @@ void _looper::record()
         if (first_loop)
         {
             first_loop = false;
-            loop_size = cur_pos + 1;
+            if(first_loop_full)
+                loop_size = LOOPER_MEM_SIZE;
+            else
+                loop_size = cur_pos + 1;
         }
     }
     // start recording
@@ -140,6 +145,7 @@ void _looper::clear()
     cur_pos = 0;
     loop_size = LOOPER_MEM_SIZE;
     first_loop = true;
+    first_loop_full = false;
     memory_full = false;
 }
 

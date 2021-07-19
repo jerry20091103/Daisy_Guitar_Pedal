@@ -38,6 +38,7 @@ private:
     bool first_loop;     // whether this is the first loop layer or not
     int loop_size;       // length of each loop (in samples)
     int cur_pos;         // current playing / recording position
+    bool first_loop_full; // whether the first loop used the whole memory
 };
 
 extern _looper looper;
