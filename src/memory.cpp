@@ -27,10 +27,10 @@ void _memory::reset_memory()
         {
             for (int k = 0; k < MAX_PARAM_NUM; k++)
             {
-                effect_param_mem[i][j][k] = 0;
+                effect_preset_mem[i].param[j][k] = 0;
             }
-            effect_id_mem[i][j] = 0;
-            effect_enable_mem[i][j] = 0;
+            effect_preset_mem[i].id[j] = 0;
+            effect_preset_mem[i].enable[j] = 0;
         }
     }
     cur_preset_mem = 0;
@@ -69,7 +69,7 @@ void _memory::read_from_flash()
     {
         for (int j = 0; j < MAX_EFFECTS_NUM; j++)
         {
-            effect_id_mem[i][j] = eep.read(addr);
+            effect_preset_mem[i].id[j] = eep.read(addr);
             addr++;
         }
     }
@@ -80,7 +80,7 @@ void _memory::read_from_flash()
         {
             for (int k = 0; k < MAX_PARAM_NUM; k++)
             {
-                effect_param_mem[i][j][k] = eep.read(addr);
+                effect_preset_mem[i].param[j][k] = eep.read(addr);
                 addr++;
             }
         }
@@ -90,7 +90,7 @@ void _memory::read_from_flash()
     {
         for (int j = 0; j < MAX_EFFECTS_NUM; j++)
         {
-            effect_enable_mem[i][j] = eep.read(addr);
+            effect_preset_mem[i].enable[j] = eep.read(addr);
             addr++;
         }
     }
@@ -124,7 +124,7 @@ int _memory::save_to_flash()
     {
         for (int j = 0; j < MAX_EFFECTS_NUM; j++)
         {
-            eep.write(addr, effect_id_mem[i][j]);
+            eep.write(addr, effect_preset_mem[i].id[j]);
             addr++;
         }
     }
@@ -135,7 +135,7 @@ int _memory::save_to_flash()
         {
             for (int k = 0; k < MAX_PARAM_NUM; k++)
             {
-                eep.write(addr, effect_param_mem[i][j][k]);
+                eep.write(addr, effect_preset_mem[i].param[j][k]);
                 addr++;
             }
         }
@@ -145,7 +145,7 @@ int _memory::save_to_flash()
     {
         for (int j = 0; j < MAX_EFFECTS_NUM; j++)
         {
-            eep.write(addr, effect_enable_mem[i][j]);
+            eep.write(addr, effect_preset_mem[i].enable[j]);
             addr++;
         }
     }

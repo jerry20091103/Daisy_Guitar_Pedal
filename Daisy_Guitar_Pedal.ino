@@ -124,16 +124,16 @@ void setup()
                     //Serial.print(" ");
                     //Serial.print(k);
                     //Serial.print(" : ");
-                    //Serial.println(memory.effect_param_mem[i][j][k]);
+                    //Serial.println(memory.effect_preset_mem[i].param[j][k]);
                 }
                 //Serial.print(i);
                 //Serial.print(" ");
                 //Serial.print(j);
                 //Serial.print(" ");
                 //Serial.print("id: ");
-                //Serial.print(memory.effect_id_mem[i][j]);
+                //Serial.print(memory.effect_preset_mem[i].id[j]);
                 //Serial.print(" / ");
-                //Serial.println(memory.effect_enable_mem[i][j]);
+                //Serial.println(memory.effect_preset_mem[i].enable[j]);
             }
         }
         //Serial.print("cur_preset: ");
@@ -174,7 +174,7 @@ void setup()
 
     //Serial.println("Audio started");
 
-    show_msg(MSG_WARNING, 25, "v0.2 beta", "May be unstable!");
+    show_msg(MSG_WARNING, 25, "v0.3 beta", "May be unstable!");
     mcp.digitalWrite(LED_FS0_PIN, HIGH);
     mcp.digitalWrite(LED_FS1_PIN, HIGH);
     mcp.digitalWrite(LED_FS2_PIN, HIGH);

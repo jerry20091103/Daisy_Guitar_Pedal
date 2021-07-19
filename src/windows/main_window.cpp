@@ -178,6 +178,14 @@ void main_window::on_btn_pressed(buttons id)
     case BTN_FS1:
         insert_command(CMD_UI_PRESET_DOWN);
         break;
+
+    case BTN_UP:
+        insert_command(CMD_UI_SIG_SWAP_UP);
+        break;
+    
+    case BTN_DOWN:
+        insert_command(CMD_UI_SIG_SWAP_DOWN);
+        break;
     
     default:
         break;
@@ -196,6 +204,14 @@ void main_window::on_btn_holded(buttons id)
         break;
     case BTN_FS0:
         insert_command(CMD_OPEN_TUNER);
+        break;
+
+    case BTN_UP:
+        insert_command(CMD_UI_PRESET_SWAP_UP);
+        break;
+    
+    case BTN_DOWN:
+        insert_command(CMD_UI_PRESET_SWAP_DOWN);
         break;
     
     default:

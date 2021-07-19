@@ -42,6 +42,7 @@ public:
     void read_cur_preset_num();
     void save_cur_preset_num();
     void change_preset(unsigned char preset);
+    void swap_preset(unsigned char a, unsigned char b);
     unsigned char cur_preset = 0;
     bool effect_used[EFFECTS_AMOUNT] = {false};
     effects *effects_arr[EFFECTS_AMOUNT] = {nullptr};

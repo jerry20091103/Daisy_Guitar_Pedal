@@ -15,6 +15,13 @@ typedef union{
     byte bin[IR_LENGTH * 4];
 } binary_float;
 
+struct effect_preset
+{
+    unsigned char param[MAX_EFFECTS_NUM][MAX_PARAM_NUM];
+    unsigned char id[MAX_EFFECTS_NUM];
+    unsigned char enable[MAX_EFFECTS_NUM];
+};
+
 // Strores user preserts, options and IRs
 // Handle load / save with external EEPROM
 class _memory
@@ -30,9 +37,7 @@ public:
     int load_ir(uint8_t id);
     unsigned char memory_valid;
     unsigned char cur_preset_mem;
-    unsigned char effect_id_mem[MAX_USER_PRESET][MAX_EFFECTS_NUM]; // [preset][effect]
-    unsigned char effect_param_mem[MAX_USER_PRESET][MAX_EFFECTS_NUM][MAX_PARAM_NUM]; // [preset][effect][param]
-    unsigned char effect_enable_mem[MAX_USER_PRESET][MAX_EFFECTS_NUM]; // [preset][effect]
+    effect_preset effect_preset_mem[MAX_USER_PRESET];
     unsigned char options_mem[OPTIONS_AMOUNT];
     unsigned char looper_options_mem[LOOPER_OPTIONS_AMOUNT];
     binary_float cur_ir;

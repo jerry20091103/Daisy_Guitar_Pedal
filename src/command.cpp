@@ -132,6 +132,26 @@ int command_handler()
     case CMD_UI_SIG_CUR_OPT:
         display.change_window(OPTIONS_WINDOW);
         break;
+    
+    case CMD_UI_SIG_SWAP_UP:
+        if(main_window_ins.cur_effect != 0)
+        {
+            effects* temp = signal_chain[main_window_ins.cur_effect];
+            signal_chain[main_window_ins.cur_effect] = signal_chain[main_window_ins.cur_effect-1];
+            main_window_ins.cur_effect--;
+            signal_chain[main_window_ins.cur_effect] = temp;
+        }
+        break;
+    
+    case CMD_UI_SIG_SWAP_DOWN:
+        if(main_window_ins.cur_effect != MAX_EFFECTS_NUM-1)
+        {
+            effects* temp = signal_chain[main_window_ins.cur_effect];
+            signal_chain[main_window_ins.cur_effect] = signal_chain[main_window_ins.cur_effect+1];
+            main_window_ins.cur_effect++;
+            signal_chain[main_window_ins.cur_effect] = temp;
+        }
+        break;
 
     case CMD_UI_PARAM_CUR_LEFT:
         if (effect_param_window_ins.cur_param > 1)
@@ -242,6 +262,26 @@ int command_handler()
         if (effects_rack.cur_preset < MAX_USER_PRESET - 1)
         {
             effects_rack.change_preset(effects_rack.cur_preset + 1);
+        }
+        break;
+
+    case CMD_UI_PRESET_SWAP_UP:
+        if(effects_rack.cur_preset != 0)
+        {
+            effects_rack.save_cur_preset();
+            effects_rack.swap_preset(effects_rack.cur_preset, effects_rack.cur_preset - 1);
+            effects_rack.cur_preset--;
+            effects_rack.read_preset(effects_rack.cur_preset);
+        }
+        break;
+    
+    case CMD_UI_PRESET_SWAP_DOWN:
+        if(effects_rack.cur_preset != MAX_USER_PRESET - 1)
+        {
+            effects_rack.save_cur_preset();
+            effects_rack.swap_preset(effects_rack.cur_preset, effects_rack.cur_preset + 1);
+            effects_rack.cur_preset++;
+            effects_rack.read_preset(effects_rack.cur_preset);
         }
         break;
 

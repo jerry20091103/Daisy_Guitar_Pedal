@@ -69,22 +69,22 @@ void _effects_rack::read_preset(unsigned char preset)
     for (unsigned char i = 0; i < MAX_EFFECTS_NUM; i++)
     {
         // read effect id
-        signal_chain[i] = effects_arr[memory.effect_id_mem[preset][i]];
+        signal_chain[i] = effects_arr[memory.effect_preset_mem[preset].id[i]];
 
         // if not empty effect
         if (signal_chain[i] != nullptr)
         {
             // Set used status
-            effect_used[memory.effect_id_mem[preset][i]] = true;
+            effect_used[memory.effect_preset_mem[preset].id[i]] = true;
 
             // read effect parameters
             for (unsigned char j = 0; j < MAX_PARAM_NUM; j++)
             {
-                signal_chain[i]->set_param(j, memory.effect_param_mem[preset][i][j]);
+                signal_chain[i]->set_param(j, memory.effect_preset_mem[preset].param[i][j]);
             }
 
             // read effect enable
-            if (memory.effect_enable_mem[preset][i])
+            if (memory.effect_preset_mem[preset].enable[i])
             {
                 signal_chain[i]->enable = true;
             }
@@ -103,32 +103,32 @@ void _effects_rack::save_cur_preset()
         // if null
         if (signal_chain[i] == nullptr)
         {
-            memory.effect_id_mem[cur_preset][i] = 0;
+            memory.effect_preset_mem[cur_preset].id[i] = 0;
             for (unsigned char j = 0; j < MAX_PARAM_NUM; j++)
             {
-                memory.effect_param_mem[cur_preset][i][j] = 0;
+                memory.effect_preset_mem[cur_preset].param[i][j] = 0;
             }
-            memory.effect_enable_mem[cur_preset][i] = 0;
+            memory.effect_preset_mem[cur_preset].enable[i] = 0;
         }
         else
         {
             // save effect id
-            memory.effect_id_mem[cur_preset][i] = signal_chain[i]->id;
+            memory.effect_preset_mem[cur_preset].id[i] = signal_chain[i]->id;
 
             // save effect parameters
             for (unsigned char j = 0; j < MAX_PARAM_NUM; j++)
             {
-                memory.effect_param_mem[cur_preset][i][j] = signal_chain[i]->param[j].value;
+                memory.effect_preset_mem[cur_preset].param[i][j] = signal_chain[i]->param[j].value;
             }
 
             // save effect enable
             if (signal_chain[i]->enable)
             {
-                memory.effect_enable_mem[cur_preset][i] = 1;
+                memory.effect_preset_mem[cur_preset].enable[i] = 1;
             }
             else
             {
-                memory.effect_enable_mem[cur_preset][i] = 0;
+                memory.effect_preset_mem[cur_preset].enable[i] = 0;
             }
         }
     }
@@ -139,6 +139,13 @@ void _effects_rack::change_preset(unsigned char preset)
     save_cur_preset();
     read_preset(preset);
     cur_preset = preset;
+}
+
+void _effects_rack::swap_preset(unsigned char a, unsigned char b)
+{
+    effect_preset temp = memory.effect_preset_mem[a];
+    memory.effect_preset_mem[a] = memory.effect_preset_mem[b];
+    memory.effect_preset_mem[b] = temp;
 }
 
 void _effects_rack::read_cur_preset_num()
