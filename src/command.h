@@ -54,6 +54,9 @@ enum command : unsigned char{
     CMD_LOOPER_BACK,
     CMD_LOOPER_LVL_INC,
     CMD_LOOPER_LVL_DEC,
+    CMD_LOOPER_POS_INC,
+    CMD_LOOPER_POS_DEC,
+    CMD_LOOPER_POS_START,
     // Tuner command
     CMD_OPEN_TUNER,
 };

@@ -23,9 +23,12 @@ public:
     void clear();
     float loop_level;     // volume level of the loop
     float get_loop_pos(); // get current position / loop length (for GUI)
+    void set_loop_pos(float pos); // set current position (0~1)
     float get_meory_usage();
     void loop_level_inc(); // increase loop level
     void loop_level_dec(); // decrease loop level
+    void loop_pos_inc();
+    void loop_pos_dec();
     bool memory_full;
     int layer_count;     // current layer count
     int cur_layer;       // current layer that is active (layers <= cur_layer are acitve)

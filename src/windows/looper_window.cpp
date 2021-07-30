@@ -90,6 +90,18 @@ void looper_window::on_btn_pressed(buttons id)
         insert_command(CMD_UI_PRESET_DOWN);
         break;
     
+    case BTN_UP:
+        insert_command(CMD_LOOPER_LVL_INC);
+        break;
+    
+    case BTN_DOWN:
+        insert_command(CMD_LOOPER_LVL_DEC);
+        break;
+    
+    case BTN_LEFT:
+        insert_command(CMD_LOOPER_POS_START);
+        break;
+        
     default:
         break;
     }
@@ -106,11 +118,11 @@ void looper_window::on_enc_turned(RotaryEncoder::Direction dir)
     switch (dir)
     {
     case ENCODER_CW:
-        insert_command(CMD_LOOPER_LVL_INC);
+        insert_command(CMD_LOOPER_POS_INC);
         break;
 
     case ENCODER_CCW:
-        insert_command(CMD_LOOPER_LVL_DEC);
+        insert_command(CMD_LOOPER_POS_DEC);
         break;
 
     default:

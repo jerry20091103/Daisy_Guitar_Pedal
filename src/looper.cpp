@@ -25,16 +25,16 @@ void _looper::process(float in, float &out)
         if (recording)
         {
             // write input into new layer
-            if(first_loop)
+            if (first_loop)
             {
                 looper_mem[cur_pos] += f2s16(in);
-                if(cur_pos == LOOPER_MEM_SIZE-1)
+                if (cur_pos == LOOPER_MEM_SIZE - 1)
                     first_loop_full = true;
             }
             else
             {
                 looper_mem[(cur_layer - 1) * loop_size + cur_pos] += f2s16(in);
-            }            
+            }
             top_layer--; // minus 1 since cur_layer is still in recording
         }
 
@@ -61,7 +61,7 @@ void _looper::record()
         if (first_loop)
         {
             first_loop = false;
-            if(first_loop_full)
+            if (first_loop_full)
                 loop_size = LOOPER_MEM_SIZE;
             else
                 loop_size = cur_pos + 1;
@@ -77,7 +77,7 @@ void _looper::record()
             return;
         }
         // start recording
-        if(!first_loop)
+        if (!first_loop)
             memset(&looper_mem[cur_layer * loop_size], 0, loop_size * 2);
         cur_layer++;
         layer_count = cur_layer;
@@ -100,7 +100,7 @@ void _looper::stop()
         }
     }
     // play
-    else if(layer_count > 0)
+    else if (layer_count > 0)
     {
         enable = true;
     }
@@ -108,29 +108,29 @@ void _looper::stop()
 
 void _looper::undo()
 {
-    if(recording)
+    if (recording)
     {
         return;
     }
     // clear all loops if looper is in "stop"
-    else if(!enable)
+    else if (!enable)
     {
         clear();
     }
     // take out current layer (but still keep it for future redos)
     else
     {
-        cur_layer = cur_layer <= 0 ? 0 : cur_layer-1;
+        cur_layer = cur_layer <= 0 ? 0 : cur_layer - 1;
     }
 }
 
 void _looper::redo()
 {
-    if(recording)
+    if (recording)
     {
         return;
     }
-    else if(layer_count > cur_layer)
+    else if (layer_count > cur_layer)
     {
         cur_layer++;
     }
@@ -151,7 +151,7 @@ void _looper::clear()
 
 void _looper::loop_level_inc()
 {
-    if(loop_level + 0.1 < 1)
+    if (loop_level + 0.1 < 1)
         loop_level += 0.1;
     else
         loop_level = 1;
@@ -159,10 +159,42 @@ void _looper::loop_level_inc()
 
 void _looper::loop_level_dec()
 {
-    if(loop_level - 0.1 > 0)
+    if (loop_level - 0.1 > 0)
         loop_level -= 0.1;
     else
         loop_level = 0;
+}
+
+void _looper::loop_pos_inc()
+{
+    if (!first_loop)
+    {
+        int delta = loop_size / 64;
+        if (cur_pos + delta < loop_size)
+            cur_pos += delta;
+        else
+            cur_pos = loop_size - 1;
+    }
+}
+
+void _looper::loop_pos_dec()
+{
+    if (!first_loop)
+    {
+        int delta = loop_size / 64;
+        if (cur_pos - delta >= 0)
+            cur_pos -= delta;
+        else
+            cur_pos = 0;
+    }
+}
+
+void _looper::set_loop_pos(float pos)
+{
+    if (!first_loop)
+    {
+        cur_pos = pos * loop_size;
+    }
 }
 
 float _looper::get_loop_pos()
@@ -177,7 +209,7 @@ float _looper::get_meory_usage()
 
 void _looper::read_options()
 {
-    if(memory.looper_options_mem[0] <= 0 || memory.looper_options_mem[0] > 10)
+    if (memory.looper_options_mem[0] <= 0 || memory.looper_options_mem[0] > 10)
         loop_level = 0.9;
     else
         loop_level = memory.looper_options_mem[0] * 0.1;

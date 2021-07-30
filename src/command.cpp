@@ -435,6 +435,18 @@ int command_handler()
         looper.loop_level_dec();
         break;
     
+    case CMD_LOOPER_POS_INC:
+        looper.loop_pos_inc();
+        break;
+    
+    case CMD_LOOPER_POS_DEC:
+        looper.loop_pos_dec();
+        break;
+    
+    case CMD_LOOPER_POS_START:
+        looper.set_loop_pos(0);
+        break;
+    
     case CMD_OPEN_TUNER:
         display.change_window(TUNER_WINDOW);
 
