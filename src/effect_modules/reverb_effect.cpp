@@ -13,6 +13,12 @@ void reverb_effect::init()
 
     init_param(3, "Wet", true, 200, FLOAT, 2);
 
+    // init filters
+    hpf.setFilterType(Parametric::LS);
+    hpf.CalcCoeffs(-10, 80, 20);
+    notch.setFilterType(Parametric::PK);
+    notch.CalcCoeffs(-30, 176, 80);
+
     // Initialize name
     strcpy(effect_short_name, "Revb");
     strcpy(effect_name, "Reverb");
@@ -22,9 +28,10 @@ void reverb_effect::process(float in, float &out)
 {
     if (enable)
     {
+        float input = notch.Filter(hpf.Filter(in * 0.5));
         float after_l = 0.0f;
         float after_r = 0.0f;
-        reverb.Process(in, in, &after_l, &after_r);
+        reverb.Process(input, input, &after_l, &after_r);
         out = in * dry + (after_l + after_r) * 0.5 * wet;            // Dry and wet mix
     }
     else // bypass

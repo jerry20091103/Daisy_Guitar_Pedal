@@ -2,6 +2,7 @@
 #define REVERB_EFFECT_H
 
 #include "effects.h"
+#include "parametric.h"
 
 class reverb_effect : public effects
 {
@@ -11,6 +12,8 @@ public:
     virtual void init() override;
 private:
     daisysp::ReverbSc reverb;
+    Parametric hpf = Parametric();
+    Parametric notch = Parametric();
     float dry, wet;
 };
 
