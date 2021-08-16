@@ -43,7 +43,7 @@ void effect_select_window::draw()
     u8g2.print(cur_page + 1);
     u8g2.drawStr(7, 35, "/");
     u8g2.setCursor(13, 35);
-    u8g2.print((EFFECTS_AMOUNT-1) / 5 + 1);
+    u8g2.print((EFFECTS_AMOUNT-2) / 4 + 1);
 
     // Draw page arrows
     for (uint8_t i = 0; i <= 3; i++)

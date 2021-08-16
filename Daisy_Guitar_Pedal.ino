@@ -16,17 +16,16 @@ void audio_callback(float **in, float **out, size_t size)
 {
     for (size_t i = 0; i < size; i++)
     {
-        float signal, temp;
+        float temp;
         // Mono only
         // [0] is main in/out,  [1] is for external effects loop
-        signal = in[0][i];
         // set outputs to zero first
         out[1][i] = 0;
         out[0][i] = 0;
         // if the tuner is acitve
         if (display.current_window->get_window_id() == TUNER_WINDOW)
         {
-            tuner.process(signal);
+            tuner.process(in[0][i]);
         }
         else
         {
@@ -41,31 +40,31 @@ void audio_callback(float **in, float **out, size_t size)
                 {
                     if (signal_chain[j]->enable)
                     {
-                        out[1][i] = signal; // send
+                        out[1][i] = in[0][i]; // send
                         temp = in[1][i];    // return
                     }
                     else // passthrough
                     {
-                        temp = signal;
+                        temp = in[0][i];
                     }
                 }
                 else
                 {
-                    signal_chain[j]->process(signal, temp);
+                    signal_chain[j]->process(in[0][i], temp);
                 }
-                signal = temp;
+                in[0][i] = temp;
             }
             // Process IR cab sim
-            IR_ins.process(signal, temp);
-            signal = temp;
+            IR_ins.process(in[0][i], temp);
+            in[0][i] = temp;
 
             // Process looper
-            looper.process(signal, temp);
-            signal = temp;
+            looper.process(in[0][i], temp);
+            in[0][i] = temp;
         }
 
         // Assign output
-        out[0][i] = signal;
+        out[0][i] = in[0][i];
     }
 }
 
