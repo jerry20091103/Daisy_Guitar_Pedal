@@ -14,7 +14,7 @@
 #include "tremolo_effect.h"
 #include "cab_effect.h"
 
-#define EFFECTS_AMOUNT 15 // How many effects
+#define EFFECTS_AMOUNT 14 // How many effects
 
 enum effect_id : unsigned char
 {
@@ -32,7 +32,6 @@ enum effect_id : unsigned char
     GAIN_MOD02_ID,
     COMPRESSOR_MOD01_ID,
     PITCHSHIFT_MOD01_ID,
-    CAB_MOD01_ID,
 };
 
 class _effects_rack
@@ -63,7 +62,6 @@ private:
     flanger_effect flanger_mod01;
     equalizer_effect equalizer_mod01;
     tremolo_effect tremolo_mod01;
-    cab_effect cab_mod01;
 };
 
 // A home for all effect instances

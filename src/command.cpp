@@ -345,7 +345,11 @@ int command_handler()
 
         case OPT_IR:
             IR_ins.set_param(0, IR_ins.param[0].value + 1);
-        break;
+            break;
+        
+        case OPT_CAB:
+            cab_ins.set_param(0, cab_ins.param[0].value + 1);
+            break;
 
         default:
             break;
@@ -371,7 +375,11 @@ int command_handler()
         
         case OPT_IR:
             IR_ins.set_param(0, IR_ins.param[0].value - 1);
-        break;
+            break;
+
+        case OPT_CAB:
+            cab_ins.set_param(0, cab_ins.param[0].value - 1);
+            break;
 
         default:
             break;

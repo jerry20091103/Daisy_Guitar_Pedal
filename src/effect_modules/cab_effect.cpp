@@ -1,5 +1,7 @@
 #include "cab_effect.h"
 
+cab_effect cab_ins;
+
 void cab_effect::init()
 {
     // Initialize parametric filters
@@ -18,6 +20,8 @@ void cab_effect::init()
     f4.CalcCoeffs(6.6, 2606, 1);
     f5.CalcCoeffs(-23, 8236, 1.5);
     f6.CalcCoeffs(-27.8, 20000, 24);
+
+    init_param(0, "Mode", true, 128, BOOL);
 
     // Initialize name
     strcpy(effect_short_name, "Cab ");
@@ -42,7 +46,10 @@ void cab_effect::set_param(uint8_t id, unsigned char val)
     param[id].value = val;
     switch (id)
     {
-    
+        case 0:
+        param[id].true_val.b = val % 2;
+        enable = param[id].true_val.b;
+        break;
 
     default:
         // Maybe do an error log

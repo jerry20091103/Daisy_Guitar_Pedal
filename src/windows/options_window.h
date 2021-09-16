@@ -3,13 +3,14 @@
 
 #include "src/windows/windows.h"
 
-#define OPTIONS_AMOUNT 4
+#define OPTIONS_AMOUNT 5
 
 enum all_options : unsigned char
 {
     OPT_SAVE_FLASH,
     OPT_LED_BRIGHTNESS,
     OPT_DELAY_UNIT,
+    OPT_CAB,
     OPT_IR
 };
 

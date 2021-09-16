@@ -22,4 +22,6 @@ private:
     Parametric f6 = Parametric();
 };
 
+extern cab_effect cab_ins;
+
 #endif

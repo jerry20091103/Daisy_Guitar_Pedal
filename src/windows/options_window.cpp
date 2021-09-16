@@ -101,6 +101,21 @@ void options_window::draw_option(unsigned char id, unsigned char pos)
             u8g2.print((uint8_t)IR_ins.param[0].true_val.fp);
         }
         break;
+    
+    case OPT_CAB:
+        u8g2.drawStr(24, 19 + 11 * pos, "EQ Cab Sim");
+        u8g2.drawStr(103, 19 + 11 * pos, "<   >");
+        if (cab_ins.param[0].true_val.b == 0)
+        {
+            u8g2.setCursor(109, 19 + 11 * pos);
+            u8g2.print("OFF");
+        }
+        else
+        {
+            u8g2.setCursor(115, 19 + 11 * pos);
+            u8g2.print("ON");
+        }
+        break;
 
     default:
         break;
@@ -205,6 +220,10 @@ void options_window::read_options()
             IR_ins.set_param(0, memory.options_mem[OPT_IR]);
             break;
 
+        case OPT_CAB:
+            cab_ins.set_param(0, memory.options_mem[OPT_CAB]);
+            break;
+
         default:
             break;
         }
@@ -227,6 +246,10 @@ void options_window::save_options()
             
         case OPT_IR:
             memory.options_mem[i] = IR_ins.param[0].value;
+            break;
+        
+        case OPT_CAB:
+            memory.options_mem[i] = cab_ins.param[0].value;
             break;
 
         default:

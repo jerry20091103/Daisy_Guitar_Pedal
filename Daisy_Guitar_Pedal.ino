@@ -58,6 +58,10 @@ void audio_callback(float **in, float **out, size_t size)
             IR_ins.process(in[0][i], temp);
             in[0][i] = temp;
 
+            // Process EQ cab sim
+            cab_ins.process(in[0][i], temp);
+            in[0][i] = temp;
+
             // Process looper
             looper.process(in[0][i], temp);
             in[0][i] = temp;
@@ -158,6 +162,8 @@ void setup()
     effects_rack.init();
     looper.init();
     tuner.init();
+    IR_ins.init();
+    cab_ins.init();
     // Read from memory
     effects_rack.read_cur_preset_num();
     effects_rack.read_preset(effects_rack.cur_preset);
