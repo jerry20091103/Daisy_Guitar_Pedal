@@ -47,6 +47,7 @@ public:
     unsigned char cur_preset = 0;
     bool effect_used[EFFECTS_AMOUNT] = {false};
     effects *effects_arr[EFFECTS_AMOUNT] = {nullptr};
+    bool delay_used = false;
 private:
     // All effect instances
     reverb_effect reverb_mod01;

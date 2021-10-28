@@ -30,6 +30,7 @@ void audio_callback(float **in, float **out, size_t size)
         else
         {
             // process all the effects in the chain
+            effects_rack.delay_used = false;
             for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
             {
                 // if effect is empty
@@ -65,6 +66,13 @@ void audio_callback(float **in, float **out, size_t size)
             // Process looper
             looper.process(in[0][i], temp);
             in[0][i] = temp;
+
+            // let the delay continue to run when not in the signal chain
+            // to clear the delay buffer
+            if (!effects_rack.delay_used)
+            {
+                effects_rack.effects_arr[DELAY_MOD_ID]->process(0, temp);
+            }
         }
 
         // Assign output

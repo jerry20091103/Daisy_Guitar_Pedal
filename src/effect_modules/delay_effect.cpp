@@ -1,5 +1,6 @@
 #include "delay_effect.h"
 #include "src/windows/options_window.h"
+#include "effects_rack.h"
 
 daisysp::DelayLine<float, 96000> DSY_SDRAM_BSS delay_buf;
 
@@ -26,6 +27,7 @@ void delay_effect::init()
 
 void delay_effect::process(float in, float &out)
 {
+    effects_rack.delay_used = true; // mark that delay is used in this callback
     if (enable)
     {
         float new_delay, delay_out;
