@@ -13,13 +13,13 @@ void cab_effect::init()
     f5.setFilterType(Parametric::PK);
     f6.setFilterType(Parametric::HS);
 
-    f0.CalcCoeffs(-23.9, 56.7, 24);
-    f1.CalcCoeffs(8.4, 131, 0.78);
-    f2.CalcCoeffs(0.9, 492, 1.7);
-    f3.CalcCoeffs(-7, 1157, 1);
-    f4.CalcCoeffs(6.6, 2606, 1);
-    f5.CalcCoeffs(-23, 8236, 1.5);
-    f6.CalcCoeffs(-27.8, 20000, 24);
+    f0.CalcCoeffs(-24.7, 32.9, 24);
+    f1.CalcCoeffs(10.7, 174, 0.35);
+    f2.CalcCoeffs(3, 497, 2);
+    f3.CalcCoeffs(-0.1, 1330, 0.59);
+    f4.CalcCoeffs(11.6, 2606, 1.1);
+    f5.CalcCoeffs(-25.5, 8482, 2.5);
+    f6.CalcCoeffs(-13, 17351, 24);
 
     init_param(0, "Mode", true, 128, BOOL);
 
@@ -33,7 +33,7 @@ void cab_effect::process(float in, float &out)
     if (enable)
     {
         
-        out = f6.Filter(f5.Filter(f4.Filter(f3.Filter(f2.Filter(f1.Filter(f0.Filter(in)))))));
+        out = f6.Filter(f5.Filter(f4.Filter(f3.Filter(f2.Filter(f1.Filter(f0.Filter(in))))))) * 0.44; // filter and reduce gain (-7dB)
     }
     else // bypass
     {
