@@ -57,8 +57,6 @@ enum command : unsigned char{
     CMD_LOOPER_POS_INC,
     CMD_LOOPER_POS_DEC,
     CMD_LOOPER_POS_START,
-    // Tuner command
-    CMD_OPEN_TUNER,
 };
 
 int command_handler();

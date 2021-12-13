@@ -5,7 +5,6 @@
 #include "src/memory.h"
 #include "src/windows/msg_window.h"
 #include "src/looper.h"
-#include "src/tuner.h"
 //#include "src/bluetooth.h"
 
 DaisyHardware hw;
@@ -22,57 +21,49 @@ void audio_callback(float **in, float **out, size_t size)
         // set outputs to zero first
         out[1][i] = 0;
         out[0][i] = 0;
-        // if the tuner is acitve
-        if (display.current_window->get_window_id() == TUNER_WINDOW)
+        // process all the effects in the chain
+        effects_rack.delay_used = false;
+        for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
         {
-            tuner.process(in[0][i]);
+            // if effect is empty
+            if (signal_chain[j] == nullptr)
+                continue;
+            // if the effect is the external analog module
+            if (signal_chain[j] == effects_rack.effects_arr[ANALOG_ID])
+            {
+                if (signal_chain[j]->enable)
+                {
+                    out[1][i] = in[0][i]; // send
+                    temp = in[1][i];      // return
+                }
+                else // passthrough
+                {
+                    temp = in[0][i];
+                }
+            }
+            else
+            {
+                signal_chain[j]->process(in[0][i], temp);
+            }
+            in[0][i] = temp;
         }
-        else
+        // Process IR cab sim
+        IR_ins.process(in[0][i], temp);
+        in[0][i] = temp;
+
+        // Process EQ cab sim
+        cab_ins.process(in[0][i], temp);
+        in[0][i] = temp;
+
+        // Process looper
+        looper.process(in[0][i], temp);
+        in[0][i] = temp;
+
+        // let the delay continue to run when not in the signal chain
+        // to clear the delay buffer
+        if (!effects_rack.delay_used)
         {
-            // process all the effects in the chain
-            effects_rack.delay_used = false;
-            for (uint8_t j = 0; j < MAX_EFFECTS_NUM; j++)
-            {
-                // if effect is empty
-                if (signal_chain[j] == nullptr)
-                    continue;
-                // if the effect is the external analog module
-                if (signal_chain[j] == effects_rack.effects_arr[ANALOG_ID])
-                {
-                    if (signal_chain[j]->enable)
-                    {
-                        out[1][i] = in[0][i]; // send
-                        temp = in[1][i];    // return
-                    }
-                    else // passthrough
-                    {
-                        temp = in[0][i];
-                    }
-                }
-                else
-                {
-                    signal_chain[j]->process(in[0][i], temp);
-                }
-                in[0][i] = temp;
-            }
-            // Process IR cab sim
-            IR_ins.process(in[0][i], temp);
-            in[0][i] = temp;
-
-            // Process EQ cab sim
-            cab_ins.process(in[0][i], temp);
-            in[0][i] = temp;
-
-            // Process looper
-            looper.process(in[0][i], temp);
-            in[0][i] = temp;
-
-            // let the delay continue to run when not in the signal chain
-            // to clear the delay buffer
-            if (!effects_rack.delay_used)
-            {
-                effects_rack.effects_arr[DELAY_MOD_ID]->process(0, temp);
-            }
+            effects_rack.effects_arr[DELAY_MOD_ID]->process(0, temp);
         }
 
         // Assign output
@@ -169,7 +160,6 @@ void setup()
     // Initialize effects
     effects_rack.init();
     looper.init();
-    tuner.init();
     IR_ins.init();
     cab_ins.init();
     // Read from memory

@@ -454,9 +454,6 @@ int command_handler()
     case CMD_LOOPER_POS_START:
         looper.set_loop_pos(0);
         break;
-    
-    case CMD_OPEN_TUNER:
-        display.change_window(TUNER_WINDOW);
 
     default:
         break;

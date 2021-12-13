@@ -202,9 +202,6 @@ void main_window::on_btn_holded(buttons id)
     case BTN_ENCODER:
         insert_command(CMD_UI_SIG_CUR_OPT);
         break;
-    case BTN_FS0:
-        insert_command(CMD_OPEN_TUNER);
-        break;
 
     case BTN_UP:
         insert_command(CMD_UI_PRESET_SWAP_UP);
