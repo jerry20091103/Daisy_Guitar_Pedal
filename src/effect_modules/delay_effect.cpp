@@ -20,6 +20,8 @@ void delay_effect::init()
 
     init_param(4, "Range", true, 128, STRING); // two ranges for delay time
 
+    init_param(5, "Reverse", true, 128, BOOL); // reverse or not
+
     // Initialize name
     strcpy(effect_short_name, "Dely");
     strcpy(effect_name, "Delay");
@@ -34,6 +36,9 @@ void delay_effect::process(float in, float &out)
         delay_out = delay_buf.Read();
         new_delay = delay_out * feedback + in;
         delay_buf.Write(tone.Process(new_delay));
+
+        if(reverse)
+            delay_out = delay_buf.ReadReversed();
 
         out = in + delay_out * mix;
     }
@@ -93,6 +98,11 @@ void delay_effect::set_param(uint8_t id, unsigned char val)
         range = (bool)(val % 2);
         strcpy(param[id].true_val.str, range ? "HIGH" : "LOW");
         set_param(0, param[0].value);
+        break;
+
+    case 5: // Reverse
+        param[id].true_val.b = val % 2;
+        reverse = param[id].true_val.b;
         break;
 
     default:

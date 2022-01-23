@@ -18,6 +18,7 @@ private:
     float mix;
     float delay_time;
     bool range;
+    bool reverse;
 };
 
 #endif
