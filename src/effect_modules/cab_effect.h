@@ -15,7 +15,6 @@ public:
 private:
     Parametric f0 = Parametric();
     Parametric f1 = Parametric();
-    Parametric f2 = Parametric();
     Parametric f3 = Parametric();
     Parametric f4 = Parametric();
     Parametric f5 = Parametric();
