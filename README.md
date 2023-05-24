@@ -1,6 +1,11 @@
 # Daisy Guitar Pedal
+<img src=./images/PXL_20210522_154805539.jpg width = 500/>
+
+## Introduction
+
 A digital guitar multi-effect pedal project made with Daisy seed and Arduino.  
 This is a hybird pedal, using Daisy Seed as DSP processor and a analog module for better overdrive and distortion tone.
+This forum post has more pictures: https://forum.electro-smith.com/t/hybrid-guitar-pedal-project/1666
 
 ## Signal Path
 The guitar signal path:
